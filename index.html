@@ -11,98 +11,65 @@
 <link rel="manifest" href="manifest.json"/>
 <style>
 :root{
-  --bg:#0f0f0f;
-  --surface:#1a1a1a;
-  --surface2:#242424;
-  --border:#2e2e2e;
-  --text:#f0f0f0;
-  --text2:#888;
-  --text3:#555;
-  --accent:#e8c84a;
-  --green:#4caf7d;
-  --red:#e05555;
-  --red-dim:#2d0f0f;
-  --radius:14px;
-  --radius-sm:9px;
-  --safe-top:env(safe-area-inset-top,0px);
-  --safe-bot:env(safe-area-inset-bottom,0px);
+  --bg:#0f0f0f;--surface:#1a1a1a;--surface2:#242424;--border:#2e2e2e;
+  --text:#f0f0f0;--text2:#888;--text3:#555;
+  --accent:#e8c84a;--green:#4caf7d;--red:#e05555;--red-dim:#2d0f0f;
+  --radius:14px;--radius-sm:9px;
+  --sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif;overscroll-behavior:none;-webkit-overflow-scrolling:touch}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif;overscroll-behavior:none}
 input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:none}
 
-/* NAV */
-.nav{
-  position:fixed;top:0;left:50%;transform:translateX(-50%);
-  width:100%;max-width:480px;z-index:100;
-  background:rgba(15,15,15,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border-bottom:0.5px solid var(--border);
-  padding-top:var(--safe-top);
-}
+.nav{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:100;background:rgba(15,15,15,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:0.5px solid var(--border);padding-top:var(--sat)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:13px 16px}
 .nav-title{font-size:17px;font-weight:700;letter-spacing:-.4px;color:var(--accent)}
-.nav-add{
-  width:34px;height:34px;border-radius:50%;
-  background:var(--accent);border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;color:#000;font-weight:300;line-height:1;
-  padding-bottom:1px;
-}
-.tabs{display:flex;padding:0 4px;gap:0}
-.tab{
-  flex:1;padding:9px 0 8px;font-size:13px;color:var(--text3);
-  background:none;border:none;cursor:pointer;
-  border-bottom:2px solid transparent;transition:.12s;letter-spacing:-.2px;
-}
+.nav-add{width:34px;height:34px;border-radius:50%;background:var(--accent);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;color:#000;font-weight:300;line-height:1;padding-bottom:1px}
+.tabs{display:flex;padding:0 4px}
+.tab{flex:1;padding:9px 0 8px;font-size:13px;color:var(--text3);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:.12s}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
 
-/* MAIN */
-.main{
-  flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
-  padding-top:calc(var(--safe-top) + 96px);
-  padding-bottom:calc(var(--safe-bot) + 24px);
-}
+.main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:calc(var(--sat) + 96px);padding-bottom:calc(var(--sab) + 24px)}
 
-/* SEARCH */
 .search-wrap{padding:12px 16px 8px}
-.search-wrap input{
-  width:100%;background:var(--surface2);
-  border:0.5px solid var(--border);border-radius:999px;
-  padding:9px 16px;font-size:15px;color:var(--text);outline:none;
-}
+.search-wrap input{width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:999px;padding:9px 16px;font-size:15px;color:var(--text);outline:none}
 .search-wrap input::placeholder{color:var(--text3)}
-
-/* SORT */
 .sort-row{display:flex;gap:6px;padding:0 16px 10px;overflow-x:auto;scrollbar-width:none}
 .sort-row::-webkit-scrollbar{display:none}
-.sort-chip{
-  flex-shrink:0;padding:5px 12px;border-radius:999px;font-size:12px;
-  background:var(--surface2);border:0.5px solid var(--border);color:var(--text3);cursor:pointer;
-  white-space:nowrap;
-}
-.sort-chip.active{background:var(--accent-dim,#2a2000);border-color:var(--accent);color:var(--accent)}
+.sort-chip{flex-shrink:0;padding:5px 12px;border-radius:999px;font-size:12px;background:var(--surface2);border:0.5px solid var(--border);color:var(--text3);cursor:pointer;white-space:nowrap}
+.sort-chip.active{background:#2a2000;border-color:var(--accent);color:var(--accent)}
 
-/* STATS MINI */
 .stats-mini{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:0 16px 12px}
 .smc{background:var(--surface);border-radius:var(--radius-sm);padding:9px 10px;text-align:center}
 .smc-val{font-size:16px;font-weight:700;color:var(--accent)}
 .smc-label{font-size:10px;color:var(--text3);margin-top:1px}
 
-/* LIST */
 .list{padding:0 16px;display:flex;flex-direction:column;gap:8px}
+
+/* カードアイテム */
 .card-item{background:var(--surface);border-radius:var(--radius);border:0.5px solid var(--border);overflow:hidden}
-.card-header{display:flex;align-items:center;padding:13px 14px;gap:8px;cursor:pointer;user-select:none}
-.card-left{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
-.card-name{font-size:15px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.card-sub{font-size:11px;color:var(--text3);display:flex;gap:6px}
+.card-header{display:flex;align-items:center;padding:10px 12px;gap:10px;cursor:pointer;user-select:none}
+
+/* サムネイル */
+.thumb{width:48px;height:48px;border-radius:8px;object-fit:cover;flex-shrink:0;background:var(--surface2);border:0.5px solid var(--border)}
+.thumb-empty{width:48px;height:48px;border-radius:8px;flex-shrink:0;background:var(--surface2);border:0.5px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--text3)}
+
+.card-left{flex:1;min-width:0}
+.card-name{font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-sub{font-size:11px;color:var(--text3);margin-top:2px}
 .card-right{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0}
-.card-buy{font-size:15px;font-weight:700;color:var(--accent)}
-.card-chevron{font-size:11px;color:var(--text3);transition:transform .2s}
-.card-chevron.open{transform:rotate(90deg)}
+.card-buy{font-size:14px;font-weight:700;color:var(--accent)}
+.card-chev{font-size:11px;color:var(--text3);transition:transform .18s}
+.card-chev.open{transform:rotate(90deg)}
 
 .card-body{display:none;border-top:0.5px solid var(--border)}
 .card-body.open{display:block}
 .card-body-inner{padding:12px 14px 14px}
+
+/* 展開時の写真（大） */
+.card-photo-wrap{margin-bottom:12px;border-radius:var(--radius-sm);overflow:hidden;background:var(--surface2);text-align:center;cursor:pointer}
+.card-photo-wrap img{width:100%;max-height:220px;object-fit:contain;display:block}
+.card-photo-none{padding:18px;font-size:13px;color:var(--text3)}
 
 .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 .price-box{background:var(--surface2);border-radius:var(--radius-sm);padding:10px 12px}
@@ -114,75 +81,65 @@ input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:non
 .pb-profit.pos{color:var(--green)}
 .pb-profit.neg{color:var(--red)}
 
-.info-row{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:var(--surface2);border-radius:var(--radius-sm);margin-bottom:6px;font-size:13px}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-top:0.5px solid var(--border);font-size:13px}
 .info-label{color:var(--text3)}
 .info-val{color:var(--text2)}
-
-.memo-box{background:var(--surface2);border-radius:var(--radius-sm);padding:8px 10px;font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:8px}
-
-.action-row{display:flex;gap:8px}
+.memo-box{background:var(--surface2);border-radius:var(--radius-sm);padding:8px 10px;font-size:12px;color:var(--text2);line-height:1.6;margin-top:6px}
+.action-row{display:flex;gap:8px;margin-top:12px}
 .btn-edit,.btn-del{flex:1;padding:10px;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer}
 .btn-edit{background:var(--surface2);color:var(--text2)}
 .btn-del{background:var(--red-dim);color:var(--red)}
 
-/* MODAL */
-.overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:200;
-  display:none;align-items:flex-end;justify-content:center;
-}
+/* モーダル */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:200;display:none;align-items:flex-end;justify-content:center}
 .overlay.open{display:flex}
-.modal{
-  background:var(--surface);border-radius:22px 22px 0 0;
-  width:100%;max-width:480px;
-  padding:6px 20px calc(20px + var(--safe-bot));
-  max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
-}
+.modal{background:var(--surface);border-radius:22px 22px 0 0;width:100%;max-width:480px;padding:6px 20px calc(20px + var(--sab));max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .modal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:10px auto 16px}
 .modal-title{font-size:17px;font-weight:700;margin-bottom:18px;color:var(--text)}
 .field{margin-bottom:13px}
 .field label{display:block;font-size:12px;color:var(--text3);margin-bottom:5px;font-weight:500}
-.field input,.field textarea{
-  width:100%;background:var(--surface2);
-  border:0.5px solid var(--border);border-radius:var(--radius-sm);
-  padding:11px 13px;font-size:16px;color:var(--text);outline:none;
-}
+.field input,.field textarea{width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:var(--radius-sm);padding:11px 13px;font-size:16px;color:var(--text);outline:none}
 .field input:focus,.field textarea:focus{border-color:var(--accent)}
 .field textarea{height:68px;resize:none;line-height:1.5;font-size:15px}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.field-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .modal-btns{display:flex;gap:10px;margin-top:8px}
 .btn-cancel{flex:1;padding:14px;border:0.5px solid var(--border);border-radius:var(--radius-sm);font-size:16px;font-weight:600;cursor:pointer;background:var(--surface2);color:var(--text3)}
 .btn-save{flex:2;padding:14px;border:none;border-radius:var(--radius-sm);font-size:16px;font-weight:700;cursor:pointer;background:var(--accent);color:#000}
 
-/* STATS TAB */
+/* 写真アップロードUI */
+.photo-upload-area{border:1.5px dashed var(--border);border-radius:var(--radius-sm);padding:16px;text-align:center;cursor:pointer;margin-bottom:4px;position:relative}
+.photo-upload-area input[type=file]{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.photo-upload-area.has-photo{border-color:var(--accent);padding:0;overflow:hidden}
+.photo-upload-area img{width:100%;max-height:160px;object-fit:contain;display:block}
+.photo-upload-label{font-size:13px;color:var(--text3);pointer-events:none}
+.photo-upload-hint{font-size:11px;color:var(--text3);margin-top:4px;pointer-events:none}
+.photo-clear-btn{display:block;width:100%;padding:8px;background:var(--surface2);border:none;color:var(--text3);font-size:12px;cursor:pointer;margin-top:6px;border-radius:var(--radius-sm)}
+
+/* フルスクリーン写真 */
+.photo-fullscreen{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:300;display:none;align-items:center;justify-content:center;cursor:pointer}
+.photo-fullscreen.open{display:flex}
+.photo-fullscreen img{max-width:100%;max-height:100%;object-fit:contain}
+.photo-fullscreen-close{position:absolute;top:calc(var(--sat) + 16px);right:16px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+/* 集計 */
 .stats-full{padding:16px;display:flex;flex-direction:column;gap:10px}
 .stat-card{background:var(--surface);border-radius:var(--radius);border:0.5px solid var(--border);padding:14px 16px}
 .stat-card-title{font-size:12px;color:var(--text3);margin-bottom:10px;font-weight:500}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .sg-item{background:var(--surface2);border-radius:var(--radius-sm);padding:10px 12px}
 .sg-val{font-size:20px;font-weight:700;color:var(--accent)}
 .sg-label{font-size:10px;color:var(--text3);margin-top:2px}
-
-/* STORE LIST */
 .store-item{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:0.5px solid var(--border);font-size:13px}
-.store-item:last-child{border-bottom:none}
-.store-name{color:var(--text)}
-.store-count{color:var(--text3)}
+.store-item:last-child{border:none}
 
-/* EXPORT */
+/* データ */
 .export-wrap{padding:20px 16px;display:flex;flex-direction:column;gap:10px}
 .export-desc{font-size:13px;color:var(--text3);line-height:1.7;background:var(--surface);border-radius:var(--radius-sm);padding:12px 14px}
-.btn-action{
-  width:100%;padding:14px;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-}
+.btn-action{width:100%;padding:14px;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn-csv{background:var(--surface);border:0.5px solid var(--border);color:var(--text2)}
 .btn-danger{background:var(--red-dim);border:0.5px solid var(--red-dim);color:var(--red)}
 
-/* EMPTY */
-.empty{text-align:center;padding:56px 20px;color:var(--text3)}
-.empty-icon{font-size:44px;margin-bottom:14px}
-.empty p{font-size:14px;line-height:1.7}
+.empty{text-align:center;padding:56px 20px;color:var(--text3);font-size:14px;line-height:1.7}
 </style>
 </head>
 <body style="display:flex;flex-direction:column;height:100%">
@@ -190,7 +147,7 @@ input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:non
 <div class="nav">
   <div class="nav-inner">
     <span class="nav-title">ポケカ仕入れ</span>
-    <button class="nav-add" onclick="openModal()" aria-label="追加">＋</button>
+    <button class="nav-add" onclick="openModal()">＋</button>
   </div>
   <div class="tabs">
     <button class="tab active" onclick="switchTab('list',this)">一覧</button>
@@ -200,12 +157,8 @@ input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:non
 </div>
 
 <div class="main" id="main">
-
-  <!-- LIST -->
   <div id="tab-list">
-    <div class="search-wrap">
-      <input type="search" id="searchInput" placeholder="カード名・店舗で検索" oninput="renderList()" autocomplete="off" autocorrect="off" spellcheck="false"/>
-    </div>
+    <div class="search-wrap"><input type="search" id="searchInput" placeholder="カード名・店舗で検索" oninput="renderList()" autocomplete="off" autocorrect="off" spellcheck="false"/></div>
     <div class="sort-row">
       <div class="sort-chip active" data-sort="date" onclick="setSort(this)">新しい順</div>
       <div class="sort-chip" data-sort="buy-desc" onclick="setSort(this)">高額順</div>
@@ -217,72 +170,45 @@ input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:non
     <div class="list" id="cardList"></div>
   </div>
 
-  <!-- STATS -->
-  <div id="tab-stats" style="display:none">
-    <div class="stats-full" id="statsContent"></div>
-  </div>
+  <div id="tab-stats" style="display:none"><div class="stats-full" id="statsContent"></div></div>
 
-  <!-- EXPORT -->
   <div id="tab-export" style="display:none">
     <div class="export-wrap">
-      <div class="export-desc">
-        📋 CSVエクスポートでGoogle スプレッドシートやExcelに移行できます。将来のDB化にも対応しています。
-      </div>
+      <div class="export-desc">CSVエクスポートでGoogle スプレッドシートやExcelに移行できます。写真データは含まれません。</div>
       <button class="btn-action btn-csv" onclick="exportCSV()">📥 CSVをダウンロード</button>
       <button class="btn-action btn-danger" onclick="confirmClear()">🗑 全データを削除</button>
     </div>
   </div>
 </div>
 
-<!-- MODAL -->
+<!-- 追加・編集モーダル -->
 <div class="overlay" id="overlay" onclick="closeModalOutside(event)">
-  <div class="modal" id="modal">
+  <div class="modal">
     <div class="modal-handle"></div>
     <div class="modal-title" id="modalTitle">カードを追加</div>
 
+    <!-- 写真 -->
     <div class="field">
-      <label>カード名 *</label>
-      <input type="text" id="f-name" placeholder="例：リザードンex SAR" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <label>写真</label>
+      <div class="photo-upload-area" id="photoArea">
+        <input type="file" accept="image/*" capture="environment" id="photoInput" onchange="handlePhoto(this)"/>
+        <div class="photo-upload-label" id="photoLabel">📷 タップして撮影 / ライブラリから選択</div>
+      </div>
+      <button class="photo-clear-btn" id="photoClearBtn" style="display:none" onclick="clearPhoto()">写真を削除</button>
     </div>
 
+    <div class="field"><label>カード名 *</label><input type="text" id="f-name" placeholder="例：リザードンex SAR" autocomplete="off" autocorrect="off" spellcheck="false"/></div>
     <div class="field field-row">
-      <div>
-        <label>仕入れ日</label>
-        <input type="date" id="f-date"/>
-      </div>
-      <div>
-        <label>枚数</label>
-        <input type="number" id="f-count" placeholder="1" min="1" inputmode="numeric"/>
-      </div>
+      <div><label>仕入れ日</label><input type="date" id="f-date"/></div>
+      <div><label>枚数</label><input type="number" id="f-count" placeholder="1" min="1" inputmode="numeric"/></div>
     </div>
-
-    <div class="field">
-      <label>仕入れ店舗</label>
-      <input type="text" id="f-store" placeholder="例：カードラッシュ秋葉原" list="store-list" autocomplete="off"/>
-      <datalist id="store-list"></datalist>
-    </div>
-
-    <div class="field">
-      <label>仕入れ価格（円）*</label>
-      <input type="number" id="f-buy" placeholder="0" min="0" step="10" inputmode="numeric"/>
-    </div>
-
+    <div class="field"><label>仕入れ店舗</label><input type="text" id="f-store" placeholder="例：カードラッシュ秋葉原" list="store-list" autocomplete="off"/><datalist id="store-list"></datalist></div>
+    <div class="field"><label>仕入れ価格（円）*</label><input type="number" id="f-buy" placeholder="0" min="0" step="10" inputmode="numeric"/></div>
     <div class="field field-row">
-      <div>
-        <label>PSA10相場（円）</label>
-        <input type="number" id="f-psa10" placeholder="0" min="0" step="100" inputmode="numeric"/>
-      </div>
-      <div>
-        <label>PSA9相場（円）</label>
-        <input type="number" id="f-psa9" placeholder="0" min="0" step="100" inputmode="numeric"/>
-      </div>
+      <div><label>PSA10相場（円）</label><input type="number" id="f-psa10" placeholder="0" min="0" step="100" inputmode="numeric"/></div>
+      <div><label>PSA9相場（円）</label><input type="number" id="f-psa9" placeholder="0" min="0" step="100" inputmode="numeric"/></div>
     </div>
-
-    <div class="field">
-      <label>備考</label>
-      <textarea id="f-memo" placeholder="状態・メモなど"></textarea>
-    </div>
-
+    <div class="field"><label>備考</label><textarea id="f-memo" placeholder="状態・メモなど"></textarea></div>
     <div class="modal-btns">
       <button class="btn-cancel" onclick="closeModal()">キャンセル</button>
       <button class="btn-save" onclick="saveCard()">保存</button>
@@ -290,45 +216,122 @@ input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:non
   </div>
 </div>
 
+<!-- フルスクリーン写真 -->
+<div class="photo-fullscreen" id="fullscreen" onclick="closeFullscreen()">
+  <button class="photo-fullscreen-close" onclick="closeFullscreen()">✕</button>
+  <img id="fullscreenImg" src="" alt=""/>
+</div>
+
 <script>
-const DB_KEY='pokeca_v2';
+const DB_KEY='pokeca_v3';
+const IMG_DB='pokeca_imgs_v1';
 let cards=[];
-let editId=null;
-let openId=null;
-let sortMode='date';
+let imgCache={};
+let editId=null,openId=null,sortMode='date';
+let pendingPhotoData=null;
 
 function load(){try{cards=JSON.parse(localStorage.getItem(DB_KEY)||'[]')}catch(e){cards=[]}}
 function persist(){localStorage.setItem(DB_KEY,JSON.stringify(cards))}
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
 function fmt(n){return n?'¥'+Number(n).toLocaleString():'—'}
-function fmtDate(d){return d?d.slice(5).replace('-','/'):''}
+function fmtD(d){return d?d.slice(5).replace('-','/'):''}
 
-function setSort(el){
-  document.querySelectorAll('.sort-chip').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
-  sortMode=el.dataset.sort;
-  renderList();
+/* IndexedDB for images */
+let idb=null;
+function openIDB(){
+  return new Promise((res,rej)=>{
+    const req=indexedDB.open(IMG_DB,1);
+    req.onupgradeneeded=e=>e.target.result.createObjectStore('imgs');
+    req.onsuccess=e=>{idb=e.target.result;res(idb)};
+    req.onerror=e=>rej(e);
+  });
+}
+function saveImg(id,dataUrl){
+  return new Promise((res,rej)=>{
+    const tx=idb.transaction('imgs','readwrite');
+    tx.objectStore('imgs').put(dataUrl,id);
+    tx.oncomplete=()=>{imgCache[id]=dataUrl;res()};
+    tx.onerror=rej;
+  });
+}
+function getImg(id){
+  return new Promise((res)=>{
+    if(imgCache[id]){res(imgCache[id]);return;}
+    if(!idb){res(null);return;}
+    const tx=idb.transaction('imgs','readonly');
+    const req=tx.objectStore('imgs').get(id);
+    req.onsuccess=e=>{const v=e.target.result||null;if(v)imgCache[id]=v;res(v)};
+    req.onerror=()=>res(null);
+  });
+}
+function deleteImg(id){
+  return new Promise((res)=>{
+    if(!idb){res();return;}
+    delete imgCache[id];
+    const tx=idb.transaction('imgs','readwrite');
+    tx.objectStore('imgs').delete(id);
+    tx.oncomplete=res;tx.onerror=res;
+  });
 }
 
+/* 写真UI */
+function handlePhoto(input){
+  const file=input.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    pendingPhotoData=e.target.result;
+    showPhotoPreview(pendingPhotoData);
+  };
+  reader.readAsDataURL(file);
+}
+function showPhotoPreview(dataUrl){
+  const area=document.getElementById('photoArea');
+  area.classList.add('has-photo');
+  area.innerHTML=`<input type="file" accept="image/*" capture="environment" id="photoInput" onchange="handlePhoto(this)"/><img src="${dataUrl}" style="pointer-events:none"/>`;
+  document.getElementById('photoClearBtn').style.display='block';
+  document.getElementById('photoLabel')&&(document.getElementById('photoLabel').style.display='none');
+}
+function clearPhoto(){
+  pendingPhotoData=null;
+  const area=document.getElementById('photoArea');
+  area.classList.remove('has-photo');
+  area.innerHTML=`<input type="file" accept="image/*" capture="environment" id="photoInput" onchange="handlePhoto(this)"/><div class="photo-upload-label" id="photoLabel">📷 タップして撮影 / ライブラリから選択</div>`;
+  document.getElementById('photoClearBtn').style.display='none';
+}
+function resetPhotoUI(){
+  pendingPhotoData=null;
+  const area=document.getElementById('photoArea');
+  area.classList.remove('has-photo');
+  area.innerHTML=`<input type="file" accept="image/*" capture="environment" id="photoInput" onchange="handlePhoto(this)"/><div class="photo-upload-label" id="photoLabel">📷 タップして撮影 / ライブラリから選択</div>`;
+  document.getElementById('photoClearBtn').style.display='none';
+}
+
+function openFullscreen(src){
+  document.getElementById('fullscreenImg').src=src;
+  document.getElementById('fullscreen').classList.add('open');
+}
+function closeFullscreen(){document.getElementById('fullscreen').classList.remove('open')}
+
+/* タブ */
 function switchTab(t,btn){
   ['list','stats','export'].forEach(id=>document.getElementById('tab-'+id).style.display=id===t?'block':'none');
   document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   if(t==='stats')renderStats();
 }
-
-/* STORES autocomplete */
-function getStores(){
-  const s=new Set(cards.map(c=>c.store).filter(Boolean));
-  return [...s];
+function setSort(el){
+  document.querySelectorAll('.sort-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');sortMode=el.dataset.sort;renderList();
 }
+
+/* モーダル */
 function updateStoreList(){
   const dl=document.getElementById('store-list');
-  dl.innerHTML=getStores().map(s=>`<option value="${s}">`).join('');
+  const stores=[...new Set(cards.map(c=>c.store).filter(Boolean))];
+  dl.innerHTML=stores.map(s=>`<option value="${s}">`).join('');
 }
-
-/* MODAL */
-function openModal(id){
+async function openModal(id){
   editId=id||null;
   const c=id?cards.find(x=>x.id===id):null;
   document.getElementById('modalTitle').textContent=c?'カードを編集':'カードを追加';
@@ -340,20 +343,25 @@ function openModal(id){
   document.getElementById('f-psa10').value=c?c.psa10||'':'';
   document.getElementById('f-psa9').value=c?c.psa9||'':'';
   document.getElementById('f-memo').value=c?c.memo||'':'';
+  resetPhotoUI();
+  if(id&&c&&c.hasPhoto){
+    const imgData=await getImg(id);
+    if(imgData){pendingPhotoData=imgData;showPhotoPreview(imgData);}
+  }
   updateStoreList();
   document.getElementById('overlay').classList.add('open');
   setTimeout(()=>document.getElementById('f-name').focus(),120);
 }
-function closeModal(){document.getElementById('overlay').classList.remove('open')}
+function closeModal(){document.getElementById('overlay').classList.remove('open');resetPhotoUI()}
 function closeModalOutside(e){if(e.target.id==='overlay')closeModal()}
 
-function saveCard(){
+async function saveCard(){
   const name=document.getElementById('f-name').value.trim();
   const buy=parseInt(document.getElementById('f-buy').value)||0;
   if(!name){alert('カード名を入力してください');return;}
+  const id=editId||uid();
   const card={
-    id:editId||uid(),
-    name,
+    id,name,
     date:document.getElementById('f-date').value||new Date().toISOString().slice(0,10),
     count:Math.max(1,parseInt(document.getElementById('f-count').value)||1),
     store:document.getElementById('f-store').value.trim(),
@@ -361,36 +369,39 @@ function saveCard(){
     psa10:parseInt(document.getElementById('f-psa10').value)||0,
     psa9:parseInt(document.getElementById('f-psa9').value)||0,
     memo:document.getElementById('f-memo').value.trim(),
+    hasPhoto:!!pendingPhotoData,
     ts:editId?(cards.find(x=>x.id===editId)||{}).ts||Date.now():Date.now()
   };
+  if(pendingPhotoData){
+    await saveImg(id,pendingPhotoData);
+  } else if(editId&&!pendingPhotoData){
+    const prev=cards.find(x=>x.id===editId);
+    if(prev&&prev.hasPhoto)await deleteImg(id);
+  }
   if(editId){const i=cards.findIndex(x=>x.id===editId);if(i>=0)cards[i]=card;}
   else cards.unshift(card);
   persist();closeModal();renderList();
 }
 
-function deleteCard(id){
+async function deleteCard(id){
   if(!confirm('このカードを削除しますか？'))return;
+  await deleteImg(id);
   cards=cards.filter(c=>c.id!==id);
   if(openId===id)openId=null;
   persist();renderList();
 }
-
 function toggleCard(id){openId=openId===id?null:id;renderList()}
 
-/* RENDER LIST */
-function renderList(){
+/* リスト描画 */
+async function renderList(){
   const q=document.getElementById('searchInput').value.trim().toLowerCase();
-  let list=q?cards.filter(c=>c.name.toLowerCase().includes(q)||c.store?.toLowerCase().includes(q)):cards;
-
-  // sort
-  list=[...list];
+  let list=q?cards.filter(c=>c.name.toLowerCase().includes(q)||(c.store||'').toLowerCase().includes(q)):[...cards];
   if(sortMode==='date')list.sort((a,b)=>b.ts-a.ts);
   else if(sortMode==='buy-desc')list.sort((a,b)=>b.buy-a.buy);
   else if(sortMode==='buy-asc')list.sort((a,b)=>a.buy-b.buy);
   else if(sortMode==='name')list.sort((a,b)=>a.name.localeCompare(b.name,'ja'));
   else if(sortMode==='store')list.sort((a,b)=>(a.store||'').localeCompare(b.store||'','ja'));
 
-  // mini stats
   const tot=list.reduce((s,c)=>s+c.buy*(c.count||1),0);
   const cnt=list.reduce((s,c)=>s+(c.count||1),0);
   document.getElementById('statsMini').innerHTML=`
@@ -398,43 +409,47 @@ function renderList(){
     <div class="smc"><div class="smc-val">¥${tot>=10000?(tot/10000).toFixed(1)+'万':tot.toLocaleString()}</div><div class="smc-label">総仕入額</div></div>
     <div class="smc"><div class="smc-val">${list.length}</div><div class="smc-label">種類</div></div>
   `;
-
   const el=document.getElementById('cardList');
-  if(list.length===0){
-    el.innerHTML=`<div class="empty"><div class="empty-icon">📦</div><p>${q?'該当なし':'＋ボタンから<br>最初のカードを追加'}</p></div>`;
-    return;
+  if(!list.length){
+    el.innerHTML=`<div class="empty">${q?'該当なし':'＋ボタンから最初のカードを追加'}</div>`;return;
   }
+
+  // 画像を並行取得
+  const imgs={};
+  await Promise.all(list.filter(c=>c.hasPhoto).map(async c=>{imgs[c.id]=await getImg(c.id);}));
+
   el.innerHTML=list.map(c=>{
     const isOpen=openId===c.id;
-    const profit10=c.psa10?c.psa10-c.buy:null;
-    const profit9=c.psa9?c.psa9-c.buy:null;
-    const sub=[c.store,fmtDate(c.date),c.count>1?`×${c.count}`:''].filter(Boolean).join('  ·  ');
+    const p10=c.psa10?c.psa10-c.buy:null;
+    const p9=c.psa9?c.psa9-c.buy:null;
+    const sub=[c.store,fmtD(c.date),c.count>1?`×${c.count}`:''].filter(Boolean).join(' · ');
+    const thumbHtml=imgs[c.id]
+      ?`<img class="thumb" src="${imgs[c.id]}" alt=""/>`
+      :`<div class="thumb-empty">📦</div>`;
+    const photoSection=isOpen?(imgs[c.id]
+      ?`<div class="card-photo-wrap" onclick="openFullscreen('${imgs[c.id]}')" title="タップで拡大"><img src="${imgs[c.id]}" alt=""/></div>`
+      :`<div class="card-photo-wrap"><div class="card-photo-none">写真未登録</div></div>`):'';
+
     return `<div class="card-item">
       <div class="card-header" onclick="toggleCard('${c.id}')">
+        ${thumbHtml}
         <div class="card-left">
           <div class="card-name">${c.name}</div>
           ${sub?`<div class="card-sub">${sub}</div>`:''}
         </div>
         <div class="card-right">
-          <div class="card-buy">${fmt(c.buy)}</div>
-          <div class="card-chevron${isOpen?' open':''}">›</div>
+          <span class="card-buy">${fmt(c.buy)}</span>
+          <span class="card-chev${isOpen?' open':''}">›</span>
         </div>
       </div>
       <div class="card-body${isOpen?' open':''}">
         <div class="card-body-inner">
+          ${photoSection}
           <div class="price-grid">
-            <div class="price-box">
-              <div class="pb-label">PSA10相場</div>
-              <div class="pb-val p10">${fmt(c.psa10)}</div>
-              ${profit10!==null?`<div class="pb-profit ${profit10>=0?'pos':'neg'}">${profit10>=0?'+':''}${fmt(profit10)}</div>`:''}
-            </div>
-            <div class="price-box">
-              <div class="pb-label">PSA9相場</div>
-              <div class="pb-val p9">${fmt(c.psa9)}</div>
-              ${profit9!==null?`<div class="pb-profit ${profit9>=0?'pos':'neg'}">${profit9>=0?'+':''}${fmt(profit9)}</div>`:''}
-            </div>
+            <div class="price-box"><div class="pb-label">PSA10相場</div><div class="pb-val p10">${fmt(c.psa10)}</div>${p10!==null?`<div class="pb-profit ${p10>=0?'pos':'neg'}">${p10>=0?'+':''}${fmt(p10)}</div>`:''}</div>
+            <div class="price-box"><div class="pb-label">PSA9相場</div><div class="pb-val p9">${fmt(c.psa9)}</div>${p9!==null?`<div class="pb-profit ${p9>=0?'pos':'neg'}">${p9>=0?'+':''}${fmt(p9)}</div>`:''}</div>
           </div>
-          ${c.store?`<div class="info-row"><span class="info-label">仕入れ店舗</span><span class="info-val">${c.store}</span></div>`:''}
+          ${c.store?`<div class="info-row"><span class="info-label">店舗</span><span class="info-val">${c.store}</span></div>`:''}
           ${c.memo?`<div class="memo-box">${c.memo}</div>`:''}
           <div class="action-row">
             <button class="btn-edit" onclick="openModal('${c.id}')">編集</button>
@@ -446,78 +461,49 @@ function renderList(){
   }).join('');
 }
 
-/* STATS */
 function renderStats(){
   const total=cards.reduce((s,c)=>s+c.buy*(c.count||1),0);
   const cnt=cards.reduce((s,c)=>s+(c.count||1),0);
   const avg=cnt?Math.round(total/cnt):0;
-
-  // store breakdown
   const storeMap={};
-  cards.forEach(c=>{
-    const s=c.store||'（未設定）';
-    if(!storeMap[s])storeMap[s]={count:0,total:0};
-    storeMap[s].count+=(c.count||1);
-    storeMap[s].total+=c.buy*(c.count||1);
-  });
-  const storeList=Object.entries(storeMap).sort((a,b)=>b[1].total-a[1].total);
-
+  cards.forEach(c=>{const s=c.store||'未設定';if(!storeMap[s])storeMap[s]={count:0,total:0};storeMap[s].count+=(c.count||1);storeMap[s].total+=c.buy*(c.count||1);});
+  const sl=Object.entries(storeMap).sort((a,b)=>b[1].total-a[1].total);
+  const top=[...cards].sort((a,b)=>b.buy-a.buy).slice(0,5);
   document.getElementById('statsContent').innerHTML=`
-    <div class="stat-card">
-      <div class="stat-card-title">全体サマリー</div>
-      <div class="stat-grid">
+    <div class="stat-card"><div class="stat-card-title">全体サマリー</div>
+      <div class="sg">
         <div class="sg-item"><div class="sg-val">${cnt}</div><div class="sg-label">総枚数</div></div>
         <div class="sg-item"><div class="sg-val">${cards.length}</div><div class="sg-label">種類数</div></div>
         <div class="sg-item"><div class="sg-val">¥${(total/10000).toFixed(1)}万</div><div class="sg-label">総仕入額</div></div>
         <div class="sg-item"><div class="sg-val">¥${avg.toLocaleString()}</div><div class="sg-label">平均単価</div></div>
       </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-card-title">店舗別仕入れ</div>
-      ${storeList.length?storeList.map(([name,d])=>`
-        <div class="store-item">
-          <span class="store-name">${name}</span>
-          <span class="store-count">${d.count}枚 ／ ¥${d.total.toLocaleString()}</span>
-        </div>`).join(''):'<div style="font-size:13px;color:var(--text3)">店舗データなし</div>'}
+    <div class="stat-card"><div class="stat-card-title">店舗別仕入れ</div>
+      ${sl.map(([n,d])=>`<div class="store-item"><span>${n}</span><span style="color:var(--text2)">${d.count}枚 / ¥${d.total.toLocaleString()}</span></div>`).join('')||'<div style="font-size:13px;color:var(--text3)">データなし</div>'}
     </div>
-    <div class="stat-card">
-      <div class="stat-card-title">高額仕入れ TOP5</div>
-      ${[...cards].sort((a,b)=>b.buy-a.buy).slice(0,5).map(c=>`
-        <div class="store-item">
-          <span class="store-name">${c.name}</span>
-          <span class="store-count" style="color:var(--accent);font-weight:600">${fmt(c.buy)}</span>
-        </div>`).join('')}
+    <div class="stat-card"><div class="stat-card-title">高額仕入れ TOP5</div>
+      ${top.map(c=>`<div class="store-item"><span>${c.name}</span><span style="color:var(--accent);font-weight:600">${fmt(c.buy)}</span></div>`).join('')}
     </div>
   `;
 }
 
-/* EXPORT */
 function exportCSV(){
   if(!cards.length){alert('データがありません');return;}
-  const hdr='カード名,仕入れ日,枚数,仕入れ店舗,仕入れ価格,PSA10相場,PSA9相場,PSA10利益,PSA9利益,備考';
-  const rows=cards.map(c=>[
-    `"${c.name}"`,
-    c.date,c.count||1,
-    `"${c.store||''}"`,
-    c.buy,c.psa10||'',c.psa9||'',
-    c.psa10?c.psa10-c.buy:'',
-    c.psa9?c.psa9-c.buy:'',
-    `"${(c.memo||'').replace(/"/g,'""')}"`
-  ].join(','));
-  const csv='\uFEFF'+[hdr,...rows].join('\n');
+  const h='カード名,仕入れ日,枚数,仕入れ店舗,仕入れ価格,PSA10相場,PSA9相場,PSA10利益,PSA9利益,備考';
+  const rows=cards.map(c=>[`"${c.name}"`,c.date,c.count||1,`"${c.store||''}"`,c.buy,c.psa10||'',c.psa9||'',c.psa10?c.psa10-c.buy:'',c.psa9?c.psa9-c.buy:'',`"${(c.memo||'').replace(/"/g,'""')}"`].join(','));
+  const csv='\uFEFF'+[h,...rows].join('\n');
   const a=document.createElement('a');
   a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
   a.download='pokeca_'+new Date().toISOString().slice(0,10)+'.csv';
   a.click();
 }
-
-function confirmClear(){
-  if(confirm('全データを削除します。\nこの操作は元に戻せません。')){
-    cards=[];persist();renderList();
-  }
+async function confirmClear(){
+  if(!confirm('全データと写真を削除します。\nこの操作は元に戻せません。'))return;
+  for(const c of cards)await deleteImg(c.id);
+  cards=[];persist();renderList();
 }
 
-load();renderList();
+openIDB().then(()=>{load();renderList();});
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body>
