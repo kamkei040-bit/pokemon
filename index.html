@@ -250,38 +250,49 @@ function fmtD(d){return d?d.slice(5).replace('-','/'):''}
 /* IndexedDB for images */
 let idb=null;
 function openIDB(){
-  return new Promise((res,rej)=>{
-    const req=indexedDB.open(IMG_DB,1);
-    req.onupgradeneeded=e=>e.target.result.createObjectStore('imgs');
-    req.onsuccess=e=>{idb=e.target.result;res(idb)};
-    req.onerror=e=>rej(e);
+  return new Promise((res)=>{
+    if(!window.indexedDB){idb=null;res(null);return;}
+    try{
+      const req=indexedDB.open(IMG_DB,1);
+      req.onupgradeneeded=e=>{try{e.target.result.createObjectStore('imgs');}catch(err){}};
+      req.onsuccess=e=>{idb=e.target.result;res(idb)};
+      req.onerror=()=>{idb=null;res(null)};
+      req.onblocked=()=>{idb=null;res(null)};
+    }catch(e){idb=null;res(null);}
   });
 }
 function saveImg(id,dataUrl){
-  return new Promise((res,rej)=>{
-    const tx=idb.transaction('imgs','readwrite');
-    tx.objectStore('imgs').put(dataUrl,id);
-    tx.oncomplete=()=>{imgCache[id]=dataUrl;res()};
-    tx.onerror=rej;
+  return new Promise((res)=>{
+    if(!idb){imgCache[id]=dataUrl;res();return;}
+    try{
+      const tx=idb.transaction('imgs','readwrite');
+      tx.objectStore('imgs').put(dataUrl,id);
+      tx.oncomplete=()=>{imgCache[id]=dataUrl;res()};
+      tx.onerror=()=>{imgCache[id]=dataUrl;res()};
+    }catch(e){imgCache[id]=dataUrl;res();}
   });
 }
 function getImg(id){
   return new Promise((res)=>{
     if(imgCache[id]){res(imgCache[id]);return;}
     if(!idb){res(null);return;}
-    const tx=idb.transaction('imgs','readonly');
-    const req=tx.objectStore('imgs').get(id);
-    req.onsuccess=e=>{const v=e.target.result||null;if(v)imgCache[id]=v;res(v)};
-    req.onerror=()=>res(null);
+    try{
+      const tx=idb.transaction('imgs','readonly');
+      const req=tx.objectStore('imgs').get(id);
+      req.onsuccess=e=>{const v=e.target.result||null;if(v)imgCache[id]=v;res(v)};
+      req.onerror=()=>res(null);
+    }catch(e){res(null);}
   });
 }
 function deleteImg(id){
   return new Promise((res)=>{
-    if(!idb){res();return;}
     delete imgCache[id];
-    const tx=idb.transaction('imgs','readwrite');
-    tx.objectStore('imgs').delete(id);
-    tx.oncomplete=res;tx.onerror=res;
+    if(!idb){res();return;}
+    try{
+      const tx=idb.transaction('imgs','readwrite');
+      tx.objectStore('imgs').delete(id);
+      tx.oncomplete=res;tx.onerror=res;
+    }catch(e){res();}
   });
 }
 
@@ -290,9 +301,12 @@ function handlePhoto(input){
   const file=input.files[0];
   if(!file)return;
   const reader=new FileReader();
+  reader.onerror=()=>alert('画像の読み込みに失敗しました');
   reader.onload=e=>{
     const img=new Image();
+    img.onerror=()=>alert('画像の形式が対応していません');
     img.onload=()=>{
+      try{
       const MAX=1200;
       let w=img.width,h=img.height;
       if(w>MAX||h>MAX){
@@ -306,11 +320,12 @@ function handlePhoto(input){
       const origKB=Math.round(file.size/1024);
       const compKB=Math.round(compressed.length*0.75/1024);
       pendingPhotoData=compressed;
-      showPhotoPreview(compressed,origKB,compKB);
+        showPhotoPreview(compressed,origKB,compKB);
+      }catch(err){alert('画像処理に失敗しました: '+err.message);}
     };
     img.src=e.target.result;
   };
-  reader.readAsDataURL(file);
+  try{reader.readAsDataURL(file);}catch(e){alert('ファイルの読み込みに失敗しました');}
 }
 function showPhotoPreview(dataUrl,origKB,compKB){
   const area=document.getElementById('photoArea');
@@ -576,7 +591,8 @@ function importCSV(input){
       showImportResult('error','読み込み失敗: '+err.message);
     }
   };
-  reader.readAsText(file,'UTF-8');
+  reader.onerror=()=>showImportResult('error','ファイルの読み込みに失敗しました');
+  try{reader.readAsText(file,'UTF-8');}catch(e){showImportResult('error',e.message);}
 }
 function findCol(header,name){return header.findIndex(h=>h.replace(/"/g,'').trim()===name)}
 function parseCSVLine(line){
@@ -604,8 +620,17 @@ async function confirmClear(){
   cards=[];persist();renderList();
 }
 
-openIDB().then(()=>{load();renderList();});
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+openIDB().then(()=>{
+  try{load();}catch(e){cards=[];}
+  try{renderList();}catch(e){console.error(e);}
+}).catch(()=>{
+  idb=null;
+  try{load();}catch(e){cards=[];}
+  try{renderList();}catch(e){console.error(e);}
+});
+if('serviceWorker' in navigator){
+  try{navigator.serviceWorker.register('sw.js').catch(()=>{});}catch(e){}
+}
 </script>
 </body>
 </html>
