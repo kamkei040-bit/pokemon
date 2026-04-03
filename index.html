@@ -436,7 +436,7 @@ async function deleteCard(id){
 function toggleCard(id){openId=openId===id?null:id;renderList()}
 
 /* リスト描画 */
-async function renderList(){
+function renderList(){
   const q=document.getElementById('searchInput').value.trim().toLowerCase();
   let list=q?cards.filter(c=>c.name.toLowerCase().includes(q)||(c.store||'').toLowerCase().includes(q)):[...cards];
   if(sortMode==='date')list.sort((a,b)=>b.ts-a.ts);
@@ -457,20 +457,17 @@ async function renderList(){
     el.innerHTML=`<div class="empty">${q?'該当なし':'＋ボタンから最初のカードを追加'}</div>`;return;
   }
 
-  // 画像を並行取得
-  const imgs={};
-  await Promise.all(list.filter(c=>c.hasPhoto).map(async c=>{imgs[c.id]=await getImg(c.id);}));
-
   el.innerHTML=list.map(c=>{
     const isOpen=openId===c.id;
     const p10=c.psa10?c.psa10-c.buy:null;
     const p9=c.psa9?c.psa9-c.buy:null;
     const sub=[c.store,fmtD(c.date),c.count>1?`×${c.count}`:''].filter(Boolean).join(' · ');
-    const thumbHtml=imgs[c.id]
-      ?`<img class="thumb" src="${imgs[c.id]}" alt=""/>`
+    const cachedImg=imgCache[c.id]||null;
+    const thumbHtml=cachedImg
+      ?`<img class="thumb" src="${cachedImg}" alt=""/>`
       :`<div class="thumb-empty">📦</div>`;
-    const photoSection=isOpen?(imgs[c.id]
-      ?`<div class="card-photo-wrap" onclick="openFullscreen('${imgs[c.id]}')" title="タップで拡大"><img src="${imgs[c.id]}" alt=""/></div>`
+    const photoSection=isOpen?(cachedImg
+      ?`<div class="card-photo-wrap" onclick="openFullscreen('${cachedImg}')" title="タップで拡大"><img src="${cachedImg}" alt=""/></div>`
       :`<div class="card-photo-wrap"><div class="card-photo-none">写真未登録</div></div>`):'';
 
     return `<div class="card-item">
@@ -502,7 +499,25 @@ async function renderList(){
       </div>
     </div>`;
   }).join('');
+
+  // 画像はキャッシュにないものだけ非同期で後から差し込む
+  list.filter(c=>c.hasPhoto&&!imgCache[c.id]).forEach(c=>{
+    getImg(c.id).then(dataUrl=>{
+      if(!dataUrl)return;
+      imgCache[c.id]=dataUrl;
+      const thumb=document.querySelector(`[onclick="toggleCard('${c.id}')"] .thumb-empty`);
+      if(thumb)thumb.outerHTML=`<img class="thumb" src="${dataUrl}" alt=""/>`;
+      const wrap=document.querySelector(`[onclick="toggleCard('${c.id}')"]`);
+      if(!wrap)return;
+      const body=wrap.parentElement.querySelector('.card-body.open .card-photo-wrap');
+      if(body&&body.querySelector('.card-photo-none')){
+        body.innerHTML=`<img src="${dataUrl}" alt=""/>`;
+        body.onclick=()=>openFullscreen(dataUrl);
+      }
+    }).catch(()=>{});
+  });
 }
+
 
 function renderStats(){
   const total=cards.reduce((s,c)=>s+c.buy*(c.count||1),0);
