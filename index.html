@@ -321,8 +321,16 @@ async function pullFromGitHub(){
     if(!res.ok)throw new Error(`HTTP ${res.status}`);
     const json=await res.json();
     const raw=json.content.replace(/\n/g,'');
-    const decoded=decodeURIComponent(Array.from(atob(raw)).map(c=>'%'+c.charCodeAt(0).toString(16).padStart(2,'0')).join(''));
-    const data=JSON.parse(decoded);
+    let decoded,data;
+    try{
+      decoded=new TextDecoder().decode(Uint8Array.from(atob(raw),c=>c.charCodeAt(0)));
+    }catch(e){throw new Error('Base64デコード失敗: '+e.message);}
+    try{
+      data=JSON.parse(decoded);
+    }catch(e){
+      console.error('JSON parse failed. First 500 chars:', decoded.slice(0,500));
+      throw new Error('JSONパース失敗: '+e.message+' (コンソールで詳細確認)');
+    }
     DB=data.db||[];HIST=data.hist||[];
     persist();renderDB();
     const t=new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
@@ -338,8 +346,13 @@ async function pushToGitHub(){
     let sha=null;
     const getRes=await fetch(GH_API,{headers:{Authorization:`token ${ghToken}`,Accept:'application/vnd.github.v3+json'}});
     if(getRes.ok){const j=await getRes.json();sha=j.sha;}
-    const json_str=JSON.stringify({db:DB,hist:HIST},null,2);
-    const content=btoa(encodeURIComponent(json_str).replace(/%([0-9A-F]{2})/g,(_,p)=>String.fromCharCode(parseInt(p,16))));
+    const payload={db:DB.map(c=>({...c,img:c.img&&c.img.startsWith('data:')?'':c.img})),hist:HIST.map(c=>({...c,img:c.img&&c.img.startsWith('data:')?'':c.img}))};
+    const json_str=JSON.stringify(payload,null,2);
+    console.log('Pushing JSON size:',json_str.length,'bytes');
+    if(json_str.length>5000000){throw new Error('データが大きすぎます（5MB超）。画像URLを使用してください');}
+    const bytes=new TextEncoder().encode(json_str);
+    const binStr=Array.from(bytes).map(b=>String.fromCharCode(b)).join('');
+    const content=btoa(binStr);
     const body={message:`Update data.json ${new Date().toISOString()}`,content};
     if(sha)body.sha=sha;
     const putRes=await fetch(GH_API,{method:'PUT',headers:{Authorization:`token ${ghToken}`,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});
