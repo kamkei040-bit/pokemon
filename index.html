@@ -164,6 +164,15 @@ input,textarea,button,select{font-family:inherit;-webkit-appearance:none;appeara
 .btn-csv{background:var(--surface);border:0.5px solid var(--border);color:var(--text2)}
 .btn-danger{background:var(--red-dim);border:0.5px solid var(--red-dim);color:var(--red)}
 
+.research-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.research-link{display:flex;align-items:center;gap:8px;padding:11px 12px;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius-sm);color:var(--text);text-decoration:none;font-size:13px;font-weight:500;transition:.12s}
+.research-link:active{background:var(--surface2)}
+.research-link .rl-icon{font-size:16px;flex-shrink:0}
+.research-link .rl-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.research-link .rl-arrow{font-size:11px;color:var(--text3)}
+.research-mini{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.research-mini-link{padding:5px 10px;background:var(--surface2);border:0.5px solid var(--border);border-radius:999px;color:var(--text2);text-decoration:none;font-size:11px;display:inline-flex;align-items:center;gap:4px}
+.research-mini-link:active{background:var(--surface)}
 .empty{text-align:center;padding:50px 20px;color:var(--text3);font-size:14px;line-height:1.7}
 </style>
 </head>
@@ -558,6 +567,7 @@ function renderCardItem(c,isShop){
         ${c.soldPrice?`<div class="info-row"><span class="info-label">実利益</span><span style="color:${(c.soldPrice-c.buy-c.gradeFee-c.fee)>=0?'var(--green)':'var(--red)'};font-weight:700">${fmt(c.soldPrice-c.buy-c.gradeFee-c.fee)}</span></div>`:''}
         ${c.store?`<div class="info-row"><span class="info-label">店舗</span><span class="info-val">${c.store}</span></div>`:''}
         ${c.memo?`<div class="memo-box">${c.memo}</div>`:''}
+        <div style="margin-top:10px"><div style="font-size:10px;color:var(--text3);margin-bottom:5px;text-transform:uppercase;letter-spacing:1px">このカードを調べる</div>${getResearchMiniHTML(c.name)}</div>
         <div class="action-row">
           <button class="btn-edit" onclick="openModal('${c.id}')">編集</button>
           <button class="btn-del" onclick="deleteCard('${c.id}')">削除</button>
@@ -852,6 +862,23 @@ async function confirmClear(){
   cards=[];persist();renderList();
 }
 
+
+
+
+el.style.display='block';
+  el.innerHTML='<div style="font-size:10px;color:var(--text3);margin-bottom:5px;text-transform:uppercase;letter-spacing:1p/* === 調査リンク === */
+const RESEARCH_SITES=[
+  {id:'mercari',name:'メルカリ',icon:'🛒',url:q=>`https://jp.mercari.com/search?keyword=${encodeURIComponent(q)}&category_id=899`},
+  {id:'yahoo',name:'ヤフオク',icon:'🔨',url:q=>`https://auctions.yahoo.co.jp/search/search?p=${encodeURIComponent(q)}&auccat=2084261566`},
+  {id:'snkr',name:'スニダン',icon:'👟',url:q=>`https://snkrdunk.com/search?keyword=${encodeURIComponent(q)}`},
+  {id:'cardrush',name:'カードラッシュ',icon:'🃏',url:q=>`https://www.cardrush-pokemon.jp/products/list?name=${encodeURIComponent(q)}`},
+  {id:'x',name:'X検索',icon:'𝕏',url:q=>`https://x.com/search?q=${encodeURIComponent(q+' ポケカ')}&src=typed_query&f=live`},
+];
+
+function getResearchMiniHTML(name){
+  return `<div class="research-mini">${RESEARCH_SITES.map(s=>`<a class="research-mini-link" href="${s.url(name)}" target="_blank" rel="noopener"><span>${s.icon}</span><span>${s.name}</span></a>`).join('')}</div>`;
+}
+
 /* 起動 */
 loadPrefs();
 openIDB().then(()=>{
@@ -863,6 +890,7 @@ openIDB().then(()=>{
   idb=null;
   try{load();}catch(e){cards=[];}
   switchMode(prefs.mode||'shop');
+  
 });
 if('serviceWorker' in navigator){try{navigator.serviceWorker.register('sw.js').catch(()=>{});}catch(e){}}
 </script>
