@@ -10,31 +10,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#ffffff;--bg2:#f5f5f5;--bg3:#eeeeee;
-  --text:#1a1a1a;--text2:#666666;--text3:#999999;
-  --border:#e0e0e0;--border2:#cccccc;
-  --radius:10px;--radius-sm:6px;
-  --brand:#E24B4A;--yellow:#D4A017;--red:#E24B4A;
-}
-@media(prefers-color-scheme:dark){
-  :root{--bg:#1c1c1e;--bg2:#2c2c2e;--bg3:#3a3a3c;--text:#ffffff;--text2:#aeaeb2;--text3:#636366;--border:#3a3a3c;--border2:#48484a}
-}
+:root{--bg:#fff;--bg2:#f5f5f5;--bg3:#eee;--text:#1a1a1a;--text2:#666;--text3:#999;--border:#e0e0e0;--border2:#ccc;--radius:10px;--radius-sm:6px;--brand:#E24B4A;--yellow:#D4A017}
+@media(prefers-color-scheme:dark){:root{--bg:#1c1c1e;--bg2:#2c2c2e;--bg3:#3a3a3c;--text:#fff;--text2:#aeaeb2;--text3:#636366;--border:#3a3a3c;--border2:#48484a}}
 body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);max-width:430px;margin:0 auto;min-height:100vh}
-.app{padding-bottom:60px}
+.app{padding-bottom:62px}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 0;position:sticky;top:0;background:var(--bg);z-index:100;border-bottom:0.5px solid var(--border)}
-.appname{font-size:16px;font-weight:600;color:var(--text)}
-.appname span{color:var(--brand)}
+.appname{font-size:16px;font-weight:600}.appname span{color:var(--brand)}
 .nav{display:flex;border-top:0.5px solid var(--border);position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--bg);z-index:100}
-.nb{flex:1;padding:9px 4px 8px;border:none;background:transparent;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:var(--text2)}
-.nb.on{color:var(--brand)}.nb i{font-size:22px}
+.nb{flex:1;padding:9px 4px 8px;border:none;background:transparent;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:var(--text2)}.nb.on{color:var(--brand)}.nb i{font-size:22px}
 .pg{display:none;padding:12px 16px}.pg.on{display:block}
-.sl{font-size:11px;font-weight:600;color:var(--text2);letter-spacing:.06em;margin:14px 0 7px;text-transform:uppercase}
-.sl:first-child{margin-top:4px}
+.sl{font-size:11px;font-weight:600;color:var(--text2);letter-spacing:.06em;margin:14px 0 7px;text-transform:uppercase}.sl:first-child{margin-top:4px}
 .toolbar{display:flex;align-items:center;gap:6px;margin-bottom:8px}
 .toolbar select{flex:1;font-size:13px;padding:6px 8px;height:34px;border:0.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--bg);color:var(--text)}
 .icon-btn{width:34px;height:34px;border:0.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);flex-shrink:0;font-size:18px}
-.icon-btn.on{background:var(--bg2);color:var(--text);border-color:var(--border2)}
+.icon-btn.on{background:var(--bg2);color:var(--text)}
 .filter-panel{margin-bottom:10px}
 .filter-cats{display:flex;gap:6px;align-items:center}
 .fcat{display:flex;align-items:center;gap:4px;padding:5px 11px;border-radius:99px;border:0.5px solid var(--border2);background:transparent;cursor:pointer;font-size:12px;color:var(--text2)}
@@ -51,14 +40,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
 .af-chip{font-size:11px;padding:2px 8px;border-radius:99px;display:flex;align-items:center;gap:4px;font-weight:600;cursor:pointer}
 .list-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--border);cursor:pointer}
 .list-item:last-child{border-bottom:none}
-.list-thumb{width:44px;height:60px;border-radius:var(--radius-sm);background:var(--bg2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden}
+.list-thumb{width:44px;height:60px;border-radius:6px;background:var(--bg2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden}
 .list-thumb img{width:100%;height:100%;object-fit:cover}
 .list-body{flex:1;min-width:0}
-.list-name{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .list-meta{font-size:11px;color:var(--text2);margin:2px 0 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .list-badges{display:flex;gap:3px;flex-wrap:wrap}
 .list-right{text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
-.list-price{font-size:13px;font-weight:600;color:var(--text)}
+.list-price{font-size:13px;font-weight:600}
 .badge{font-size:10px;padding:2px 5px;border-radius:4px;font-weight:600;white-space:nowrap}
 .type-header{display:flex;align-items:center;gap:6px;padding:8px 0 5px;font-size:12px;font-weight:600;border-bottom:0.5px solid var(--border);margin-top:8px}
 .type-header:first-child{margin-top:0}
@@ -68,6 +57,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
 .drow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:0.5px solid var(--border);font-size:13px}
 .drow:last-child{border-bottom:none}
 .dlabel{color:var(--text2)}
+.profit-block{margin:8px 0;padding:10px 12px;background:var(--bg2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:space-between}
+.verdict{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:600}
+.verdict-ok{background:#E1F5EE;color:#085041}
+.verdict-ng{background:#FCEBEB;color:#791F1F}
+.verdict-edge{background:#FAEEDA;color:#633806}
 .mlinks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:10px}
 .mlink{text-decoration:none;background:var(--bg2);border-radius:var(--radius-sm);padding:8px 4px;text-align:center;font-size:11px;color:var(--text);display:block;font-weight:600}
 .star-selector{display:flex;gap:8px;align-items:center}
@@ -81,7 +75,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
 .type-btn{padding:7px 8px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:transparent;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:5px;color:var(--text2)}
 .type-btn.on{border-color:transparent;font-weight:600}
 button{padding:10px 16px;border:0.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--bg2);color:var(--text);font-size:13px;cursor:pointer;font-family:inherit}
-.stat-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.stat-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:14px}
 .stat{background:var(--bg2);border-radius:var(--radius);padding:12px}
 .stat-l{font-size:11px;color:var(--text2);margin-bottom:3px;font-weight:500}
 .stat-v{font-size:22px;font-weight:700}
@@ -92,6 +86,10 @@ button{padding:10px 16px;border:0.5px solid var(--border2);border-radius:var(--r
 .img-prev{width:100%;height:100px;border-radius:var(--radius);background:var(--bg2);border:0.5px dashed var(--border2);display:flex;align-items:center;justify-content:center;cursor:pointer;margin-bottom:8px;overflow:hidden}
 .img-prev img{width:100%;height:100%;object-fit:cover}
 .empty-st{text-align:center;padding:40px 16px;color:var(--text2);font-size:13px}
+.set-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:0.5px solid var(--border);font-size:13px}
+.set-row:last-child{border-bottom:none}
+.set-label{font-size:11px;color:var(--text2);margin-top:2px}
+.set-row input{width:90px;padding:6px 8px;border:0.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);font-size:13px;text-align:right}
 </style>
 </head>
 <body>
@@ -202,25 +200,51 @@ button{padding:10px 16px;border:0.5px solid var(--border2);border-radius:var(--r
     <div class="form-r"><label>入手先店舗</label><input type="text" id="f-shop" placeholder="例: カードキング"></div>
   </div>
   <div class="form-r"><label>メモ</label><textarea id="f-note" placeholder="気になる点など"></textarea></div>
-  <button style="width:100%;margin-top:4px;background:var(--brand);color:#fff;border:none;font-weight:600" id="save-btn" onclick="saveCard()">登録する</button>
+  <button style="width:100%;margin-top:4px;background:var(--brand);color:#fff;border-color:var(--brand);font-weight:600" id="save-btn" onclick="saveCard()">登録する</button>
 </div>
 
 <div id="pg-hist" class="pg">
   <div class="stat-g" id="stat-g"></div>
   <div class="sl">売却履歴</div>
   <div id="hist-list" class="dbox" style="padding:0 13px"></div>
-  <div class="sl" style="margin-top:20px">データ管理</div>
-  <div class="g2">
-    <button onclick="exportData()"><i class="ti ti-download"></i> エクスポート</button>
-    <button onclick="importData()"><i class="ti ti-upload"></i> インポート</button>
+</div>
+
+<div id="pg-set" class="pg">
+  <div class="sl">計算設定</div>
+  <div class="dbox" style="padding:0 13px">
+    <div class="set-row">
+      <div><div style="font-size:13px;font-weight:500">PSA鑑定料</div><div class="set-label">PSA登録済みカードに加算</div></div>
+      <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">¥</span><input type="number" id="set-psa-fee" value="4400" onchange="onPsaFeeChange(this.value)"></div>
+    </div>
+    <div class="set-row">
+      <div><div style="font-size:13px;font-weight:500">販売手数料率</div><div class="set-label">メルカリ等の手数料</div></div>
+      <div style="display:flex;align-items:center;gap:4px"><input type="number" id="set-fee-rate" value="10" onchange="onFeeRateChange(this.value)" style="width:70px"><span style="font-size:12px;color:var(--text2)">%</span></div>
+    </div>
+  </div>
+  <div class="sl">データ管理</div>
+  <div class="dbox" style="padding:0 13px">
+    <div class="set-row">
+      <div><div style="font-size:13px;font-weight:500">エクスポート</div><div class="set-label">バックアップ用JSONファイル</div></div>
+      <button onclick="exportData()"><i class="ti ti-download"></i></button>
+    </div>
+    <div class="set-row">
+      <div><div style="font-size:13px;font-weight:500">インポート</div><div class="set-label">JSONファイルから復元・統合</div></div>
+      <button onclick="document.getElementById('import-file').click()"><i class="ti ti-upload"></i></button>
+    </div>
   </div>
   <input type="file" id="import-file" accept=".json" style="display:none" onchange="handleImport(this)">
+  <div class="sl">登録数</div>
+  <div class="dbox" style="padding:0 13px">
+    <div class="set-row"><span style="font-size:13px">在庫カード</span><span id="set-db-count" style="font-size:13px;font-weight:600">0枚</span></div>
+    <div class="set-row"><span style="font-size:13px">売却済み</span><span id="set-hist-count" style="font-size:13px;font-weight:600">0件</span></div>
+  </div>
 </div>
 
 <nav class="nav">
   <button class="nb on" id="nb-db" onclick="switchTab('db')"><i class="ti ti-cards"></i>DB</button>
   <button class="nb" id="nb-add" onclick="switchTab('add')"><i class="ti ti-plus"></i>登録</button>
   <button class="nb" id="nb-hist" onclick="switchTab('hist')"><i class="ti ti-chart-bar"></i>実績</button>
+  <button class="nb" id="nb-set" onclick="switchTab('set')"><i class="ti ti-settings"></i>設定</button>
 </nav>
 </div>
 
@@ -229,8 +253,7 @@ const STORE_KEY='pf_main';
 const TYPES=[{name:'炎',color:'#E24B4A',bg:'#FCEBEB',tc:'#501313'},{name:'水',color:'#378ADD',bg:'#E6F1FB',tc:'#042C53'},{name:'草',color:'#639922',bg:'#EAF3DE',tc:'#173404'},{name:'電気',color:'#BA7517',bg:'#FAEEDA',tc:'#412402'},{name:'超',color:'#7F77DD',bg:'#EEEDFE',tc:'#26215C'},{name:'格闘',color:'#D85A30',bg:'#FAECE7',tc:'#4A1B0C'},{name:'悪',color:'#444441',bg:'#F1EFE8',tc:'#2C2C2A'},{name:'鋼',color:'#5F5E5A',bg:'#D3D1C7',tc:'#2C2C2A'},{name:'竜',color:'#534AB7',bg:'#EEEDFE',tc:'#26215C'},{name:'無色',color:'#888780',bg:'#F1EFE8',tc:'#444441'}];
 const RARITIES=['SSR','SAR','UR','SR','HR','CSR','CHR','AR','ACE','PROMO','RRR','RR','R','U','C','TR'];
 const TURN_LABELS=['','ほぼ動かない','動きが遅い','普通','よく売れる','非常に売れる'];
-function rarityColor(r){const map={SSR:{bg:'#FAEEDA',tc:'#412402'},SAR:{bg:'#EEEDFE',tc:'#26215C'},UR:{bg:'#FAEEDA',tc:'#412402'},SR:{bg:'#E1F5EE',tc:'#04342C'},HR:{bg:'#FAEEDA',tc:'#412402'},CSR:{bg:'#EEEDFE',tc:'#3C3489'},CHR:{bg:'#FBEAF0',tc:'#4B1528'},AR:{bg:'#E6F1FB',tc:'#042C53'},ACE:{bg:'#FCEBEB',tc:'#501313'},PROMO:{bg:'#F1EFE8',tc:'#2C2C2A'},RRR:{bg:'#EAF3DE',tc:'#173404'},RR:{bg:'#E6F1FB',tc:'#0C447C'},R:{bg:'#F1EFE8',tc:'#444441'},U:{bg:'#F1EFE8',tc:'#5F5E5A'},C:{bg:'#F1EFE8',tc:'#888780'}};return map[r]||{bg:'#F1EFE8',tc:'#444441'};}
-
+let psaFee=4400,sellFeeRate=0.10;
 let selTypes=new Set(),selRarities=new Set(),openDrawer=null;
 let selectedType='',formTurn=0,currentSort='price-d',currentView='list',showCount=10,editingId=null;
 
@@ -238,44 +261,51 @@ function loadData(){try{const s=localStorage.getItem(STORE_KEY);if(s)return JSON
 const loaded=loadData();let DB=loaded.db||[],HIST=loaded.hist||[];
 function persist(){try{localStorage.setItem(STORE_KEY,JSON.stringify({db:DB,hist:HIST}));}catch(e){}}
 persist();
-
 document.getElementById('datelabel').textContent=new Date().toLocaleDateString('ja-JP',{month:'numeric',day:'numeric'});
 
-function typeObj(name){return TYPES.find(t=>t.name===name)||null;}
-function fmt(n){return'¥'+Math.round(n).toLocaleString();}
+function rarityColor(r){const m={SSR:{bg:'#FAEEDA',tc:'#412402'},SAR:{bg:'#EEEDFE',tc:'#26215C'},UR:{bg:'#FAEEDA',tc:'#412402'},SR:{bg:'#E1F5EE',tc:'#04342C'},HR:{bg:'#FAEEDA',tc:'#412402'},CSR:{bg:'#EEEDFE',tc:'#3C3489'},CHR:{bg:'#FBEAF0',tc:'#4B1528'},AR:{bg:'#E6F1FB',tc:'#042C53'},ACE:{bg:'#FCEBEB',tc:'#501313'},PROMO:{bg:'#F1EFE8',tc:'#2C2C2A'},RRR:{bg:'#EAF3DE',tc:'#173404'},RR:{bg:'#E6F1FB',tc:'#0C447C'},R:{bg:'#F1EFE8',tc:'#444441'},U:{bg:'#F1EFE8',tc:'#5F5E5A'},C:{bg:'#F1EFE8',tc:'#888780'}};return m[r]||{bg:'#F1EFE8',tc:'#444441'};}
+function typeObj(n){return TYPES.find(t=>t.name===n)||null;}
+function hasPsa(c){return c.psa&&c.psa!==''&&c.psa!=='なし(生)';}
+function totalCost(c){return(c.buy||0)+(hasPsa(c)?psaFee:0);}
 function avgPrice(c){const v=[c.mercari,c.snkrdunk,c.yahuoku].filter(x=>x>0);return v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):0;}
+function netProfit(c){const avg=avgPrice(c);if(!avg||!c.buy)return null;return avg-Math.round(avg*sellFeeRate)-totalCost(c);}
 function daysSince(id){return Math.floor((Date.now()-id)/864e5);}
+function fmt(n){return'¥'+Math.round(n).toLocaleString();}
+function profitColor(p){return p>0?'#D4A017':p<0?'#E24B4A':'var(--text2)';}
 
-function starsHTML(n,size){size=size||13;if(!n)return`<span style="font-size:${size}px;color:var(--text2)">—</span>`;return`<span style="font-size:${size}px;color:#D4A017;letter-spacing:0">${'★'.repeat(n)}<span style="color:var(--text2);opacity:.35">${'☆'.repeat(5-n)}</span></span>`;}
-function turnBadge(n){if(!n)return'';return`<span style="display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:99px;font-size:11px;font-weight:600;background:#FAEEDA;color:#633806">${starsHTML(n,11)} <span style="font-size:10px">${TURN_LABELS[n]}</span></span>`;}
+function starsHTML(n,size){size=size||13;if(!n)return`<span style="font-size:${size}px;color:var(--text2)">—</span>`;return`<span style="font-size:${size}px;color:#D4A017">${'★'.repeat(n)}<span style="color:var(--text2);opacity:.35">${'☆'.repeat(5-n)}</span></span>`;}
+function turnBadge(n){if(!n)return'';return`<span style="display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:99px;font-size:11px;font-weight:600;background:#FAEEDA;color:#633806">${starsHTML(n,11)} ${TURN_LABELS[n]}</span>`;}
 function typeBadge(name){const t=typeObj(name);if(!t)return'';return`<span class="badge" style="background:${t.bg};color:${t.tc}"><span class="type-dot" style="background:${t.color}"></span>${t.name}</span>`;}
 function rarityBadge(r){if(!r)return'';const c=rarityColor(r);return`<span class="badge" style="background:${c.bg};color:${c.tc}">${r}</span>`;}
-function psaBadge(p){if(!p)return'';const map={'PSA10':{bg:'#FAEEDA',tc:'#412402'},'PSA9':{bg:'#EAF3DE',tc:'#173404'},'PSA8':{bg:'#F1EFE8',tc:'#444441'}};const c=map[p]||{bg:'#F1EFE8',tc:'#888780'};return`<span class="badge" style="background:${c.bg};color:${c.tc}">${p}</span>`;}
-function condBadge(c){if(!c)return'';const map={美品:{bg:'#E1F5EE',tc:'#04342C'},並:{bg:'#F1EFE8',tc:'#444441'},傷あり:{bg:'#FCEBEB',tc:'#791F1F'}};const s=map[c]||{bg:'#F1EFE8',tc:'#444441'};return`<span class="badge" style="background:${s.bg};color:${s.tc}">${c}</span>`;}
-function profitHTML(profit,pct,size){size=size||11;if(profit>0)return`<span style="font-size:${size}px;color:#D4A017;font-weight:600">+${fmt(profit)} (${pct}%)</span>`;if(profit<0)return`<span style="font-size:${size}px;color:#E24B4A;font-weight:600">${fmt(profit)} (${pct}%)</span>`;return`<span style="font-size:${size}px;color:var(--text2)">±0</span>`;}
+function psaBadge(p){if(!p)return'';const m={'PSA10':{bg:'#FAEEDA',tc:'#412402'},'PSA9':{bg:'#EAF3DE',tc:'#173404'},'PSA8':{bg:'#F1EFE8',tc:'#444441'}};const c=m[p]||{bg:'#F1EFE8',tc:'#888780'};return`<span class="badge" style="background:${c.bg};color:${c.tc}">${p}</span>`;}
+function condBadge(c){if(!c)return'';const m={美品:{bg:'#E1F5EE',tc:'#04342C'},並:{bg:'#F1EFE8',tc:'#444441'},傷あり:{bg:'#FCEBEB',tc:'#791F1F'}};const s=m[c]||{bg:'#F1EFE8',tc:'#444441'};return`<span class="badge" style="background:${s.bg};color:${s.tc}">${c}</span>`;}
+function verdictHTML(p){if(p===null)return'';if(p>0)return`<span class="verdict verdict-ok"><i class="ti ti-circle-check"></i>利益あり</span>`;if(p===0)return`<span class="verdict verdict-edge"><i class="ti ti-minus"></i>トントン</span>`;return`<span class="verdict verdict-ng"><i class="ti ti-circle-x"></i>損失</span>`;}
+
+function onPsaFeeChange(v){psaFee=parseInt(v)||4400;renderDB();}
+function onFeeRateChange(v){sellFeeRate=(parseFloat(v)||10)/100;renderDB();}
 
 function setFormTurn(v){formTurn=formTurn===v?0:v;renderFormStars();}
-function renderFormStars(){document.querySelectorAll('#form-stars .star-btn').forEach((btn,i)=>{btn.textContent=i<formTurn?'★':'☆';btn.style.color=i<formTurn?'#D4A017':'var(--text2)';});const lbl=document.getElementById('turn-label');lbl.textContent=formTurn?TURN_LABELS[formTurn]:'未設定';lbl.style.color=formTurn?'#D4A017':'var(--text2)';}
+function renderFormStars(){document.querySelectorAll('#form-stars .star-btn').forEach((b,i)=>{b.textContent=i<formTurn?'★':'☆';b.style.color=i<formTurn?'#D4A017':'var(--text2)';});const l=document.getElementById('turn-label');l.textContent=formTurn?TURN_LABELS[formTurn]:'未設定';l.style.color=formTurn?'#D4A017':'var(--text2)';}
 
 function toggleDrawer(cat){if(openDrawer===cat){document.getElementById('drawer-'+cat).classList.remove('open');document.getElementById('chev-'+cat).style.transform='';openDrawer=null;}else{if(openDrawer){document.getElementById('drawer-'+openDrawer).classList.remove('open');document.getElementById('chev-'+openDrawer).style.transform='';}document.getElementById('drawer-'+cat).classList.add('open');document.getElementById('chev-'+cat).style.transform='rotate(180deg)';openDrawer=cat;if(cat==='type')buildTypeChips();else buildRarityChips();}}
 function buildTypeChips(){document.getElementById('chips-type').innerHTML=TYPES.map(t=>{const on=selTypes.has(t.name);return`<button class="chip${on?' on':''}" style="${on?`background:${t.bg};color:${t.tc};border-color:${t.color}`:''}" onclick="toggleTypeFilter('${t.name}')"><span class="type-dot" style="background:${t.color}"></span>${t.name}</button>`;}).join('');}
 function buildRarityChips(){document.getElementById('chips-rarity').innerHTML=RARITIES.map(r=>{const on=selRarities.has(r);const c=rarityColor(r);return`<button class="chip${on?' on':''}" style="${on?`background:${c.bg};color:${c.tc};border-color:${c.tc}`:''}" onclick="toggleRarityFilter('${r}')">${r}</button>`;}).join('');}
-function toggleTypeFilter(name){selTypes.has(name)?selTypes.delete(name):selTypes.add(name);buildTypeChips();updateFilterUI();showCount=10;renderDB();}
+function toggleTypeFilter(n){selTypes.has(n)?selTypes.delete(n):selTypes.add(n);buildTypeChips();updateFilterUI();showCount=10;renderDB();}
 function toggleRarityFilter(r){selRarities.has(r)?selRarities.delete(r):selRarities.add(r);buildRarityChips();updateFilterUI();showCount=10;renderDB();}
-function updateFilterUI(){const tc=selTypes.size,rc=selRarities.size;const cntT=document.getElementById('cnt-type'),cntR=document.getElementById('cnt-rarity');cntT.style.display=tc?'':'none';cntT.textContent=tc;cntR.style.display=rc?'':'none';cntR.textContent=rc;document.getElementById('fcat-type').classList.toggle('has-sel',tc>0);document.getElementById('fcat-rarity').classList.toggle('has-sel',rc>0);document.getElementById('clear-btn').style.visibility=(tc||rc)?'visible':'hidden';const chips=[];selTypes.forEach(name=>{const t=typeObj(name);chips.push(`<span class="af-chip" style="background:${t.bg};color:${t.tc}" onclick="toggleTypeFilter('${name}')"><span class="type-dot" style="background:${t.color}"></span>${name}<i class="ti ti-x"></i></span>`);});selRarities.forEach(r=>{const c=rarityColor(r);chips.push(`<span class="af-chip" style="background:${c.bg};color:${c.tc}" onclick="toggleRarityFilter('${r}')">${r}<i class="ti ti-x"></i></span>`);});document.getElementById('active-filters').innerHTML=chips.join('');}
+function updateFilterUI(){const tc=selTypes.size,rc=selRarities.size;const cT=document.getElementById('cnt-type'),cR=document.getElementById('cnt-rarity');cT.style.display=tc?'':'none';cT.textContent=tc;cR.style.display=rc?'':'none';cR.textContent=rc;document.getElementById('fcat-type').classList.toggle('has-sel',tc>0);document.getElementById('fcat-rarity').classList.toggle('has-sel',rc>0);document.getElementById('clear-btn').style.visibility=(tc||rc)?'visible':'hidden';const chips=[];selTypes.forEach(n=>{const t=typeObj(n);chips.push(`<span class="af-chip" style="background:${t.bg};color:${t.tc}" onclick="toggleTypeFilter('${n}')"><span class="type-dot" style="background:${t.color}"></span>${n}<i class="ti ti-x"></i></span>`);});selRarities.forEach(r=>{const c=rarityColor(r);chips.push(`<span class="af-chip" style="background:${c.bg};color:${c.tc}" onclick="toggleRarityFilter('${r}')">${r}<i class="ti ti-x"></i></span>`);});document.getElementById('active-filters').innerHTML=chips.join('');}
 function clearFilters(){selTypes.clear();selRarities.clear();updateFilterUI();showCount=10;renderDB();}
 
 function onSortChange(v){currentSort=v;showCount=10;renderDB();}
 function setView(v){currentView=v;showCount=10;document.getElementById('vb-list').classList.toggle('on',v==='list');document.getElementById('vb-type').classList.toggle('on',v==='type');renderDB();}
-function sorted(arr){const a=[...arr];if(currentSort==='price-d')a.sort((x,y)=>avgPrice(y)-avgPrice(x));else if(currentSort==='price-a')a.sort((x,y)=>avgPrice(x)-avgPrice(y));else if(currentSort==='profit-d')a.sort((x,y)=>(avgPrice(y)-y.buy)-(avgPrice(x)-x.buy));else if(currentSort==='turn-d')a.sort((x,y)=>(y.turn||0)-(x.turn||0));else if(currentSort==='name')a.sort((x,y)=>x.name.localeCompare(y.name,'ja'));else a.sort((x,y)=>y.id-x.id);return a;}
+function sorted(arr){const a=[...arr];if(currentSort==='price-d')a.sort((x,y)=>avgPrice(y)-avgPrice(x));else if(currentSort==='price-a')a.sort((x,y)=>avgPrice(x)-avgPrice(y));else if(currentSort==='profit-d')a.sort((x,y)=>(netProfit(y)||0)-(netProfit(x)||0));else if(currentSort==='turn-d')a.sort((x,y)=>(y.turn||0)-(x.turn||0));else if(currentSort==='name')a.sort((x,y)=>x.name.localeCompare(y.name,'ja'));else a.sort((x,y)=>y.id-x.id);return a;}
 function filtered(arr){let r=arr;if(selTypes.size)r=r.filter(c=>selTypes.has(c.type));if(selRarities.size)r=r.filter(c=>selRarities.has(c.rarity));return r;}
 
-function listItemHTML(c){const avg=avgPrice(c);const profit=avg-c.buy;const pct=c.buy?Math.round((profit/c.buy)*100):0;const days=daysSince(c.id);const imgHtml=c.img?`<img src="${c.img}" alt="" onerror="this.style.display='none'">`:`<span>🃏</span>`;return`<div class="list-item" onclick="showDetail(${c.id})"><div class="list-thumb">${imgHtml}</div><div class="list-body"><div class="list-name">${c.name}</div><div class="list-meta">${[c.pack,c.shop,days+'日前'].filter(Boolean).join(' · ')}</div><div class="list-badges">${typeBadge(c.type)}${rarityBadge(c.rarity)}${psaBadge(c.psa)}</div></div><div class="list-right"><div class="list-price">${avg?fmt(avg):'—'}</div>${avg&&c.buy?profitHTML(profit,pct,11):''}<div>${starsHTML(c.turn||0,12)}</div></div></div>`;}
+function listItemHTML(c){const avg=avgPrice(c);const profit=netProfit(c);const days=daysSince(c.id);const imgHtml=c.img?`<img src="${c.img}" alt="" onerror="this.style.display='none'">`:`<span>🃏</span>`;return`<div class="list-item" onclick="showDetail(${c.id})"><div class="list-thumb">${imgHtml}</div><div class="list-body"><div class="list-name">${c.name}</div><div class="list-meta">${[c.pack,c.shop,days+'日前'].filter(Boolean).join(' · ')}</div><div class="list-badges">${typeBadge(c.type)}${rarityBadge(c.rarity)}${psaBadge(c.psa)}${condBadge(c.cond)}</div></div><div class="list-right"><div class="list-price">${avg?fmt(avg):'—'}</div>${profit!==null?`<span style="font-size:11px;font-weight:600;color:${profitColor(profit)}">${profit>=0?'+':''}${fmt(profit)}</span>`:''}<div>${starsHTML(c.turn||0,12)}</div></div></div>`;}
 
-function renderDB(){const container=document.getElementById('list-container');const empty=document.getElementById('db-empty');document.getElementById('detail-view').classList.remove('on');document.getElementById('detail-view').innerHTML='';container.style.display='';if(!DB.length){container.innerHTML='';empty.style.display='block';return;}empty.style.display='none';const items=filtered(sorted(DB));if(!items.length){container.innerHTML=`<div style="padding:20px 0;font-size:13px;color:var(--text2);text-align:center">該当するカードがありません</div>`;return;}if(currentView==='list'){const show=items.slice(0,showCount);const remaining=items.length-showCount;container.innerHTML=`<div style="border:0.5px solid var(--border);border-radius:var(--radius);padding:0 12px">${show.map(listItemHTML).join('')}</div>${remaining>0?`<button class="show-more" onclick="showMore()">さらに${Math.min(remaining,10)}件表示（残り${remaining}件）</button>`:''}`;} else {const grouped={};items.forEach(c=>{const k=c.type||'未設定';if(!grouped[k])grouped[k]=[];grouped[k].push(c);});const typeOrder=[...TYPES.map(t=>t.name),'未設定'];let html='';typeOrder.forEach(typeName=>{if(!grouped[typeName])return;const t=typeObj(typeName);html+=`<div class="type-header">${t?`<span class="type-dot" style="background:${t.color}"></span>`:''}<span style="color:${t?t.color:'var(--text2)'}">${typeName}</span><span style="font-size:11px;color:var(--text2);margin-left:auto">${grouped[typeName].length}枚</span></div><div style="border:0.5px solid var(--border);border-radius:var(--radius);padding:0 12px;margin-bottom:10px">${grouped[typeName].map(listItemHTML).join('')}</div>`;});container.innerHTML=html;}}
+function renderDB(){const container=document.getElementById('list-container'),empty=document.getElementById('db-empty');document.getElementById('detail-view').classList.remove('on');document.getElementById('detail-view').innerHTML='';container.style.display='';if(!DB.length){container.innerHTML='';empty.style.display='block';return;}empty.style.display='none';const items=filtered(sorted(DB));if(!items.length){container.innerHTML=`<div style="padding:20px 0;font-size:13px;color:var(--text2);text-align:center">該当するカードがありません</div>`;return;}if(currentView==='list'){const show=items.slice(0,showCount),rem=items.length-showCount;container.innerHTML=`<div style="border:0.5px solid var(--border);border-radius:var(--radius);padding:0 12px">${show.map(listItemHTML).join('')}</div>${rem>0?`<button class="show-more" onclick="showMore()">さらに${Math.min(rem,10)}件表示（残り${rem}件）</button>`:''}`;}else{const grouped={};items.forEach(c=>{const k=c.type||'未設定';if(!grouped[k])grouped[k]=[];grouped[k].push(c);});const typeOrder=[...TYPES.map(t=>t.name),'未設定'];let html='';typeOrder.forEach(n=>{if(!grouped[n])return;const t=typeObj(n);html+=`<div class="type-header">${t?`<span class="type-dot" style="background:${t.color}"></span>`:''}<span style="color:${t?t.color:'var(--text2)'}">${n}</span><span style="font-size:11px;color:var(--text2);margin-left:auto">${grouped[n].length}枚</span></div><div style="border:0.5px solid var(--border);border-radius:var(--radius);padding:0 12px;margin-bottom:10px">${grouped[n].map(listItemHTML).join('')}</div>`;});container.innerHTML=html;}}
 function showMore(){showCount+=10;renderDB();}
 
-function showDetail(id){const c=DB.find(x=>x.id===id);if(!c)return;const avg=avgPrice(c);const profit=avg-c.buy;const pct=c.buy?Math.round((profit/c.buy)*100):0;const days=daysSince(c.id);const sites=[{n:'メルカリ',url:`https://www.mercari.com/jp/search/?keyword=${encodeURIComponent(c.name)}`},{n:'スニダン',url:`https://snkrdunk.com/search?category=tcg&keyword=${encodeURIComponent(c.name)}`},{n:'ヤフオク',url:`https://auctions.yahoo.co.jp/search/search?p=${encodeURIComponent(c.name)}`}];const t=typeObj(c.type);const typeHtml=t?`<span class="badge" style="background:${t.bg};color:${t.tc}"><span class="type-dot" style="background:${t.color}"></span>${t.name}</span>`:'';const imgHtml=c.img?`<img src="${c.img}" alt="${c.name}" style="width:100%;max-height:200px;object-fit:contain;border-radius:var(--radius-sm)">`:`<div style="font-size:60px;text-align:center;padding:16px">🃏</div>`;const ov=document.getElementById('detail-view');ov.innerHTML=`<div class="dbox">${imgHtml}<div style="margin:10px 0 8px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px"><div style="min-width:0"><div style="font-size:16px;font-weight:600">${c.name}</div><div style="font-size:12px;color:var(--text2)">${c.pack||''}</div></div><div style="display:flex;gap:3px;flex-wrap:wrap;justify-content:flex-end;flex-shrink:0">${typeHtml}${rarityBadge(c.rarity)}</div></div><div class="drow"><span class="dlabel">回転率</span><span>${turnBadge(c.turn)||'<span style="color:var(--text2);font-size:12px">未設定</span>'}</span></div><div class="drow"><span class="dlabel">登録から</span><span style="font-size:12px;color:var(--text2)">${days}日経過</span></div><div class="drow"><span class="dlabel">PSA</span><span>${psaBadge(c.psa)||'なし(生)'}</span></div><div class="drow"><span class="dlabel">状態</span><span>${condBadge(c.cond)||'—'}</span></div><div class="drow"><span class="dlabel">メルカリ</span><span>${c.mercari?fmt(c.mercari):'未入力'}</span></div><div class="drow"><span class="dlabel">スニダン</span><span>${c.snkrdunk?fmt(c.snkrdunk):'未入力'}</span></div><div class="drow"><span class="dlabel">ヤフオク</span><span>${c.yahuoku?fmt(c.yahuoku):'未入力'}</span></div><div class="drow"><span class="dlabel">平均相場</span><span style="font-weight:600">${avg?fmt(avg):'—'}</span></div><div class="drow"><span class="dlabel">仕入れ値</span><span>${c.buy?fmt(c.buy):'未入力'}</span></div>${avg&&c.buy?`<div class="drow"><span class="dlabel">利益</span><span>${profitHTML(profit,pct,13)}</span></div>`:''}<div class="drow"><span class="dlabel">入手先</span><span style="font-size:12px">${c.shop||'—'}</span></div>${c.note?`<div class="drow"><span class="dlabel">メモ</span><span style="font-size:12px">${c.note}</span></div>`:''}<div style="font-size:11px;color:var(--text2);margin:10px 0 6px">相場を確認する</div><div class="mlinks">${sites.map(s=>`<a href="${s.url}" target="_blank" class="mlink">${s.n} ↗</a>`).join('')}</div><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px"><button onclick="editCard(${c.id})"><i class="ti ti-edit"></i> 編集</button><button onclick="sellCard(${c.id})"><i class="ti ti-check"></i> 売却済み</button></div><button style="width:100%;margin-top:8px" onclick="deleteCard(${c.id})"><i class="ti ti-trash"></i> 削除</button><button style="width:100%;margin-top:8px" onclick="closeDetail()"><i class="ti ti-arrow-left"></i> 一覧に戻る</button></div>`;ov.classList.add('on');document.getElementById('list-container').style.display='none';}
+function showDetail(id){const c=DB.find(x=>x.id===id);if(!c)return;const avg=avgPrice(c),fee=avg?Math.round(avg*sellFeeRate):0,psaAmt=hasPsa(c)?psaFee:0,cost=totalCost(c),profit=netProfit(c),days=daysSince(c.id),pct=(profit!==null&&cost)?Math.round((profit/cost)*100):null;const sites=[{n:'メルカリ',url:`https://www.mercari.com/jp/search/?keyword=${encodeURIComponent(c.name)}`},{n:'スニダン',url:`https://snkrdunk.com/search?category=tcg&keyword=${encodeURIComponent(c.name)}`},{n:'ヤフオク',url:`https://auctions.yahoo.co.jp/search/search?p=${encodeURIComponent(c.name)}`}];const t=typeObj(c.type);const typeHtml=t?`<span class="badge" style="background:${t.bg};color:${t.tc}"><span class="type-dot" style="background:${t.color}"></span>${t.name}</span>`:'';const imgHtml=c.img?`<img src="${c.img}" alt="${c.name}" style="width:100%;max-height:200px;object-fit:contain;border-radius:var(--radius-sm)">`:`<div style="font-size:60px;text-align:center;padding:20px">🃏</div>`;const ov=document.getElementById('detail-view');ov.innerHTML=`<div class="dbox">${imgHtml}<div style="margin:10px 0 8px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px"><div style="min-width:0"><div style="font-size:16px;font-weight:600">${c.name}</div><div style="font-size:12px;color:var(--text2)">${c.pack||''}</div></div><div style="display:flex;gap:3px;flex-wrap:wrap;justify-content:flex-end;flex-shrink:0">${typeHtml}${rarityBadge(c.rarity)}</div></div><div class="drow"><span class="dlabel">回転率</span><span>${turnBadge(c.turn)||'<span style="color:var(--text2);font-size:12px">未設定</span>'}</span></div><div class="drow"><span class="dlabel">登録から</span><span style="font-size:12px;color:var(--text2)">${days}日経過</span></div><div class="drow"><span class="dlabel">PSA</span><span>${psaBadge(c.psa)||'なし(生)'}</span></div><div class="drow"><span class="dlabel">状態</span><span>${condBadge(c.cond)||'—'}</span></div><div class="drow"><span class="dlabel">メルカリ</span><span>${c.mercari?fmt(c.mercari):'未入力'}</span></div><div class="drow"><span class="dlabel">スニダン</span><span>${c.snkrdunk?fmt(c.snkrdunk):'未入力'}</span></div><div class="drow"><span class="dlabel">ヤフオク</span><span>${c.yahuoku?fmt(c.yahuoku):'未入力'}</span></div><div class="drow"><span class="dlabel">平均相場</span><span style="font-weight:600">${avg?fmt(avg):'—'}</span></div>${avg?`<div class="drow"><span class="dlabel">販売手数料(${Math.round(sellFeeRate*100)}%)</span><span style="color:#E24B4A">-${fmt(fee)}</span></div>`:''}<div class="drow"><span class="dlabel">仕入れ値</span><span>${c.buy?fmt(c.buy):'未入力'}</span></div>${psaAmt?`<div class="drow"><span class="dlabel">PSA鑑定料</span><span style="color:#E24B4A">-${fmt(psaAmt)}</span></div>`:''} ${cost&&c.buy?`<div class="drow"><span class="dlabel">総コスト</span><span style="font-weight:600">${fmt(cost)}</span></div>`:''} ${profit!==null?`<div class="profit-block"><div><div style="font-size:11px;color:var(--text2);margin-bottom:3px">実質利益${pct!==null?` (${pct}%)`:''}${hasPsa(c)?' · 鑑定料込':''}</div><div style="font-size:22px;font-weight:700;color:${profitColor(profit)}">${profit>=0?'+':''}${fmt(profit)}</div></div>${verdictHTML(profit)}</div>`:''}<div class="drow"><span class="dlabel">入手先</span><span style="font-size:12px">${c.shop||'—'}</span></div>${c.note?`<div class="drow"><span class="dlabel">メモ</span><span style="font-size:12px">${c.note}</span></div>`:''}<div style="font-size:11px;color:var(--text2);margin:10px 0 6px">相場を確認する</div><div class="mlinks">${sites.map(s=>`<a href="${s.url}" target="_blank" class="mlink">${s.n} ↗</a>`).join('')}</div><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px"><button onclick="editCard(${c.id})"><i class="ti ti-edit"></i> 編集</button><button onclick="sellCard(${c.id})"><i class="ti ti-check"></i> 売却済み</button></div><button style="width:100%;margin-top:8px" onclick="deleteCard(${c.id})"><i class="ti ti-trash"></i> 削除</button><button style="width:100%;margin-top:8px" onclick="closeDetail()"><i class="ti ti-arrow-left"></i> 一覧に戻る</button></div>`;ov.classList.add('on');document.getElementById('list-container').style.display='none';}
 function closeDetail(){document.getElementById('detail-view').classList.remove('on');document.getElementById('detail-view').innerHTML='';document.getElementById('list-container').style.display='';}
 
 function editCard(id){const c=DB.find(x=>x.id===id);if(!c)return;editingId=id;selectedType=c.type||'';formTurn=c.turn||0;switchTab('add');setTimeout(()=>{document.getElementById('f-name').value=c.name||'';document.getElementById('f-pack').value=c.pack||'';document.getElementById('f-rarity').value=c.rarity||'';document.getElementById('f-psa').value=c.psa||'';document.getElementById('f-cond').value=c.cond||'';document.getElementById('f-mercari').value=c.mercari||'';document.getElementById('f-snkrdunk').value=c.snkrdunk||'';document.getElementById('f-yahuoku').value=c.yahuoku||'';document.getElementById('f-buy').value=c.buy||'';document.getElementById('f-shop').value=c.shop||'';document.getElementById('f-note').value=c.note||'';if(c.img){const p=document.getElementById('img-preview');p.innerHTML=`<img src="${c.img}">`;p.dataset.img=c.img;}buildTypeGrid();renderFormStars();document.getElementById('save-btn').textContent='更新する';},50);}
@@ -284,21 +314,20 @@ function deleteCard(id){if(!confirm('このカードを削除しますか？'))r
 
 function handleImg(input){const file=input.files[0];if(!file)return;const reader=new FileReader();reader.onload=e=>{const p=document.getElementById('img-preview');p.innerHTML=`<img src="${e.target.result}">`;p.dataset.img=e.target.result;};reader.readAsDataURL(file);}
 function toggleUrlRow(){const r=document.getElementById('url-row');r.style.display=r.style.display==='none'?'block':'none';}
-function previewUrl(url){if(!url)return;const p=document.getElementById('img-preview');p.innerHTML=`<img src="${url}" onerror="this.innerHTML='<i class=ti ti-photo-off style=font-size:28px></i>'">`;p.dataset.img=url;}
-
+function previewUrl(url){if(!url)return;const p=document.getElementById('img-preview');p.innerHTML=`<img src="${url}" onerror="this.parentElement.innerHTML='<i class=ti ti-photo-off style=font-size:28px></i>'">`;p.dataset.img=url;}
 function buildTypeGrid(){document.getElementById('type-grid').innerHTML=TYPES.map(t=>`<button class="type-btn${selectedType===t.name?' on':''}" style="${selectedType===t.name?`background:${t.bg};color:${t.tc};border-color:${t.color}`:''}" onclick="selectType('${t.name}')"><span class="type-dot" style="background:${t.color}"></span>${t.name}</button>`).join('');}
 function selectType(name){selectedType=selectedType===name?'':name;buildTypeGrid();}
 
 function saveCard(){const name=document.getElementById('f-name').value.trim();if(!name){alert('カード名を入力してください');return;}const p=document.getElementById('img-preview');const imgData=p.dataset.img||(document.getElementById('img-url').value.trim())||'';const card={id:editingId||Date.now(),name,pack:document.getElementById('f-pack').value.trim(),rarity:document.getElementById('f-rarity').value,type:selectedType,psa:document.getElementById('f-psa').value,cond:document.getElementById('f-cond').value,turn:formTurn,mercari:parseInt(document.getElementById('f-mercari').value)||0,snkrdunk:parseInt(document.getElementById('f-snkrdunk').value)||0,yahuoku:parseInt(document.getElementById('f-yahuoku').value)||0,buy:parseInt(document.getElementById('f-buy').value)||0,shop:document.getElementById('f-shop').value.trim(),note:document.getElementById('f-note').value.trim(),img:imgData};if(editingId){DB=DB.map(c=>c.id===editingId?card:c);}else{DB.push(card);}persist();resetForm();editingId=null;switchTab('db');}
 function resetForm(){['f-name','f-pack','f-mercari','f-snkrdunk','f-yahuoku','f-buy','f-shop','f-note'].forEach(id=>{document.getElementById(id).value='';});['f-rarity','f-psa','f-cond'].forEach(id=>{document.getElementById(id).selectedIndex=0;});selectedType='';formTurn=0;buildTypeGrid();renderFormStars();const p=document.getElementById('img-preview');p.innerHTML=`<i class="ti ti-photo-plus" style="font-size:30px;color:var(--text2)"></i>`;delete p.dataset.img;document.getElementById('img-url').value='';document.getElementById('url-row').style.display='none';document.getElementById('save-btn').textContent='登録する';}
 
-function switchTab(t){['db','add','hist'].forEach(id=>{document.getElementById('pg-'+id).classList.remove('on');document.getElementById('nb-'+id).classList.remove('on');});document.getElementById('pg-'+t).classList.add('on');document.getElementById('nb-'+t).classList.add('on');if(t==='db')renderDB();if(t==='hist')renderHist();if(t==='add'&&!editingId)resetForm();}
+function switchTab(t){['db','add','hist','set'].forEach(id=>{document.getElementById('pg-'+id).classList.remove('on');document.getElementById('nb-'+id).classList.remove('on');});document.getElementById('pg-'+t).classList.add('on');document.getElementById('nb-'+t).classList.add('on');if(t==='db')renderDB();if(t==='hist')renderHist();if(t==='add'&&!editingId)resetForm();if(t==='set')renderSet();}
 
-function renderHist(){const totalP=HIST.reduce((a,c)=>a+(avgPrice(c)-c.buy),0),totalS=HIST.reduce((a,c)=>a+avgPrice(c),0),totalB=HIST.reduce((a,c)=>a+c.buy,0);document.getElementById('stat-g').innerHTML=`<div class="stat"><div class="stat-l">累計利益</div><div class="stat-v" style="color:${totalP>=0?'#D4A017':'#E24B4A'}">${fmt(totalP)}</div></div><div class="stat"><div class="stat-l">売上合計</div><div class="stat-v">${fmt(totalS)}</div></div><div class="stat"><div class="stat-l">仕入合計</div><div class="stat-v">${fmt(totalB)}</div></div><div class="stat"><div class="stat-l">取引件数</div><div class="stat-v">${HIST.length}件</div></div>`;const hl=document.getElementById('hist-list');if(!HIST.length){hl.innerHTML='<div class="empty-st">売却履歴はまだありません</div>';return;}hl.innerHTML=HIST.slice().reverse().map(c=>{const avg=avgPrice(c);const profit=avg-c.buy;const pct=c.buy?Math.round((profit/c.buy)*100):0;const t=typeObj(c.type);return`<div class="hist-row"><div class="hist-thumb">${c.img?`<img src="${c.img}" style="width:100%;height:100%;object-fit:cover" alt="">`:'🃏'}</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${c.name}</div><div style="font-size:11px;color:var(--text2);display:flex;align-items:center;gap:4px">${t?`<span class="type-dot" style="background:${t.color}"></span>`:''} ${c.soldDate||''}</div></div><div style="text-align:right;flex-shrink:0">${profitHTML(profit,pct,12)}</div></div>`;}).join('');}
+function renderHist(){const totalP=HIST.reduce((a,c)=>a+(netProfit(c)||0),0),totalS=HIST.reduce((a,c)=>a+avgPrice(c),0),totalB=HIST.reduce((a,c)=>a+totalCost(c),0);document.getElementById('stat-g').innerHTML=`<div class="stat"><div class="stat-l">累計利益</div><div class="stat-v" style="color:${totalP>=0?'#D4A017':'#E24B4A'}">${fmt(totalP)}</div></div><div class="stat"><div class="stat-l">売上合計</div><div class="stat-v">${fmt(totalS)}</div></div><div class="stat"><div class="stat-l">総コスト計</div><div class="stat-v">${fmt(totalB)}</div></div><div class="stat"><div class="stat-l">取引件数</div><div class="stat-v">${HIST.length}件</div></div>`;const hl=document.getElementById('hist-list');if(!HIST.length){hl.innerHTML='<div class="empty-st">売却履歴はまだありません</div>';return;}hl.innerHTML=HIST.slice().reverse().map(c=>{const profit=netProfit(c);const t=typeObj(c.type);return`<div class="hist-row"><div class="hist-thumb">${c.img?`<img src="${c.img}" style="width:100%;height:100%;object-fit:cover" alt="">`:'🃏'}</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${c.name}</div><div style="font-size:11px;color:var(--text2);display:flex;align-items:center;gap:4px">${t?`<span class="type-dot" style="background:${t.color}"></span>`:''} ${c.soldDate||''}</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:12px;font-weight:600;color:${profit!==null?profitColor(profit):'var(--text2)'}">${profit!==null?(profit>=0?'+':'')+fmt(profit):'—'}</div>${rarityBadge(c.rarity)}</div></div>`;}).join('');}
 
+function renderSet(){document.getElementById('set-db-count').textContent=DB.length+'枚';document.getElementById('set-hist-count').textContent=HIST.length+'件';}
 function exportData(){const data=JSON.stringify({db:DB,hist:HIST},null,2);const blob=new Blob([data],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='pokeca_checker_backup.json';a.click();URL.revokeObjectURL(url);}
-function importData(){document.getElementById('import-file').click();}
-function handleImport(input){const file=input.files[0];if(!file)return;const reader=new FileReader();reader.onload=e=>{try{const d=JSON.parse(e.target.result);if(!d.db)throw new Error();if(confirm(`${d.db.length}件のカードデータをインポートします。現在のデータと統合されます。よろしいですか？`)){d.db.forEach(c=>{if(!DB.find(x=>x.id===c.id))DB.push(c);});if(d.hist)d.hist.forEach(c=>{if(!HIST.find(x=>x.id===c.id))HIST.push(c);});persist();renderDB();alert('インポートが完了しました');}}catch(e){alert('ファイルの形式が正しくありません');}};reader.readAsText(file);input.value='';}
+function handleImport(input){const file=input.files[0];if(!file)return;const reader=new FileReader();reader.onload=e=>{try{const d=JSON.parse(e.target.result);if(!d.db)throw new Error();if(confirm(`${d.db.length}件をインポートします。現在のデータと統合されます。よろしいですか？`)){d.db.forEach(c=>{if(!DB.find(x=>x.id===c.id))DB.push(c);});if(d.hist)d.hist.forEach(c=>{if(!HIST.find(x=>x.id===c.id))HIST.push(c);});persist();renderDB();alert('インポート完了');}}catch(e){alert('ファイルの形式が正しくありません');}};reader.readAsText(file);input.value='';}
 
 updateFilterUI();buildTypeGrid();renderFormStars();renderDB();
 </script>
