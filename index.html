@@ -395,7 +395,7 @@ function fmtTs(ts){
 }
 function savePrefs(){try{localStorage.setItem(PREFS_KEY,JSON.stringify(prefs))}catch(e){}}
 function load(){try{cards=JSON.parse(localStorage.getItem(DB_KEY)||'[]');migrate();}catch(e){cards=[]}}
-function loadAll(){load();loadLog();loadTrash();}
+function loadAll(){load();loadLog();loadTrash();migrateOldData();}
 function persist(){try{localStorage.setItem(DB_KEY,JSON.stringify(cards))}catch(e){}}
 function migrate(){
   // 既存データに新フィールドを追加
@@ -408,6 +408,56 @@ function migrate(){
     if(c.soldPrice===undefined)c.soldPrice=0;
     if(c.fee===undefined)c.fee=0;
   });
+}
+function migrateOldData(){
+  // 古いバージョンのキーからデータを移行
+  const OLD_KEYS=['pokeca_v2','pokeca_v1'];
+  let imported=0;
+  OLD_KEYS.forEach(key=>{
+    try{
+      const old=JSON.parse(localStorage.getItem(key)||'[]');
+      if(!old.length)return;
+      old.forEach(o=>{
+        // 既に同じIDが存在する場合はスキップ
+        if(cards.find(c=>c.id===o.id))return;
+        // 同じカード名・日付が存在する場合もスキップ
+        if(cards.find(c=>c.name===o.name&&c.date===o.date))return;
+        const card={
+          id:o.id||uid(),
+          name:o.name||'',
+          type:o.type||'',
+          rarity:o.rarity||'',
+          date:o.date||'',
+          count:o.count||1,
+          store:o.store||'',
+          buy:o.buy||0,
+          psa10:o.psa10||0,
+          psa9:o.psa9||0,
+          raw:o.raw||0,
+          status:o.status||'未提出',
+          gradeFee:o.gradeFee||o.grade||0,
+          soldPrice:o.soldPrice||0,
+          fee:o.fee||0,
+          memo:o.memo||'',
+          hasPhoto:o.hasPhoto||false,
+          ts:o.ts||o.created||Date.now(),
+        };
+        cards.push(card);
+        imported++;
+      });
+      if(imported>0){
+        // 移行完了したら古いキーを削除
+        localStorage.removeItem(key);
+        console.log(key+'から'+imported+'件移行しました');
+      }
+    }catch(e){console.error('旧データ移行エラー:',e);}
+  });
+  if(imported>0){
+    cards.sort((a,b)=>b.ts-a.ts);
+    persist();
+    alert('以前のデータ '+imported+'件を復元しました！');
+  }
+  return imported;
 }
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
 function fmt(n){return n?'¥'+Number(n).toLocaleString():'—'}
