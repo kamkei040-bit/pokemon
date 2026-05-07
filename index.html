@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="ポケカ仕入れ"/>
+<meta name="apple-mobile-web-app-title" content="ポケカ"/>
 <meta name="theme-color" content="#0f0f0f"/>
 <title>ポケカ仕入れ管理</title>
 <link rel="manifest" href="manifest.json"/>
@@ -13,31 +13,51 @@
 :root{
   --bg:#0f0f0f;--surface:#1a1a1a;--surface2:#242424;--border:#2e2e2e;
   --text:#f0f0f0;--text2:#888;--text3:#555;
-  --accent:#e8c84a;--green:#4caf7d;--red:#e05555;--red-dim:#2d0f0f;
+  --accent:#e8c84a;--accent-dim:#2a2000;
+  --green:#4caf7d;--red:#e05555;--red-dim:#2d0f0f;
+  --blue:#5b9bd5;
   --radius:14px;--radius-sm:9px;
   --sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif;overscroll-behavior:none}
-input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:none}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Hiragino Sans',sans-serif;overscroll-behavior:none}
+input,textarea,button,select{font-family:inherit;-webkit-appearance:none;appearance:none}
 
+/* NAV */
 .nav{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:100;background:rgba(15,15,15,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:0.5px solid var(--border);padding-top:var(--sat)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:13px 16px}
-.nav-title{font-size:17px;font-weight:700;letter-spacing:-.4px;color:var(--accent)}
-.nav-add{width:34px;height:34px;border-radius:50%;background:var(--accent);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;color:#000;font-weight:300;line-height:1;padding-bottom:1px}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:11px 16px}
+.nav-title{font-size:16px;font-weight:700;letter-spacing:-.4px;color:var(--accent)}
+.mode-switch{display:flex;background:var(--surface2);border-radius:999px;padding:3px;border:0.5px solid var(--border)}
+.mode-btn{padding:5px 12px;font-size:12px;border:none;background:none;color:var(--text3);cursor:pointer;border-radius:999px;font-weight:500}
+.mode-btn.active{background:var(--accent);color:#000;font-weight:700}
+.nav-add{width:32px;height:32px;border-radius:50%;background:var(--accent);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;color:#000;font-weight:300;line-height:1;padding-bottom:1px;flex-shrink:0}
 .tabs{display:flex;padding:0 4px}
-.tab{flex:1;padding:9px 0 8px;font-size:13px;color:var(--text3);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:.12s}
+.tab{flex:1;padding:8px 0;font-size:12px;color:var(--text3);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:.12s}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
 
-.main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:calc(var(--sat) + 96px);padding-bottom:calc(var(--sab) + 24px)}
+.main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:calc(var(--sat) + 92px);padding-bottom:calc(var(--sab) + 24px)}
+
+/* 店頭モード - 属性ボタン */
+.shop-mode-wrap{padding:14px 16px}
+.mode-label{font-size:11px;color:var(--text3);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;text-align:center}
+.type-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
+.type-btn{aspect-ratio:1;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--text);transition:.12s;padding:0;position:relative}
+.type-btn .type-icon{font-size:20px;line-height:1}
+.type-btn .type-name{font-size:10px;color:var(--text2);font-weight:500}
+.type-btn .type-count{position:absolute;top:3px;right:4px;font-size:9px;color:var(--text3);font-weight:600}
+.type-btn.active{border-color:var(--accent);background:var(--accent-dim)}
+.type-btn.active .type-name{color:var(--accent)}
+
+/* 店頭モード - クイック検索 */
+.quick-search{padding:0 16px 12px}
+.quick-search input{width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:999px;padding:10px 16px;font-size:15px;color:var(--text);outline:none}
 
 .search-wrap{padding:12px 16px 8px}
 .search-wrap input{width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:999px;padding:9px 16px;font-size:15px;color:var(--text);outline:none}
-.search-wrap input::placeholder{color:var(--text3)}
 .sort-row{display:flex;gap:6px;padding:0 16px 10px;overflow-x:auto;scrollbar-width:none}
 .sort-row::-webkit-scrollbar{display:none}
 .sort-chip{flex-shrink:0;padding:5px 12px;border-radius:999px;font-size:12px;background:var(--surface2);border:0.5px solid var(--border);color:var(--text3);cursor:pointer;white-space:nowrap}
-.sort-chip.active{background:#2a2000;border-color:var(--accent);color:var(--accent)}
+.sort-chip.active{background:var(--accent-dim);border-color:var(--accent);color:var(--accent)}
 
 .stats-mini{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:0 16px 12px}
 .smc{background:var(--surface);border-radius:var(--radius-sm);padding:9px 10px;text-align:center}
@@ -45,28 +65,28 @@ input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:non
 .smc-label{font-size:10px;color:var(--text3);margin-top:1px}
 
 .list{padding:0 16px;display:flex;flex-direction:column;gap:8px}
-
-/* カードアイテム */
 .card-item{background:var(--surface);border-radius:var(--radius);border:0.5px solid var(--border);overflow:hidden}
+.card-item.has-type{border-left-width:3px}
 .card-header{display:flex;align-items:center;padding:10px 12px;gap:10px;cursor:pointer;user-select:none}
-
-/* サムネイル */
 .thumb{width:48px;height:48px;border-radius:8px;object-fit:cover;flex-shrink:0;background:var(--surface2);border:0.5px solid var(--border)}
 .thumb-empty{width:48px;height:48px;border-radius:8px;flex-shrink:0;background:var(--surface2);border:0.5px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--text3)}
-
 .card-left{flex:1;min-width:0}
-.card-name{font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-name{font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:6px}
+.type-dot{display:inline-block;width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.psa-badge{display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;font-weight:700;background:var(--surface2);color:var(--text3);flex-shrink:0}
+.psa-badge.psa10{background:var(--accent);color:#000}
+.psa-badge.psa9{background:var(--green);color:#000}
+.psa-badge.sold{background:var(--blue);color:#000}
+.psa-badge.submitted{background:#7e6cd0;color:#fff}
 .card-sub{font-size:11px;color:var(--text3);margin-top:2px}
 .card-right{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0}
 .card-buy{font-size:14px;font-weight:700;color:var(--accent)}
 .card-chev{font-size:11px;color:var(--text3);transition:transform .18s}
 .card-chev.open{transform:rotate(90deg)}
-
 .card-body{display:none;border-top:0.5px solid var(--border)}
 .card-body.open{display:block}
 .card-body-inner{padding:12px 14px 14px}
 
-/* 展開時の写真（大） */
 .card-photo-wrap{margin-bottom:12px;border-radius:var(--radius-sm);overflow:hidden;background:var(--surface2);text-align:center;cursor:pointer}
 .card-photo-wrap img{width:100%;max-height:220px;object-fit:contain;display:block}
 .card-photo-none{padding:18px;font-size:13px;color:var(--text3)}
@@ -77,6 +97,7 @@ input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:non
 .pb-val{font-size:17px;font-weight:700}
 .pb-val.p10{color:var(--accent)}
 .pb-val.p9{color:var(--green)}
+.pb-val.raw{color:var(--blue)}
 .pb-profit{font-size:11px;margin-top:2px}
 .pb-profit.pos{color:var(--green)}
 .pb-profit.neg{color:var(--red)}
@@ -96,30 +117,34 @@ input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:non
 .modal{background:var(--surface);border-radius:22px 22px 0 0;width:100%;max-width:480px;padding:6px 20px calc(20px + var(--sab));max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .modal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:10px auto 16px}
 .modal-title{font-size:17px;font-weight:700;margin-bottom:18px;color:var(--text)}
-.field{margin-bottom:13px}
+.modal-section{font-size:11px;color:var(--text3);margin:14px 0 8px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.modal-section:first-of-type{margin-top:0}
+.field{margin-bottom:11px}
 .field label{display:block;font-size:12px;color:var(--text3);margin-bottom:5px;font-weight:500}
-.field input,.field textarea{width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:var(--radius-sm);padding:11px 13px;font-size:16px;color:var(--text);outline:none}
-.field input:focus,.field textarea:focus{border-color:var(--accent)}
-.field textarea{height:68px;resize:none;line-height:1.5;font-size:15px}
+.field input,.field textarea,.field select{width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:var(--radius-sm);padding:11px 13px;font-size:16px;color:var(--text);outline:none}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent)}
+.field textarea{height:60px;resize:none;line-height:1.5;font-size:15px}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.modal-btns{display:flex;gap:10px;margin-top:8px}
-.btn-cancel{flex:1;padding:14px;border:0.5px solid var(--border);border-radius:var(--radius-sm);font-size:16px;font-weight:600;cursor:pointer;background:var(--surface2);color:var(--text3)}
-.btn-save{flex:2;padding:14px;border:none;border-radius:var(--radius-sm);font-size:16px;font-weight:700;cursor:pointer;background:var(--accent);color:#000}
+.type-pick{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.type-pick-btn{padding:8px 4px;background:var(--surface2);border:0.5px solid var(--border);border-radius:6px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--text);font-size:9px}
+.type-pick-btn.active{border-color:var(--accent);background:var(--accent-dim);color:var(--accent)}
+.modal-btns{display:flex;gap:10px;margin-top:14px}
+.btn-cancel{flex:1;padding:13px;border:0.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer;background:var(--surface2);color:var(--text3)}
+.btn-save{flex:2;padding:13px;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:700;cursor:pointer;background:var(--accent);color:#000}
 
-/* 写真アップロードUI */
-.photo-upload-area{border:1.5px dashed var(--border);border-radius:var(--radius-sm);padding:16px;text-align:center;cursor:pointer;margin-bottom:4px;position:relative}
+/* 写真UI */
+.photo-upload-area{border:1.5px dashed var(--border);border-radius:var(--radius-sm);padding:14px;text-align:center;cursor:pointer;margin-bottom:4px;position:relative}
 .photo-upload-area input[type=file]{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
 .photo-upload-area.has-photo{border-color:var(--accent);padding:0;overflow:hidden}
-.photo-upload-area img{width:100%;max-height:160px;object-fit:contain;display:block}
+.photo-upload-area img{width:100%;max-height:140px;object-fit:contain;display:block}
 .photo-upload-label{font-size:13px;color:var(--text3);pointer-events:none}
-.photo-upload-hint{font-size:11px;color:var(--text3);margin-top:4px;pointer-events:none}
-.photo-clear-btn{display:block;width:100%;padding:8px;background:var(--surface2);border:none;color:var(--text3);font-size:12px;cursor:pointer;margin-top:6px;border-radius:var(--radius-sm)}
+.photo-clear-btn{display:block;width:100%;padding:7px;background:var(--surface2);border:none;color:var(--text3);font-size:11px;cursor:pointer;margin-top:5px;border-radius:var(--radius-sm)}
 
-/* フルスクリーン写真 */
+/* フルスクリーン */
 .photo-fullscreen{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:300;display:none;align-items:center;justify-content:center;cursor:pointer}
 .photo-fullscreen.open{display:flex}
 .photo-fullscreen img{max-width:100%;max-height:100%;object-fit:contain}
-.photo-fullscreen-close{position:absolute;top:calc(var(--sat) + 16px);right:16px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.photo-fullscreen-close{position:absolute;top:calc(var(--sat) + 16px);right:16px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:20px;cursor:pointer}
 
 /* 集計 */
 .stats-full{padding:16px;display:flex;flex-direction:column;gap:10px}
@@ -135,61 +160,76 @@ input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:non
 /* データ */
 .export-wrap{padding:20px 16px;display:flex;flex-direction:column;gap:10px}
 .export-desc{font-size:13px;color:var(--text3);line-height:1.7;background:var(--surface);border-radius:var(--radius-sm);padding:12px 14px}
-.btn-action{width:100%;padding:14px;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-action{width:100%;padding:13px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn-csv{background:var(--surface);border:0.5px solid var(--border);color:var(--text2)}
 .btn-danger{background:var(--red-dim);border:0.5px solid var(--red-dim);color:var(--red)}
 
-.empty{text-align:center;padding:56px 20px;color:var(--text3);font-size:14px;line-height:1.7}
+.empty{text-align:center;padding:50px 20px;color:var(--text3);font-size:14px;line-height:1.7}
 </style>
 </head>
 <body style="display:flex;flex-direction:column;height:100%">
 
 <div class="nav">
   <div class="nav-inner">
-    <span class="nav-title">ポケカ仕入れ</span>
+    <div class="mode-switch">
+      <button class="mode-btn active" id="modeShop" onclick="switchMode('shop')">店頭</button>
+      <button class="mode-btn" id="modeHome" onclick="switchMode('home')">自宅</button>
+    </div>
+    <span class="nav-title" id="navTitle">店頭モード</span>
     <button class="nav-add" onclick="openModal()">＋</button>
   </div>
-  <div class="tabs">
-    <button class="tab active" onclick="switchTab('list',this)">一覧</button>
-    <button class="tab" onclick="switchTab('stats',this)">集計</button>
-    <button class="tab" onclick="switchTab('export',this)">データ</button>
+  <div class="tabs" id="tabsHome" style="display:none">
+    <button class="tab active" data-tab="list" onclick="switchTab('list',this)">一覧</button>
+    <button class="tab" data-tab="stats" onclick="switchTab('stats',this)">集計</button>
+    <button class="tab" data-tab="export" onclick="switchTab('export',this)">データ</button>
   </div>
 </div>
 
 <div class="main" id="main">
-  <div id="tab-list">
-    <div class="search-wrap"><input type="search" id="searchInput" placeholder="カード名・店舗で検索" oninput="renderList()" autocomplete="off" autocorrect="off" spellcheck="false"/></div>
-    <div class="sort-row">
-      <div class="sort-chip active" data-sort="date" onclick="setSort(this)">新しい順</div>
-      <div class="sort-chip" data-sort="buy-desc" onclick="setSort(this)">高額順</div>
-      <div class="sort-chip" data-sort="buy-asc" onclick="setSort(this)">安値順</div>
-      <div class="sort-chip" data-sort="name" onclick="setSort(this)">名前順</div>
-      <div class="sort-chip" data-sort="store" onclick="setSort(this)">店舗順</div>
+
+  <!-- 店頭モード -->
+  <div id="shopMode">
+    <div class="shop-mode-wrap">
+      <div class="mode-label">属性で絞り込み</div>
+      <div class="type-grid" id="typeGrid"></div>
     </div>
-    <div class="stats-mini" id="statsMini"></div>
-    <div class="list" id="cardList"></div>
+    <div class="quick-search">
+      <input type="search" id="shopSearch" placeholder="カード名で検索" oninput="renderShopList()" autocomplete="off"/>
+    </div>
+    <div class="list" id="shopList"></div>
   </div>
 
-  <div id="tab-stats" style="display:none"><div class="stats-full" id="statsContent"></div></div>
-
-  <div id="tab-export" style="display:none">
-    <div class="export-wrap">
-      <div class="export-desc" style="margin-bottom:4px">📤 エクスポート</div>
-      <div class="export-desc">CSVをダウンロードしてGoogle スプレッドシートやExcelで開けます。写真データは含まれません。</div>
-      <button class="btn-action btn-csv" onclick="exportCSV()">📥 CSVをダウンロード</button>
-
-      <div class="export-desc" style="margin-top:8px;margin-bottom:4px">📂 インポート</div>
-      <div class="export-desc">エクスポートしたCSVを読み込んでデータを復元・追加できます。<br>既存データと重複するIDは上書きされます。</div>
-      <label class="btn-action btn-csv" style="cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
-        📂 CSVを読み込む
-        <input type="file" accept=".csv,text/csv" id="csvImportInput" style="display:none" onchange="importCSV(this)"/>
-      </label>
-      <div id="importResult" style="display:none;font-size:13px;padding:10px 12px;border-radius:9px;background:var(--surface);border:0.5px solid var(--border);color:var(--text2)"></div>
-
-      <div class="export-desc" style="margin-top:8px;margin-bottom:4px;color:var(--red)">⚠️ 危険な操作</div>
-      <button class="btn-action btn-danger" onclick="confirmClear()">🗑 全データを削除</button>
+  <!-- 自宅モード -->
+  <div id="homeMode" style="display:none">
+    <div id="tab-list">
+      <div class="search-wrap"><input type="search" id="searchInput" placeholder="カード名・店舗で検索" oninput="renderList()" autocomplete="off"/></div>
+      <div class="sort-row">
+        <div class="sort-chip active" data-sort="date" onclick="setSort(this)">新しい順</div>
+        <div class="sort-chip" data-sort="profit" onclick="setSort(this)">利益順</div>
+        <div class="sort-chip" data-sort="buy-desc" onclick="setSort(this)">高額順</div>
+        <div class="sort-chip" data-sort="buy-asc" onclick="setSort(this)">安値順</div>
+        <div class="sort-chip" data-sort="name" onclick="setSort(this)">名前順</div>
+        <div class="sort-chip" data-sort="store" onclick="setSort(this)">店舗順</div>
+      </div>
+      <div class="stats-mini" id="statsMini"></div>
+      <div class="list" id="cardList"></div>
+    </div>
+    <div id="tab-stats" style="display:none"><div class="stats-full" id="statsContent"></div></div>
+    <div id="tab-export" style="display:none">
+      <div class="export-wrap">
+        <div class="export-desc" style="margin-bottom:4px">📤 エクスポート</div>
+        <div class="export-desc">CSVをダウンロードしてGoogle スプレッドシートやExcelで開けます。写真は含まれません。</div>
+        <button class="btn-action btn-csv" onclick="exportCSV()">📥 CSVをダウンロード</button>
+        <div class="export-desc" style="margin-top:8px;margin-bottom:4px">📂 インポート</div>
+        <div class="export-desc">エクスポートしたCSVを読み込んで復元・追加できます。同じカード名+仕入れ日は上書き更新されます。</div>
+        <label class="btn-action btn-csv" style="cursor:pointer">📂 CSVを読み込む<input type="file" accept=".csv,text/csv" style="display:none" onchange="importCSV(this)"/></label>
+        <div id="importResult" style="display:none;font-size:13px;padding:10px 12px;border-radius:9px;background:var(--surface);border:0.5px solid var(--border);color:var(--text2)"></div>
+        <div class="export-desc" style="margin-top:8px;margin-bottom:4px;color:var(--red)">⚠️ 危険な操作</div>
+        <button class="btn-action btn-danger" onclick="confirmClear()">🗑 全データを削除</button>
+      </div>
     </div>
   </div>
+
 </div>
 
 <!-- 追加・編集モーダル -->
@@ -198,9 +238,38 @@ input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:non
     <div class="modal-handle"></div>
     <div class="modal-title" id="modalTitle">カードを追加</div>
 
-    <!-- 写真 -->
+    <div class="modal-section">基本情報</div>
     <div class="field">
-      <label>写真</label>
+      <label>カード名 *</label>
+      <input type="text" id="f-name" placeholder="例：リザードンex SAR" autocomplete="off"/>
+    </div>
+    <div class="field">
+      <label>属性</label>
+      <div class="type-pick" id="typePick"></div>
+    </div>
+    <div class="field field-row">
+      <div><label>レアリティ</label>
+        <select id="f-rarity">
+          <option value="">—</option>
+          <option value="SR">SR</option>
+          <option value="SAR">SAR</option>
+          <option value="UR">UR</option>
+          <option value="AR">AR</option>
+          <option value="RR">RR</option>
+          <option value="RRR">RRR</option>
+          <option value="R">R</option>
+          <option value="ex">ex</option>
+          <option value="V">V</option>
+          <option value="VSTAR">VSTAR</option>
+          <option value="VMAX">VMAX</option>
+          <option value="その他">その他</option>
+        </select>
+      </div>
+      <div><label>枚数</label><input type="number" id="f-count" placeholder="1" min="1" inputmode="numeric"/></div>
+    </div>
+
+    <div class="modal-section">写真</div>
+    <div class="field">
       <div class="photo-upload-area" id="photoArea">
         <input type="file" accept="image/*" capture="environment" id="photoInput" onchange="handlePhoto(this)"/>
         <div class="photo-upload-label" id="photoLabel">📷 タップして撮影 / ライブラリから選択</div>
@@ -208,18 +277,51 @@ input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:non
       <button class="photo-clear-btn" id="photoClearBtn" style="display:none" onclick="clearPhoto()">写真を削除</button>
     </div>
 
-    <div class="field"><label>カード名 *</label><input type="text" id="f-name" placeholder="例：リザードンex SAR" autocomplete="off" autocorrect="off" spellcheck="false"/></div>
+    <div class="modal-section">仕入れ</div>
     <div class="field field-row">
       <div><label>仕入れ日</label><input type="date" id="f-date"/></div>
-      <div><label>枚数</label><input type="number" id="f-count" placeholder="1" min="1" inputmode="numeric"/></div>
+      <div><label>仕入れ価格 *</label><input type="number" id="f-buy" placeholder="0" min="0" step="10" inputmode="numeric"/></div>
     </div>
-    <div class="field"><label>仕入れ店舗</label><input type="text" id="f-store" placeholder="例：カードラッシュ秋葉原" list="store-list" autocomplete="off"/><datalist id="store-list"></datalist></div>
-    <div class="field"><label>仕入れ価格（円）*</label><input type="number" id="f-buy" placeholder="0" min="0" step="10" inputmode="numeric"/></div>
+    <div class="field">
+      <label>仕入れ店舗</label>
+      <input type="text" id="f-store" placeholder="例：カードラッシュ秋葉原" list="store-list" autocomplete="off"/>
+      <datalist id="store-list"></datalist>
+    </div>
+
+    <div class="modal-section">相場</div>
     <div class="field field-row">
-      <div><label>PSA10相場（円）</label><input type="number" id="f-psa10" placeholder="0" min="0" step="100" inputmode="numeric"/></div>
-      <div><label>PSA9相場（円）</label><input type="number" id="f-psa9" placeholder="0" min="0" step="100" inputmode="numeric"/></div>
+      <div><label>PSA10相場</label><input type="number" id="f-psa10" placeholder="0" min="0" step="100" inputmode="numeric"/></div>
+      <div><label>PSA9相場</label><input type="number" id="f-psa9" placeholder="0" min="0" step="100" inputmode="numeric"/></div>
     </div>
-    <div class="field"><label>備考</label><textarea id="f-memo" placeholder="状態・メモなど"></textarea></div>
+    <div class="field">
+      <label>生カード相場（鑑定なし）</label>
+      <input type="number" id="f-raw" placeholder="0" min="0" step="100" inputmode="numeric"/>
+    </div>
+
+    <div class="modal-section">PSA鑑定</div>
+    <div class="field field-row">
+      <div><label>ステータス</label>
+        <select id="f-status">
+          <option value="未提出">未提出</option>
+          <option value="提出中">提出中</option>
+          <option value="PSA10">PSA10取得</option>
+          <option value="PSA9">PSA9取得</option>
+          <option value="PSA8以下">PSA8以下</option>
+          <option value="売却済">売却済</option>
+        </select>
+      </div>
+      <div><label>鑑定費（円）</label><input type="number" id="f-grade-fee" placeholder="0" min="0" step="100" inputmode="numeric"/></div>
+    </div>
+
+    <div class="modal-section">販売（売却済の場合）</div>
+    <div class="field field-row">
+      <div><label>販売価格</label><input type="number" id="f-sold" placeholder="0" min="0" step="100" inputmode="numeric"/></div>
+      <div><label>手数料（円）</label><input type="number" id="f-fee" placeholder="0" min="0" step="100" inputmode="numeric"/></div>
+    </div>
+
+    <div class="modal-section">備考</div>
+    <div class="field"><textarea id="f-memo" placeholder="状態・メモなど"></textarea></div>
+
     <div class="modal-btns">
       <button class="btn-cancel" onclick="closeModal()">キャンセル</button>
       <button class="btn-save" onclick="saveCard()">保存</button>
@@ -227,7 +329,6 @@ input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:non
   </div>
 </div>
 
-<!-- フルスクリーン写真 -->
 <div class="photo-fullscreen" id="fullscreen" onclick="closeFullscreen()">
   <button class="photo-fullscreen-close" onclick="closeFullscreen()">✕</button>
   <img id="fullscreenImg" src="" alt=""/>
@@ -235,30 +336,75 @@ input,textarea,button{font-family:inherit;-webkit-appearance:none;appearance:non
 
 <script>
 const DB_KEY='pokeca_v3';
+const PREFS_KEY='pokeca_prefs_v1';
 const IMG_DB='pokeca_imgs_v1';
-let cards=[];
-let imgCache={};
-let editId=null,openId=null,sortMode='date';
-let pendingPhotoData=null;
+const TYPES=[
+  {id:'fire',name:'炎',icon:'🔥',color:'#e85a3c'},
+  {id:'water',name:'水',icon:'💧',color:'#5b9bd5'},
+  {id:'grass',name:'草',icon:'🌿',color:'#7ac74c'},
+  {id:'electric',name:'雷',icon:'⚡',color:'#f7d02c'},
+  {id:'psychic',name:'超',icon:'🔮',color:'#a060c8'},
+  {id:'fighting',name:'闘',icon:'✊',color:'#c49a4a'},
+  {id:'darkness',name:'悪',icon:'🌑',color:'#5a4a52'},
+  {id:'metal',name:'鋼',icon:'⚙️',color:'#9aa6b0'},
+  {id:'dragon',name:'竜',icon:'🐉',color:'#b08d3a'},
+  {id:'colorless',name:'無',icon:'⚪',color:'#a8a878'},
+];
+const TYPE_MAP={};TYPES.forEach(t=>TYPE_MAP[t.id]=t);
 
-function load(){try{cards=JSON.parse(localStorage.getItem(DB_KEY)||'[]')}catch(e){cards=[]}}
-function persist(){localStorage.setItem(DB_KEY,JSON.stringify(cards))}
+let cards=[],imgCache={},idb=null;
+let editId=null,openId=null,sortMode='date';
+let pendingPhotoData=null,pendingType='';
+let mode='shop',activeType='';
+let prefs={};
+
+function loadPrefs(){try{prefs=JSON.parse(localStorage.getItem(PREFS_KEY)||'{}')}catch(e){prefs={}}}
+function savePrefs(){try{localStorage.setItem(PREFS_KEY,JSON.stringify(prefs))}catch(e){}}
+function load(){try{cards=JSON.parse(localStorage.getItem(DB_KEY)||'[]');migrate();}catch(e){cards=[]}}
+function persist(){try{localStorage.setItem(DB_KEY,JSON.stringify(cards))}catch(e){}}
+function migrate(){
+  // 既存データに新フィールドを追加
+  cards.forEach(c=>{
+    if(c.type===undefined)c.type='';
+    if(c.rarity===undefined)c.rarity='';
+    if(c.raw===undefined)c.raw=0;
+    if(c.status===undefined)c.status='未提出';
+    if(c.gradeFee===undefined)c.gradeFee=0;
+    if(c.soldPrice===undefined)c.soldPrice=0;
+    if(c.fee===undefined)c.fee=0;
+  });
+}
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
 function fmt(n){return n?'¥'+Number(n).toLocaleString():'—'}
 function fmtD(d){return d?d.slice(5).replace('-','/'):''}
 
-/* IndexedDB for images */
-let idb=null;
+/* IDB */
 function openIDB(){
   return new Promise((res)=>{
     if(!window.indexedDB){idb=null;res(null);return;}
     try{
       const req=indexedDB.open(IMG_DB,1);
       req.onupgradeneeded=e=>{try{e.target.result.createObjectStore('imgs');}catch(err){}};
-      req.onsuccess=e=>{idb=e.target.result;res(idb)};
+      req.onsuccess=e=>{idb=e.target.result;preloadImages().then(()=>res(idb))};
       req.onerror=()=>{idb=null;res(null)};
       req.onblocked=()=>{idb=null;res(null)};
     }catch(e){idb=null;res(null);}
+  });
+}
+function preloadImages(){
+  return new Promise(res=>{
+    if(!idb){res();return;}
+    try{
+      const tx=idb.transaction('imgs','readonly');
+      const store=tx.objectStore('imgs');
+      const req=store.openCursor();
+      req.onsuccess=e=>{
+        const cur=e.target.result;
+        if(cur){imgCache[cur.key]=cur.value;cur.continue();}
+        else res();
+      };
+      req.onerror=()=>res();
+    }catch(e){res();}
   });
 }
 function saveImg(id,dataUrl){
@@ -270,18 +416,6 @@ function saveImg(id,dataUrl){
       tx.oncomplete=()=>{imgCache[id]=dataUrl;res()};
       tx.onerror=()=>{imgCache[id]=dataUrl;res()};
     }catch(e){imgCache[id]=dataUrl;res();}
-  });
-}
-function getImg(id){
-  return new Promise((res)=>{
-    if(imgCache[id]){res(imgCache[id]);return;}
-    if(!idb){res(null);return;}
-    try{
-      const tx=idb.transaction('imgs','readonly');
-      const req=tx.objectStore('imgs').get(id);
-      req.onsuccess=e=>{const v=e.target.result||null;if(v)imgCache[id]=v;res(v)};
-      req.onerror=()=>res(null);
-    }catch(e){res(null);}
   });
 }
 function deleteImg(id){
@@ -296,70 +430,22 @@ function deleteImg(id){
   });
 }
 
-/* 写真UI */
-function handlePhoto(input){
-  const file=input.files[0];
-  if(!file)return;
-  const reader=new FileReader();
-  reader.onerror=()=>alert('画像の読み込みに失敗しました');
-  reader.onload=e=>{
-    const img=new Image();
-    img.onerror=()=>alert('画像の形式が対応していません');
-    img.onload=()=>{
-      try{
-      const MAX=1200;
-      let w=img.width,h=img.height;
-      if(w>MAX||h>MAX){
-        if(w>h){h=Math.round(h*MAX/w);w=MAX;}
-        else{w=Math.round(w*MAX/h);h=MAX;}
-      }
-      const canvas=document.createElement('canvas');
-      canvas.width=w;canvas.height=h;
-      canvas.getContext('2d').drawImage(img,0,0,w,h);
-      const compressed=canvas.toDataURL('image/jpeg',0.75);
-      const origKB=Math.round(file.size/1024);
-      const compKB=Math.round(compressed.length*0.75/1024);
-      pendingPhotoData=compressed;
-        showPhotoPreview(compressed,origKB,compKB);
-      }catch(err){alert('画像処理に失敗しました: '+err.message);}
-    };
-    img.src=e.target.result;
-  };
-  try{reader.readAsDataURL(file);}catch(e){alert('ファイルの読み込みに失敗しました');}
-}
-function showPhotoPreview(dataUrl,origKB,compKB){
-  const area=document.getElementById('photoArea');
-  area.classList.add('has-photo');
-  const sizeNote=origKB&&compKB?`<div style="font-size:11px;color:var(--text3);padding:4px 8px;text-align:right">${origKB}KB → ${compKB}KB に圧縮</div>`:'';
-  area.innerHTML=`<input type="file" accept="image/*" capture="environment" id="photoInput" onchange="handlePhoto(this)"/><img src="${dataUrl}" style="pointer-events:none"/>${sizeNote}`;
-  document.getElementById('photoClearBtn').style.display='block';
-  document.getElementById('photoLabel')&&(document.getElementById('photoLabel').style.display='none');
-}
-function clearPhoto(){
-  pendingPhotoData=null;
-  const area=document.getElementById('photoArea');
-  area.classList.remove('has-photo');
-  area.innerHTML=`<input type="file" accept="image/*" capture="environment" id="photoInput" onchange="handlePhoto(this)"/><div class="photo-upload-label" id="photoLabel">📷 タップして撮影 / ライブラリから選択</div>`;
-  document.getElementById('photoClearBtn').style.display='none';
-}
-function resetPhotoUI(){
-  pendingPhotoData=null;
-  const area=document.getElementById('photoArea');
-  area.classList.remove('has-photo');
-  area.innerHTML=`<input type="file" accept="image/*" capture="environment" id="photoInput" onchange="handlePhoto(this)"/><div class="photo-upload-label" id="photoLabel">📷 タップして撮影 / ライブラリから選択</div>`;
-  document.getElementById('photoClearBtn').style.display='none';
+/* モード切替 */
+function switchMode(m){
+  mode=m;prefs.mode=m;savePrefs();
+  document.getElementById('modeShop').classList.toggle('active',m==='shop');
+  document.getElementById('modeHome').classList.toggle('active',m==='home');
+  document.getElementById('navTitle').textContent=m==='shop'?'店頭モード':'自宅モード';
+  document.getElementById('shopMode').style.display=m==='shop'?'block':'none';
+  document.getElementById('homeMode').style.display=m==='home'?'block':'none';
+  document.getElementById('tabsHome').style.display=m==='home'?'flex':'none';
+  if(m==='shop'){renderTypeGrid();renderShopList();}
+  else{renderList();}
 }
 
-function openFullscreen(src){
-  document.getElementById('fullscreenImg').src=src;
-  document.getElementById('fullscreen').classList.add('open');
-}
-function closeFullscreen(){document.getElementById('fullscreen').classList.remove('open')}
-
-/* タブ */
 function switchTab(t,btn){
   ['list','stats','export'].forEach(id=>document.getElementById('tab-'+id).style.display=id===t?'block':'none');
-  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('#tabsHome .tab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   if(t==='stats')renderStats();
 }
@@ -368,78 +454,46 @@ function setSort(el){
   el.classList.add('active');sortMode=el.dataset.sort;renderList();
 }
 
-/* モーダル */
-function updateStoreList(){
-  const dl=document.getElementById('store-list');
-  const stores=[...new Set(cards.map(c=>c.store).filter(Boolean))];
-  dl.innerHTML=stores.map(s=>`<option value="${s}">`).join('');
+/* 店頭モード */
+function renderTypeGrid(){
+  const counts={};TYPES.forEach(t=>counts[t.id]=0);
+  cards.forEach(c=>{if(c.type&&counts[c.type]!==undefined)counts[c.type]++});
+  document.getElementById('typeGrid').innerHTML=TYPES.map(t=>`
+    <button class="type-btn${activeType===t.id?' active':''}" onclick="toggleType('${t.id}')" style="${activeType===t.id?'border-left:3px solid '+t.color:''}">
+      <span class="type-icon">${t.icon}</span>
+      <span class="type-name">${t.name}</span>
+      ${counts[t.id]>0?`<span class="type-count">${counts[t.id]}</span>`:''}
+    </button>
+  `).join('');
 }
-async function openModal(id){
-  editId=id||null;
-  const c=id?cards.find(x=>x.id===id):null;
-  document.getElementById('modalTitle').textContent=c?'カードを編集':'カードを追加';
-  document.getElementById('f-name').value=c?c.name:'';
-  document.getElementById('f-date').value=c?c.date:new Date().toISOString().slice(0,10);
-  document.getElementById('f-count').value=c?(c.count||1):1;
-  document.getElementById('f-store').value=c?c.store||'':'';
-  document.getElementById('f-buy').value=c?c.buy||'':'';
-  document.getElementById('f-psa10').value=c?c.psa10||'':'';
-  document.getElementById('f-psa9').value=c?c.psa9||'':'';
-  document.getElementById('f-memo').value=c?c.memo||'':'';
-  resetPhotoUI();
-  if(id&&c&&c.hasPhoto){
-    const imgData=await getImg(id);
-    if(imgData){pendingPhotoData=imgData;showPhotoPreview(imgData);}
+function toggleType(id){
+  activeType=activeType===id?'':id;
+  renderTypeGrid();renderShopList();
+}
+
+function renderShopList(){
+  const q=document.getElementById('shopSearch').value.trim().toLowerCase();
+  let list=[...cards];
+  if(activeType)list=list.filter(c=>c.type===activeType);
+  if(q)list=list.filter(c=>c.name.toLowerCase().includes(q));
+  // 利益順（PSA10相場 - 仕入れ値）
+  list.sort((a,b)=>(b.psa10-b.buy)-(a.psa10-a.buy));
+
+  const el=document.getElementById('shopList');
+  if(!list.length){
+    el.innerHTML=`<div class="empty">${activeType?TYPE_MAP[activeType].name+'タイプの登録なし':q?'該当なし':'まだ登録がありません'}</div>`;
+    return;
   }
-  updateStoreList();
-  document.getElementById('overlay').classList.add('open');
-  setTimeout(()=>document.getElementById('f-name').focus(),120);
-}
-function closeModal(){document.getElementById('overlay').classList.remove('open');resetPhotoUI()}
-function closeModalOutside(e){if(e.target.id==='overlay')closeModal()}
-
-async function saveCard(){
-  const name=document.getElementById('f-name').value.trim();
-  const buy=parseInt(document.getElementById('f-buy').value)||0;
-  if(!name){alert('カード名を入力してください');return;}
-  const id=editId||uid();
-  const card={
-    id,name,
-    date:document.getElementById('f-date').value||new Date().toISOString().slice(0,10),
-    count:Math.max(1,parseInt(document.getElementById('f-count').value)||1),
-    store:document.getElementById('f-store').value.trim(),
-    buy,
-    psa10:parseInt(document.getElementById('f-psa10').value)||0,
-    psa9:parseInt(document.getElementById('f-psa9').value)||0,
-    memo:document.getElementById('f-memo').value.trim(),
-    hasPhoto:!!pendingPhotoData,
-    ts:editId?(cards.find(x=>x.id===editId)||{}).ts||Date.now():Date.now()
-  };
-  if(pendingPhotoData){
-    await saveImg(id,pendingPhotoData);
-  } else if(editId&&!pendingPhotoData){
-    const prev=cards.find(x=>x.id===editId);
-    if(prev&&prev.hasPhoto)await deleteImg(id);
-  }
-  if(editId){const i=cards.findIndex(x=>x.id===editId);if(i>=0)cards[i]=card;}
-  else cards.unshift(card);
-  persist();closeModal();renderList();
+  el.innerHTML=list.slice(0,50).map(c=>renderCardItem(c,true)).join('');
+  attachLazyImages(list.slice(0,50));
 }
 
-async function deleteCard(id){
-  if(!confirm('このカードを削除しますか？'))return;
-  await deleteImg(id);
-  cards=cards.filter(c=>c.id!==id);
-  if(openId===id)openId=null;
-  persist();renderList();
-}
-function toggleCard(id){openId=openId===id?null:id;renderList()}
-
-/* リスト描画 */
+/* 自宅モード - リスト */
 function renderList(){
   const q=document.getElementById('searchInput').value.trim().toLowerCase();
   let list=q?cards.filter(c=>c.name.toLowerCase().includes(q)||(c.store||'').toLowerCase().includes(q)):[...cards];
   if(sortMode==='date')list.sort((a,b)=>b.ts-a.ts);
+  else if(sortMode==='profit')list.sort((a,b)=>(b.psa10-b.buy)-(a.psa10-a.buy));
   else if(sortMode==='buy-desc')list.sort((a,b)=>b.buy-a.buy);
   else if(sortMode==='buy-asc')list.sort((a,b)=>a.buy-b.buy);
   else if(sortMode==='name')list.sort((a,b)=>a.name.localeCompare(b.name,'ja'));
@@ -456,86 +510,242 @@ function renderList(){
   if(!list.length){
     el.innerHTML=`<div class="empty">${q?'該当なし':'＋ボタンから最初のカードを追加'}</div>`;return;
   }
+  el.innerHTML=list.map(c=>renderCardItem(c,false)).join('');
+  attachLazyImages(list);
+}
 
-  el.innerHTML=list.map(c=>{
-    const isOpen=openId===c.id;
-    const p10=c.psa10?c.psa10-c.buy:null;
-    const p9=c.psa9?c.psa9-c.buy:null;
-    const sub=[c.store,fmtD(c.date),c.count>1?`×${c.count}`:''].filter(Boolean).join(' · ');
-    const cachedImg=imgCache[c.id]||null;
-    const thumbHtml=cachedImg
-      ?`<img class="thumb" src="${cachedImg}" alt=""/>`
-      :`<div class="thumb-empty">📦</div>`;
-    const photoSection=isOpen?(cachedImg
-      ?`<div class="card-photo-wrap" onclick="openFullscreen('${cachedImg}')" title="タップで拡大"><img src="${cachedImg}" alt=""/></div>`
-      :`<div class="card-photo-wrap"><div class="card-photo-none">写真未登録</div></div>`):'';
+function renderCardItem(c,isShop){
+  const isOpen=openId===c.id;
+  const p10=c.psa10?c.psa10-c.buy-c.gradeFee:null;
+  const p9=c.psa9?c.psa9-c.buy-c.gradeFee:null;
+  const sub=[c.store,fmtD(c.date),c.count>1?`×${c.count}`:''].filter(Boolean).join(' · ');
+  const cachedImg=imgCache[c.id]||null;
+  const thumbHtml=cachedImg
+    ?`<img class="thumb" src="${cachedImg}" alt=""/>`
+    :(c.hasPhoto?`<div class="thumb-empty" data-photo-id="${c.id}">📦</div>`:`<div class="thumb-empty">📦</div>`);
+  const photoSection=isOpen?(cachedImg
+    ?`<div class="card-photo-wrap" onclick="openFullscreen('${cachedImg}')"><img src="${cachedImg}" alt=""/></div>`
+    :(c.hasPhoto?`<div class="card-photo-wrap" data-photo-id="${c.id}"><div class="card-photo-none">読み込み中...</div></div>`
+                :`<div class="card-photo-wrap"><div class="card-photo-none">写真未登録</div></div>`)):'';
+  const typeInfo=c.type?TYPE_MAP[c.type]:null;
+  const typeDot=typeInfo?`<span class="type-dot" style="background:${typeInfo.color}"></span>`:'';
+  const psaBadge=getPsaBadge(c.status);
+  const borderStyle=typeInfo?`style="border-left:3px solid ${typeInfo.color}"`:'';
 
-    return `<div class="card-item">
-      <div class="card-header" onclick="toggleCard('${c.id}')">
-        ${thumbHtml}
-        <div class="card-left">
-          <div class="card-name">${c.name}</div>
-          ${sub?`<div class="card-sub">${sub}</div>`:''}
+  return `<div class="card-item${typeInfo?' has-type':''}" ${borderStyle}>
+    <div class="card-header" onclick="toggleCard('${c.id}')">
+      ${thumbHtml}
+      <div class="card-left">
+        <div class="card-name">${typeDot}${c.name}${psaBadge}</div>
+        ${sub?`<div class="card-sub">${sub}</div>`:''}
+      </div>
+      <div class="card-right">
+        <span class="card-buy">${fmt(c.buy)}</span>
+        <span class="card-chev${isOpen?' open':''}">›</span>
+      </div>
+    </div>
+    <div class="card-body${isOpen?' open':''}">
+      <div class="card-body-inner">
+        ${photoSection}
+        <div class="price-grid">
+          <div class="price-box"><div class="pb-label">PSA10相場</div><div class="pb-val p10">${fmt(c.psa10)}</div>${p10!==null?`<div class="pb-profit ${p10>=0?'pos':'neg'}">${p10>=0?'+':''}${fmt(p10)}</div>`:''}</div>
+          <div class="price-box"><div class="pb-label">PSA9相場</div><div class="pb-val p9">${fmt(c.psa9)}</div>${p9!==null?`<div class="pb-profit ${p9>=0?'pos':'neg'}">${p9>=0?'+':''}${fmt(p9)}</div>`:''}</div>
         </div>
-        <div class="card-right">
-          <span class="card-buy">${fmt(c.buy)}</span>
-          <span class="card-chev${isOpen?' open':''}">›</span>
+        ${c.raw?`<div class="info-row" style="border-top:none;padding-top:0;margin-top:-2px"><span class="info-label">生カード相場</span><span class="info-val" style="color:var(--blue);font-weight:600">${fmt(c.raw)}</span></div>`:''}
+        ${c.rarity?`<div class="info-row"><span class="info-label">レアリティ</span><span class="info-val">${c.rarity}</span></div>`:''}
+        ${c.status&&c.status!=='未提出'?`<div class="info-row"><span class="info-label">PSA鑑定</span><span class="info-val">${c.status}${c.gradeFee?` (¥${c.gradeFee.toLocaleString()})`:''}</span></div>`:''}
+        ${c.soldPrice?`<div class="info-row"><span class="info-label">販売価格</span><span class="info-val" style="color:var(--accent);font-weight:600">${fmt(c.soldPrice)}${c.fee?` (手数料¥${c.fee.toLocaleString()})`:''}</span></div>`:''}
+        ${c.soldPrice?`<div class="info-row"><span class="info-label">実利益</span><span style="color:${(c.soldPrice-c.buy-c.gradeFee-c.fee)>=0?'var(--green)':'var(--red)'};font-weight:700">${fmt(c.soldPrice-c.buy-c.gradeFee-c.fee)}</span></div>`:''}
+        ${c.store?`<div class="info-row"><span class="info-label">店舗</span><span class="info-val">${c.store}</span></div>`:''}
+        ${c.memo?`<div class="memo-box">${c.memo}</div>`:''}
+        <div class="action-row">
+          <button class="btn-edit" onclick="openModal('${c.id}')">編集</button>
+          <button class="btn-del" onclick="deleteCard('${c.id}')">削除</button>
         </div>
       </div>
-      <div class="card-body${isOpen?' open':''}">
-        <div class="card-body-inner">
-          ${photoSection}
-          <div class="price-grid">
-            <div class="price-box"><div class="pb-label">PSA10相場</div><div class="pb-val p10">${fmt(c.psa10)}</div>${p10!==null?`<div class="pb-profit ${p10>=0?'pos':'neg'}">${p10>=0?'+':''}${fmt(p10)}</div>`:''}</div>
-            <div class="price-box"><div class="pb-label">PSA9相場</div><div class="pb-val p9">${fmt(c.psa9)}</div>${p9!==null?`<div class="pb-profit ${p9>=0?'pos':'neg'}">${p9>=0?'+':''}${fmt(p9)}</div>`:''}</div>
-          </div>
-          ${c.store?`<div class="info-row"><span class="info-label">店舗</span><span class="info-val">${c.store}</span></div>`:''}
-          ${c.memo?`<div class="memo-box">${c.memo}</div>`:''}
-          <div class="action-row">
-            <button class="btn-edit" onclick="openModal('${c.id}')">編集</button>
-            <button class="btn-del" onclick="deleteCard('${c.id}')">削除</button>
-          </div>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+    </div>
+  </div>`;
+}
 
-  // 画像はキャッシュにないものだけ非同期で後から差し込む
+function getPsaBadge(status){
+  if(!status||status==='未提出')return '';
+  const map={'提出中':'submitted','PSA10':'psa10','PSA9':'psa9','PSA8以下':'','売却済':'sold'};
+  const cls=map[status]||'';
+  return `<span class="psa-badge ${cls}">${status==='PSA8以下'?'PSA8↓':status}</span>`;
+}
+
+function attachLazyImages(list){
   list.filter(c=>c.hasPhoto&&!imgCache[c.id]).forEach(c=>{
-    getImg(c.id).then(dataUrl=>{
-      if(!dataUrl)return;
-      imgCache[c.id]=dataUrl;
-      const thumb=document.querySelector(`[onclick="toggleCard('${c.id}')"] .thumb-empty`);
-      if(thumb)thumb.outerHTML=`<img class="thumb" src="${dataUrl}" alt=""/>`;
-      const wrap=document.querySelector(`[onclick="toggleCard('${c.id}')"]`);
-      if(!wrap)return;
-      const body=wrap.parentElement.querySelector('.card-body.open .card-photo-wrap');
-      if(body&&body.querySelector('.card-photo-none')){
-        body.innerHTML=`<img src="${dataUrl}" alt=""/>`;
-        body.onclick=()=>openFullscreen(dataUrl);
-      }
-    }).catch(()=>{});
+    // すでにキャッシュにある場合はスキップ（preloadで読み込み済み）
   });
 }
 
+function toggleCard(id){openId=openId===id?null:id;mode==='shop'?renderShopList():renderList();}
 
+/* モーダル */
+function openModal(id){
+  editId=id||null;
+  const c=id?cards.find(x=>x.id===id):null;
+  document.getElementById('modalTitle').textContent=c?'カードを編集':'カードを追加';
+  document.getElementById('f-name').value=c?c.name:'';
+  document.getElementById('f-rarity').value=c?c.rarity||'':'';
+  document.getElementById('f-date').value=c?c.date:new Date().toISOString().slice(0,10);
+  document.getElementById('f-count').value=c?(c.count||1):1;
+  document.getElementById('f-store').value=c?c.store||'':'';
+  document.getElementById('f-buy').value=c?c.buy||'':'';
+  document.getElementById('f-psa10').value=c?c.psa10||'':'';
+  document.getElementById('f-psa9').value=c?c.psa9||'':'';
+  document.getElementById('f-raw').value=c?c.raw||'':'';
+  document.getElementById('f-status').value=c?c.status||'未提出':'未提出';
+  document.getElementById('f-grade-fee').value=c?c.gradeFee||'':'';
+  document.getElementById('f-sold').value=c?c.soldPrice||'':'';
+  document.getElementById('f-fee').value=c?c.fee||'':'';
+  document.getElementById('f-memo').value=c?c.memo||'':'';
+  pendingType=c?c.type||'':(activeType||'');
+  renderTypePick();
+  resetPhotoUI();
+  if(id&&c&&c.hasPhoto&&imgCache[id]){
+    pendingPhotoData=imgCache[id];showPhotoPreview(imgCache[id]);
+  }
+  updateStoreList();
+  document.getElementById('overlay').classList.add('open');
+  setTimeout(()=>document.getElementById('f-name').focus(),120);
+}
+function renderTypePick(){
+  document.getElementById('typePick').innerHTML=
+    `<button class="type-pick-btn${pendingType===''?' active':''}" onclick="pickType('')">なし</button>`+
+    TYPES.map(t=>`<button class="type-pick-btn${pendingType===t.id?' active':''}" onclick="pickType('${t.id}')"><span style="font-size:14px">${t.icon}</span><span>${t.name}</span></button>`).join('');
+}
+function pickType(id){pendingType=id;renderTypePick();}
+function updateStoreList(){
+  const dl=document.getElementById('store-list');
+  const stores=[...new Set(cards.map(c=>c.store).filter(Boolean))];
+  dl.innerHTML=stores.map(s=>`<option value="${s}">`).join('');
+}
+function closeModal(){document.getElementById('overlay').classList.remove('open');resetPhotoUI();}
+function closeModalOutside(e){if(e.target.id==='overlay')closeModal()}
+
+/* 写真 */
+function handlePhoto(input){
+  const file=input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onerror=()=>alert('画像読み込み失敗');
+  reader.onload=e=>{
+    const img=new Image();
+    img.onerror=()=>alert('画像形式が非対応');
+    img.onload=()=>{
+      try{
+        const MAX=1200;let w=img.width,h=img.height;
+        if(w>MAX||h>MAX){if(w>h){h=Math.round(h*MAX/w);w=MAX;}else{w=Math.round(w*MAX/h);h=MAX;}}
+        const cv=document.createElement('canvas');cv.width=w;cv.height=h;
+        cv.getContext('2d').drawImage(img,0,0,w,h);
+        const compressed=cv.toDataURL('image/jpeg',0.75);
+        const oKB=Math.round(file.size/1024);
+        const cKB=Math.round(compressed.length*0.75/1024);
+        pendingPhotoData=compressed;
+        showPhotoPreview(compressed,oKB,cKB);
+      }catch(err){alert('画像処理失敗: '+err.message);}
+    };
+    img.src=e.target.result;
+  };
+  try{reader.readAsDataURL(file);}catch(e){alert('読み込み失敗');}
+}
+function showPhotoPreview(dataUrl,oKB,cKB){
+  const area=document.getElementById('photoArea');
+  area.classList.add('has-photo');
+  const sizeNote=oKB&&cKB?`<div style="font-size:11px;color:var(--text3);padding:4px 8px;text-align:right">${oKB}KB → ${cKB}KB に圧縮</div>`:'';
+  area.innerHTML=`<input type="file" accept="image/*" capture="environment" id="photoInput" onchange="handlePhoto(this)"/><img src="${dataUrl}" style="pointer-events:none"/>${sizeNote}`;
+  document.getElementById('photoClearBtn').style.display='block';
+}
+function clearPhoto(){pendingPhotoData=null;resetPhotoUI();}
+function resetPhotoUI(){
+  pendingPhotoData=null;
+  const area=document.getElementById('photoArea');
+  area.classList.remove('has-photo');
+  area.innerHTML=`<input type="file" accept="image/*" capture="environment" id="photoInput" onchange="handlePhoto(this)"/><div class="photo-upload-label" id="photoLabel">📷 タップして撮影 / ライブラリから選択</div>`;
+  document.getElementById('photoClearBtn').style.display='none';
+}
+function openFullscreen(src){
+  document.getElementById('fullscreenImg').src=src;
+  document.getElementById('fullscreen').classList.add('open');
+}
+function closeFullscreen(){document.getElementById('fullscreen').classList.remove('open')}
+
+async function saveCard(){
+  const name=document.getElementById('f-name').value.trim();
+  const buy=parseInt(document.getElementById('f-buy').value)||0;
+  if(!name){alert('カード名を入力してください');return;}
+  const id=editId||uid();
+  const card={
+    id,name,
+    type:pendingType,
+    rarity:document.getElementById('f-rarity').value,
+    date:document.getElementById('f-date').value||new Date().toISOString().slice(0,10),
+    count:Math.max(1,parseInt(document.getElementById('f-count').value)||1),
+    store:document.getElementById('f-store').value.trim(),
+    buy,
+    psa10:parseInt(document.getElementById('f-psa10').value)||0,
+    psa9:parseInt(document.getElementById('f-psa9').value)||0,
+    raw:parseInt(document.getElementById('f-raw').value)||0,
+    status:document.getElementById('f-status').value||'未提出',
+    gradeFee:parseInt(document.getElementById('f-grade-fee').value)||0,
+    soldPrice:parseInt(document.getElementById('f-sold').value)||0,
+    fee:parseInt(document.getElementById('f-fee').value)||0,
+    memo:document.getElementById('f-memo').value.trim(),
+    hasPhoto:!!pendingPhotoData,
+    ts:editId?(cards.find(x=>x.id===editId)||{}).ts||Date.now():Date.now()
+  };
+  if(pendingPhotoData)await saveImg(id,pendingPhotoData);
+  else if(editId&&!pendingPhotoData){
+    const prev=cards.find(x=>x.id===editId);
+    if(prev&&prev.hasPhoto)await deleteImg(id);
+  }
+  if(editId){const i=cards.findIndex(x=>x.id===editId);if(i>=0)cards[i]=card;}
+  else cards.unshift(card);
+  persist();closeModal();
+  mode==='shop'?(renderTypeGrid(),renderShopList()):renderList();
+}
+
+async function deleteCard(id){
+  if(!confirm('このカードを削除しますか？'))return;
+  await deleteImg(id);
+  cards=cards.filter(c=>c.id!==id);
+  if(openId===id)openId=null;
+  persist();
+  mode==='shop'?(renderTypeGrid(),renderShopList()):renderList();
+}
+
+/* 集計 */
 function renderStats(){
   const total=cards.reduce((s,c)=>s+c.buy*(c.count||1),0);
   const cnt=cards.reduce((s,c)=>s+(c.count||1),0);
   const avg=cnt?Math.round(total/cnt):0;
+  const sold=cards.filter(c=>c.soldPrice);
+  const realProfit=sold.reduce((s,c)=>s+(c.soldPrice-c.buy-c.gradeFee-c.fee),0);
   const storeMap={};
   cards.forEach(c=>{const s=c.store||'未設定';if(!storeMap[s])storeMap[s]={count:0,total:0};storeMap[s].count+=(c.count||1);storeMap[s].total+=c.buy*(c.count||1);});
   const sl=Object.entries(storeMap).sort((a,b)=>b[1].total-a[1].total);
+  const typeMap={};
+  cards.forEach(c=>{if(!c.type)return;if(!typeMap[c.type])typeMap[c.type]={count:0,total:0};typeMap[c.type].count+=(c.count||1);typeMap[c.type].total+=c.buy*(c.count||1);});
+  const tl=Object.entries(typeMap).sort((a,b)=>b[1].total-a[1].total);
   const top=[...cards].sort((a,b)=>b.buy-a.buy).slice(0,5);
+
   document.getElementById('statsContent').innerHTML=`
     <div class="stat-card"><div class="stat-card-title">全体サマリー</div>
       <div class="sg">
         <div class="sg-item"><div class="sg-val">${cnt}</div><div class="sg-label">総枚数</div></div>
-        <div class="sg-item"><div class="sg-val">${cards.length}</div><div class="sg-label">種類数</div></div>
+        <div class="sg-item"><div class="sg-val">${cards.length}</div><div class="sg-label">種類</div></div>
         <div class="sg-item"><div class="sg-val">¥${(total/10000).toFixed(1)}万</div><div class="sg-label">総仕入額</div></div>
         <div class="sg-item"><div class="sg-val">¥${avg.toLocaleString()}</div><div class="sg-label">平均単価</div></div>
       </div>
     </div>
+    <div class="stat-card"><div class="stat-card-title">販売実績</div>
+      <div class="sg">
+        <div class="sg-item"><div class="sg-val">${sold.length}</div><div class="sg-label">売却件数</div></div>
+        <div class="sg-item"><div class="sg-val" style="color:${realProfit>=0?'var(--green)':'var(--red)'}">${realProfit>=0?'+':''}¥${realProfit.toLocaleString()}</div><div class="sg-label">確定利益</div></div>
+      </div>
+    </div>
+    ${tl.length?`<div class="stat-card"><div class="stat-card-title">属性別</div>${tl.map(([t,d])=>`<div class="store-item"><span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${TYPE_MAP[t].color};margin-right:6px"></span>${TYPE_MAP[t].name}</span><span style="color:var(--text2)">${d.count}枚 / ¥${d.total.toLocaleString()}</span></div>`).join('')}</div>`:''}
     <div class="stat-card"><div class="stat-card-title">店舗別仕入れ</div>
       ${sl.map(([n,d])=>`<div class="store-item"><span>${n}</span><span style="color:var(--text2)">${d.count}枚 / ¥${d.total.toLocaleString()}</span></div>`).join('')||'<div style="font-size:13px;color:var(--text3)">データなし</div>'}
     </div>
@@ -545,37 +755,41 @@ function renderStats(){
   `;
 }
 
+/* CSV */
 function exportCSV(){
   if(!cards.length){alert('データがありません');return;}
-  const h='カード名,仕入れ日,枚数,仕入れ店舗,仕入れ価格,PSA10相場,PSA9相場,PSA10利益,PSA9利益,備考';
-  const rows=cards.map(c=>[`"${c.name}"`,c.date,c.count||1,`"${c.store||''}"`,c.buy,c.psa10||'',c.psa9||'',c.psa10?c.psa10-c.buy:'',c.psa9?c.psa9-c.buy:'',`"${(c.memo||'').replace(/"/g,'""')}"`].join(','));
+  const h='カード名,属性,レアリティ,仕入れ日,枚数,仕入れ店舗,仕入れ価格,PSA10相場,PSA9相場,生カード相場,PSAステータス,鑑定費,販売価格,販売手数料,確定利益,備考';
+  const rows=cards.map(c=>{
+    const realProfit=c.soldPrice?c.soldPrice-c.buy-c.gradeFee-c.fee:'';
+    const typeName=c.type?(TYPE_MAP[c.type]?.name||''):'';
+    return [`"${c.name}"`,typeName,c.rarity||'',c.date,c.count||1,`"${c.store||''}"`,c.buy,c.psa10||'',c.psa9||'',c.raw||'',c.status||'',c.gradeFee||'',c.soldPrice||'',c.fee||'',realProfit,`"${(c.memo||'').replace(/"/g,'""')}"`].join(',');
+  });
   const csv='\uFEFF'+[h,...rows].join('\n');
   const a=document.createElement('a');
   a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
   a.download='pokeca_'+new Date().toISOString().slice(0,10)+'.csv';
   a.click();
 }
+
 function importCSV(input){
-  const file=input.files[0];
-  if(!file)return;
+  const file=input.files[0];if(!file)return;
   const reader=new FileReader();
+  reader.onerror=()=>showImportResult('error','読み込み失敗');
   reader.onload=e=>{
     try{
       const text=e.target.result.replace(/^\uFEFF/,'');
       const lines=text.split(/\r?\n/).filter(l=>l.trim());
-      if(lines.length<2){showImportResult('error','データが見つかりませんでした');return;}
+      if(lines.length<2){showImportResult('error','データなし');return;}
       const header=parseCSVLine(lines[0]);
       const idx={
-        name:findCol(header,'カード名'),
-        date:findCol(header,'仕入れ日'),
-        count:findCol(header,'枚数'),
-        store:findCol(header,'仕入れ店舗'),
-        buy:findCol(header,'仕入れ価格'),
-        psa10:findCol(header,'PSA10相場'),
-        psa9:findCol(header,'PSA9相場'),
-        memo:findCol(header,'備考'),
+        name:findCol(header,'カード名'),type:findCol(header,'属性'),rarity:findCol(header,'レアリティ'),
+        date:findCol(header,'仕入れ日'),count:findCol(header,'枚数'),store:findCol(header,'仕入れ店舗'),
+        buy:findCol(header,'仕入れ価格'),psa10:findCol(header,'PSA10相場'),psa9:findCol(header,'PSA9相場'),
+        raw:findCol(header,'生カード相場'),status:findCol(header,'PSAステータス'),gradeFee:findCol(header,'鑑定費'),
+        sold:findCol(header,'販売価格'),fee:findCol(header,'販売手数料'),memo:findCol(header,'備考'),
       };
-      if(idx.name<0){showImportResult('error','「カード名」列が見つかりません');return;}
+      if(idx.name<0){showImportResult('error','「カード名」列なし');return;}
+      const typeNameToId={};TYPES.forEach(t=>typeNameToId[t.name]=t.id);
       let added=0,updated=0,skipped=0;
       for(let i=1;i<lines.length;i++){
         const cols=parseCSVLine(lines[i]);
@@ -583,15 +797,22 @@ function importCSV(input){
         if(!name){skipped++;continue;}
         const dateVal=idx.date>=0?cols[idx.date]||'':'';
         const existing=cards.find(c=>c.name===name&&c.date===dateVal);
+        const typeName=idx.type>=0?(cols[idx.type]||'').trim():'';
         const card={
-          id:existing?existing.id:uid(),
-          name,
+          id:existing?existing.id:uid(),name,
+          type:typeNameToId[typeName]||'',
+          rarity:idx.rarity>=0?(cols[idx.rarity]||'').trim():'',
           date:dateVal||new Date().toISOString().slice(0,10),
           count:idx.count>=0?Math.max(1,parseInt(cols[idx.count])||1):1,
           store:idx.store>=0?(cols[idx.store]||'').trim():'',
           buy:idx.buy>=0?parseInt(cols[idx.buy])||0:0,
           psa10:idx.psa10>=0?parseInt(cols[idx.psa10])||0:0,
           psa9:idx.psa9>=0?parseInt(cols[idx.psa9])||0:0,
+          raw:idx.raw>=0?parseInt(cols[idx.raw])||0:0,
+          status:idx.status>=0?(cols[idx.status]||'未提出').trim():'未提出',
+          gradeFee:idx.gradeFee>=0?parseInt(cols[idx.gradeFee])||0:0,
+          soldPrice:idx.sold>=0?parseInt(cols[idx.sold])||0:0,
+          fee:idx.fee>=0?parseInt(cols[idx.fee])||0:0,
           memo:idx.memo>=0?(cols[idx.memo]||'').trim():'',
           hasPhoto:existing?existing.hasPhoto:false,
           ts:existing?existing.ts:Date.now(),
@@ -600,13 +821,10 @@ function importCSV(input){
         else{cards.unshift(card);added++;}
       }
       persist();renderList();
-      showImportResult('ok',`完了：追加 ${added}件 / 更新 ${updated}件${skipped?` / スキップ ${skipped}件`:''}`);
+      showImportResult('ok',`完了：追加 ${added} / 更新 ${updated}${skipped?` / スキップ ${skipped}`:''}`);
       input.value='';
-    }catch(err){
-      showImportResult('error','読み込み失敗: '+err.message);
-    }
+    }catch(err){showImportResult('error','失敗: '+err.message);}
   };
-  reader.onerror=()=>showImportResult('error','ファイルの読み込みに失敗しました');
   try{reader.readAsText(file,'UTF-8');}catch(e){showImportResult('error',e.message);}
 }
 function findCol(header,name){return header.findIndex(h=>h.replace(/"/g,'').trim()===name)}
@@ -618,8 +836,7 @@ function parseCSVLine(line){
     else if(c===','&&!inQ){result.push(cur);cur='';}
     else cur+=c;
   }
-  result.push(cur);
-  return result.map(s=>s.trim());
+  result.push(cur);return result.map(s=>s.trim());
 }
 function showImportResult(type,msg){
   const el=document.getElementById('importResult');
@@ -630,22 +847,24 @@ function showImportResult(type,msg){
 }
 
 async function confirmClear(){
-  if(!confirm('全データと写真を削除します。\nこの操作は元に戻せません。'))return;
+  if(!confirm('全データと写真を削除します。\n元に戻せません。'))return;
   for(const c of cards)await deleteImg(c.id);
   cards=[];persist();renderList();
 }
 
+/* 起動 */
+loadPrefs();
 openIDB().then(()=>{
   try{load();}catch(e){cards=[];}
-  try{renderList();}catch(e){console.error(e);}
+  // 起動時に最後に使ったモードを復元
+  const startMode=prefs.mode||'shop';
+  switchMode(startMode);
 }).catch(()=>{
   idb=null;
   try{load();}catch(e){cards=[];}
-  try{renderList();}catch(e){console.error(e);}
+  switchMode(prefs.mode||'shop');
 });
-if('serviceWorker' in navigator){
-  try{navigator.serviceWorker.register('sw.js').catch(()=>{});}catch(e){}
-}
+if('serviceWorker' in navigator){try{navigator.serviceWorker.register('sw.js').catch(()=>{});}catch(e){}}
 </script>
 </body>
 </html>
