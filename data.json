@@ -101,6 +101,40 @@
       "shop": "",
       "note": "",
       "img": ""
+    },
+    {
+      "id": 1778197251903,
+      "name": "ピィ AR",
+      "pack": "黒炎の支配者",
+      "rarity": "AR",
+      "type": "超",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 4,
+      "mercari": 0,
+      "snkrdunk": 17000,
+      "yahuoku": 0,
+      "buy": 0,
+      "shop": "",
+      "note": "",
+      "img": ""
+    },
+    {
+      "id": 1778197945723,
+      "name": "トゲピー&ピィ&ププリンGX",
+      "pack": "TAG TEAM GX タッグオールスターズ",
+      "rarity": "SR",
+      "type": "超",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 4,
+      "mercari": 0,
+      "snkrdunk": 100000,
+      "yahuoku": 0,
+      "buy": 0,
+      "shop": "",
+      "note": "",
+      "img": ""
     }
   ],
   "hist": []
