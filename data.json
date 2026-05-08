@@ -254,6 +254,40 @@
       "shop": "",
       "note": "",
       "img": ""
+    },
+    {
+      "id": 1778208761961,
+      "name": "ピカチュウex RR",
+      "pack": "MEGAドリームex",
+      "rarity": "RR",
+      "type": "でんき",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 5,
+      "mercari": 0,
+      "snkrdunk": 12000,
+      "yahuoku": 0,
+      "buy": 300,
+      "shop": "",
+      "note": "",
+      "img": ""
+    },
+    {
+      "id": 1778214292587,
+      "name": "レシラムex",
+      "pack": "ホワイトフレア",
+      "rarity": "BWR",
+      "type": "ほのお",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 4,
+      "mercari": 0,
+      "snkrdunk": 120000,
+      "yahuoku": 0,
+      "buy": 60000,
+      "shop": "",
+      "note": "",
+      "img": ""
     }
   ],
   "hist": []
