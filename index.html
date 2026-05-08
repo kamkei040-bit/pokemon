@@ -97,6 +97,9 @@ button{padding:10px 16px;border:0.5px solid var(--border2);border-radius:var(--r
 .set-row:last-child{border-bottom:none}
 .set-label{font-size:11px;color:var(--text2);margin-top:2px}
 .set-row input[type=number]{width:90px;padding:6px 8px;border:0.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);font-size:13px;text-align:right}
+.rh-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+.rh-item{display:flex;align-items:center;gap:6px;font-size:11px;padding:4px 6px;border-radius:var(--radius-sm);background:var(--bg2)}
+.rh-badge{font-size:10px;padding:2px 5px;border-radius:4px;font-weight:600;white-space:nowrap;flex-shrink:0}
 .set-row input[type=password],.set-row input[type=text]{width:100%;padding:7px 9px;border:0.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);font-size:13px;margin-top:6px}
 .token-wrap{flex:1;margin-left:12px}
 .notice{font-size:11px;color:var(--text2);padding:8px 10px;background:var(--bg2);border-radius:var(--radius-sm);margin-bottom:10px;line-height:1.6}
@@ -174,9 +177,9 @@ button{padding:10px 16px;border:0.5px solid var(--border2);border-radius:var(--r
     <div class="form-r"><label>レアリティ</label>
       <select id="f-rarity">
         <option value="">-</option>
-        <optgroup label="特殊レア"><option>SSR</option><option>SAR</option><option>UR</option><option>SR</option><option>HR</option><option>CSR</option><option>CHR</option><option>AR</option><option>ACE</option><option>PROMO</option></optgroup>
-        <optgroup label="高レア"><option>RRR</option><option>RR</option><option>R</option></optgroup>
-        <optgroup label="通常"><option>U</option><option>C</option><option>TR</option><option>S</option><option>A</option><option>K</option></optgroup>
+        <optgroup label="最高レア"><option>MUR</option><option>SSR</option><option>SAR</option><option>UR</option><option>HR</option><option>SR</option><option>CSR</option><option>CHR</option><option>AR</option><option>ACE</option><option>BWR</option></optgroup>
+        <optgroup label="高レア"><option>RRR</option><option>RR</option><option>R</option><option>K</option><option>A</option><option>TR</option></optgroup>
+        <optgroup label="通常・プロモ"><option>U</option><option>C</option><option>PROMO</option><option>PR</option></optgroup>
       </select>
     </div>
   </div>
@@ -252,6 +255,17 @@ button{padding:10px 16px;border:0.5px solid var(--border2);border-radius:var(--r
     </div>
   </div>
 
+  <div class="sl">レアリティ一覧</div>
+  <div class="dbox" style="padding:0 13px" id="rarity-help">
+    <div id="rarity-help-toggle" onclick="toggleRarityHelp()" style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;cursor:pointer;font-size:13px;font-weight:500">
+      レアリティ記号の意味を確認する
+      <i class="ti ti-chevron-down" id="rarity-help-chev" style="font-size:16px;color:var(--text2)"></i>
+    </div>
+    <div id="rarity-help-body" style="display:none;padding-bottom:12px">
+      <div style="font-size:11px;color:var(--text2);margin-bottom:8px">レア度が高い順</div>
+      <div class="rh-grid" id="rarity-help-list"></div>
+    </div>
+  </div>
   <div class="sl">登録数</div>
   <div class="dbox" style="padding:0 13px">
     <div class="set-row"><span style="font-size:13px">在庫カード</span><span id="set-db-count" style="font-size:13px;font-weight:600">0枚</span></div>
@@ -274,8 +288,27 @@ const GH_REPO='pokemon';
 const GH_FILE='data.json';
 const GH_API=`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`;
 
-const TYPES=[{name:'炎',color:'#E24B4A',bg:'#FCEBEB',tc:'#501313'},{name:'水',color:'#378ADD',bg:'#E6F1FB',tc:'#042C53'},{name:'草',color:'#639922',bg:'#EAF3DE',tc:'#173404'},{name:'電気',color:'#BA7517',bg:'#FAEEDA',tc:'#412402'},{name:'超',color:'#7F77DD',bg:'#EEEDFE',tc:'#26215C'},{name:'格闘',color:'#D85A30',bg:'#FAECE7',tc:'#4A1B0C'},{name:'悪',color:'#444441',bg:'#F1EFE8',tc:'#2C2C2A'},{name:'鋼',color:'#5F5E5A',bg:'#D3D1C7',tc:'#2C2C2A'},{name:'竜',color:'#534AB7',bg:'#EEEDFE',tc:'#26215C'},{name:'無色',color:'#888780',bg:'#F1EFE8',tc:'#444441'}];
-const RARITIES=['SSR','SAR','UR','SR','HR','CSR','CHR','AR','ACE','PROMO','RRR','RR','R','U','C','TR'];
+const TYPES=[
+  {name:'ノーマル',color:'#A8A878',bg:'#F0EFE0',tc:'#3D3D1A'},
+  {name:'ほのお',  color:'#E24B4A',bg:'#FCEBEB',tc:'#501313'},
+  {name:'みず',   color:'#378ADD',bg:'#E6F1FB',tc:'#042C53'},
+  {name:'でんき', color:'#BA7517',bg:'#FAEEDA',tc:'#412402'},
+  {name:'くさ',   color:'#639922',bg:'#EAF3DE',tc:'#173404'},
+  {name:'こおり', color:'#58ABF6',bg:'#E8F4FD',tc:'#0A3A5C'},
+  {name:'かくとう',color:'#D85A30',bg:'#FAECE7',tc:'#4A1B0C'},
+  {name:'どく',   color:'#9B59B6',bg:'#F3E8FA',tc:'#3D1257'},
+  {name:'じめん', color:'#C8A438',bg:'#FAF3DC',tc:'#4A3700'},
+  {name:'ひこう', color:'#8899CC',bg:'#EDF0F9',tc:'#1E2E5C'},
+  {name:'エスパー',color:'#E75480',bg:'#FCE8EF',tc:'#5C0A24'},
+  {name:'むし',   color:'#7BAD28',bg:'#EEF6DC',tc:'#2A4300'},
+  {name:'いわ',   color:'#B8A038',bg:'#F5F0DC',tc:'#3D3200'},
+  {name:'ゴースト',color:'#6A5ACD',bg:'#EDEAF7',tc:'#251A5C'},
+  {name:'ドラゴン',color:'#534AB7',bg:'#EEEDFE',tc:'#26215C'},
+  {name:'あく',   color:'#444441',bg:'#F1EFE8',tc:'#2C2C2A'},
+  {name:'はがね', color:'#5F5E5A',bg:'#D3D1C7',tc:'#2C2C2A'},
+  {name:'フェアリー',color:'#EE99AC',bg:'#FCEEF2',tc:'#5C1E2D'},
+];
+const RARITIES=['MUR','SSR','SAR','UR','SR','HR','CSR','CHR','AR','ACE','BWR','PROMO','PR','RRR','RR','R','K','A','U','C','TR'];
 const TURN_LABELS=['','ほぼ動かない','動きが遅い','普通','よく売れる','非常に売れる'];
 let psaFee=4400,sellFeeRate=0.10;
 let selTypes=new Set(),selRarities=new Set(),openDrawer=null;
@@ -351,7 +384,7 @@ async function pushToGitHub(){
   setBtns(false);
 }
 
-function rarityColor(r){const m={SSR:{bg:'#FAEEDA',tc:'#412402'},SAR:{bg:'#EEEDFE',tc:'#26215C'},UR:{bg:'#FAEEDA',tc:'#412402'},SR:{bg:'#E1F5EE',tc:'#04342C'},HR:{bg:'#FAEEDA',tc:'#412402'},CSR:{bg:'#EEEDFE',tc:'#3C3489'},CHR:{bg:'#FBEAF0',tc:'#4B1528'},AR:{bg:'#E6F1FB',tc:'#042C53'},ACE:{bg:'#FCEBEB',tc:'#501313'},PROMO:{bg:'#F1EFE8',tc:'#2C2C2A'},RRR:{bg:'#EAF3DE',tc:'#173404'},RR:{bg:'#E6F1FB',tc:'#0C447C'},R:{bg:'#F1EFE8',tc:'#444441'},U:{bg:'#F1EFE8',tc:'#5F5E5A'},C:{bg:'#F1EFE8',tc:'#888780'}};return m[r]||{bg:'#F1EFE8',tc:'#444441'};}
+function rarityColor(r){const m={MUR:{bg:'#FFF3C4',tc:'#5C3D00'},SSR:{bg:'#FAEEDA',tc:'#412402'},SAR:{bg:'#EEEDFE',tc:'#26215C'},UR:{bg:'#FFF3C4',tc:'#5C3D00'},SR:{bg:'#E1F5EE',tc:'#04342C'},HR:{bg:'#FAEEDA',tc:'#412402'},CSR:{bg:'#EEEDFE',tc:'#3C3489'},CHR:{bg:'#FBEAF0',tc:'#4B1528'},AR:{bg:'#E6F1FB',tc:'#042C53'},ACE:{bg:'#FCEBEB',tc:'#501313'},BWR:{bg:'#EAF3DE',tc:'#173404'},PROMO:{bg:'#F1EFE8',tc:'#2C2C2A'},PR:{bg:'#E6F1FB',tc:'#0C447C'},RRR:{bg:'#EAF3DE',tc:'#173404'},RR:{bg:'#E6F1FB',tc:'#0C447C'},R:{bg:'#F1EFE8',tc:'#444441'},K:{bg:'#EEEDFE',tc:'#3C3489'},A:{bg:'#FBEAF0',tc:'#4B1528'},U:{bg:'#F1EFE8',tc:'#5F5E5A'},C:{bg:'#F1EFE8',tc:'#888780'},TR:{bg:'#F1EFE8',tc:'#444441'}};return m[r]||{bg:'#F1EFE8',tc:'#444441'};}
 function typeObj(n){return TYPES.find(t=>t.name===n)||null;}
 function hasPsa(c){return c.psa&&c.psa!==''&&c.psa!=='なし(生)';}
 function totalCost(c){return(c.buy||0)+(hasPsa(c)?psaFee:0);}
@@ -418,6 +451,42 @@ function switchTab(t){['db','add','hist','set'].forEach(id=>{document.getElement
 
 function renderHist(){const totalP=HIST.reduce((a,c)=>a+(netProfit(c)||0),0),totalS=HIST.reduce((a,c)=>a+avgPrice(c),0),totalB=HIST.reduce((a,c)=>a+totalCost(c),0);document.getElementById('stat-g').innerHTML=`<div class="stat"><div class="stat-l">累計利益</div><div class="stat-v" style="color:${totalP>=0?'#D4A017':'#E24B4A'}">${fmt(totalP)}</div></div><div class="stat"><div class="stat-l">売上合計</div><div class="stat-v">${fmt(totalS)}</div></div><div class="stat"><div class="stat-l">総コスト計</div><div class="stat-v">${fmt(totalB)}</div></div><div class="stat"><div class="stat-l">取引件数</div><div class="stat-v">${HIST.length}件</div></div>`;const hl=document.getElementById('hist-list');if(!HIST.length){hl.innerHTML='<div class="empty-st">売却履歴はまだありません</div>';return;}hl.innerHTML=HIST.slice().reverse().map(c=>{const profit=netProfit(c);const t=typeObj(c.type);return`<div class="hist-row"><div class="hist-thumb">${c.img?`<img src="${c.img}" style="width:100%;height:100%;object-fit:cover" alt="">`:'🃏'}</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${c.name}</div><div style="font-size:11px;color:var(--text2);display:flex;align-items:center;gap:4px">${t?`<span class="type-dot" style="background:${t.color}"></span>`:''} ${c.soldDate||''}</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:12px;font-weight:600;color:${profit!==null?profitColor(profit):'var(--text2)'}">${profit!==null?(profit>=0?'+':'')+fmt(profit):'—'}</div>${rarityBadge(c.rarity)}</div></div>`;}).join('');}
 
+const RARITY_HELP=[
+  {k:'MUR', l:'MEGAウルトラレア'},
+  {k:'SSR', l:'スペシャルスーパーレア'},
+  {k:'SAR', l:'スペシャルアートレア'},
+  {k:'UR',  l:'ウルトラレア（全面金）'},
+  {k:'HR',  l:'ハイパーレア（虹色）'},
+  {k:'SR',  l:'スーパーレア'},
+  {k:'CSR', l:'キャラクタースーパーレア'},
+  {k:'CHR', l:'キャラクターレア'},
+  {k:'AR',  l:'アートレア'},
+  {k:'ACE', l:'エーススペック'},
+  {k:'BWR', l:'ビーダブリューレア'},
+  {k:'PR',  l:'プリズムスター'},
+  {k:'PROMO',l:'プロモーションカード'},
+  {k:'RRR', l:'トリプルレア'},
+  {k:'RR',  l:'ダブルレア'},
+  {k:'R',   l:'レア'},
+  {k:'K',   l:'かがやく（色違い）'},
+  {k:'A',   l:'アメイジングレア'},
+  {k:'TR',  l:'トレーナーズレア'},
+  {k:'U',   l:'アンコモン'},
+  {k:'C',   l:'コモン'},
+];
+function toggleRarityHelp(){
+  const body=document.getElementById('rarity-help-body');
+  const chev=document.getElementById('rarity-help-chev');
+  const open=body.style.display==='none';
+  body.style.display=open?'block':'none';
+  chev.style.transform=open?'rotate(180deg)':'';
+  if(open && !document.getElementById('rarity-help-list').children.length){
+    document.getElementById('rarity-help-list').innerHTML=RARITY_HELP.map(r=>{
+      const c=rarityColor(r.k);
+      return`<div class="rh-item"><span class="rh-badge" style="background:${c.bg};color:${c.tc}">${r.k}</span><span style="color:var(--text2)">${r.l}</span></div>`;
+    }).join('');
+  }
+}
 function renderSet(){document.getElementById('set-db-count').textContent=DB.length+'枚';document.getElementById('set-hist-count').textContent=HIST.length+'件';if(ghToken)document.getElementById('set-token').value=ghToken;}
 
 updateFilterUI();buildTypeGrid();renderFormStars();renderDB();
