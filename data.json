@@ -288,6 +288,40 @@
       "shop": "",
       "note": "",
       "img": ""
+    },
+    {
+      "id": 1778371202111,
+      "name": "ブラッキー ミラー",
+      "pack": "テラスタルフェスex",
+      "rarity": "",
+      "type": "あく",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 0,
+      "mercari": 0,
+      "snkrdunk": 50000,
+      "yahuoku": 0,
+      "buy": 10000,
+      "shop": "",
+      "note": "イーブイから進化",
+      "img": ""
+    },
+    {
+      "id": 1778371490410,
+      "name": "ピカチュウ　ミラー",
+      "pack": "",
+      "rarity": "",
+      "type": "でんき",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 0,
+      "mercari": 0,
+      "snkrdunk": 22000,
+      "yahuoku": 0,
+      "buy": 1500,
+      "shop": "",
+      "note": "",
+      "img": ""
     }
   ],
   "hist": []
