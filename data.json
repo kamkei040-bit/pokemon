@@ -373,6 +373,40 @@
       "shop": "",
       "note": "",
       "img": ""
+    },
+    {
+      "id": 1778565908962,
+      "name": "イーブイex",
+      "pack": "テラスタルフェスex",
+      "rarity": "SAR",
+      "type": "ノーマル",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 4,
+      "mercari": 0,
+      "snkrdunk": 17000,
+      "yahuoku": 0,
+      "buy": 6000,
+      "shop": "",
+      "note": "",
+      "img": ""
+    },
+    {
+      "id": 1778565993978,
+      "name": "リーリエの決心",
+      "pack": "メガブレイブ",
+      "rarity": "SAR",
+      "type": "ノーマル",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 5,
+      "mercari": 0,
+      "snkrdunk": 82000,
+      "yahuoku": 0,
+      "buy": 35000,
+      "shop": "",
+      "note": "",
+      "img": ""
     }
   ],
   "hist": []
