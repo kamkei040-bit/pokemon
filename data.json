@@ -441,6 +441,40 @@
       "shop": "",
       "note": "",
       "img": ""
+    },
+    {
+      "id": 1778569307873,
+      "name": "カスミのトサキント 旧裏",
+      "pack": "",
+      "rarity": "",
+      "type": "みず",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 1,
+      "mercari": 0,
+      "snkrdunk": 20000,
+      "yahuoku": 0,
+      "buy": 200,
+      "shop": "",
+      "note": "",
+      "img": ""
+    },
+    {
+      "id": 1778569429703,
+      "name": "メガゲッコウガex",
+      "pack": "ニンジャスピナー",
+      "rarity": "SAR",
+      "type": "みず",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 5,
+      "mercari": 0,
+      "snkrdunk": 98000,
+      "yahuoku": 0,
+      "buy": 45000,
+      "shop": "",
+      "note": "",
+      "img": ""
     }
   ],
   "hist": []
