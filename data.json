@@ -475,6 +475,40 @@
       "shop": "",
       "note": "",
       "img": ""
+    },
+    {
+      "id": 1778599680233,
+      "name": "nagabaブースター",
+      "pack": "",
+      "rarity": "PROMO",
+      "type": "ほのお",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 0,
+      "mercari": 0,
+      "snkrdunk": 21000,
+      "yahuoku": 0,
+      "buy": 8980,
+      "shop": "",
+      "note": "",
+      "img": ""
+    },
+    {
+      "id": 1778599849506,
+      "name": "nagabaニンフィア",
+      "pack": "",
+      "rarity": "PROMO",
+      "type": "",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 4,
+      "mercari": 0,
+      "snkrdunk": 24000,
+      "yahuoku": 0,
+      "buy": 10000,
+      "shop": "",
+      "note": "",
+      "img": ""
     }
   ],
   "hist": []
