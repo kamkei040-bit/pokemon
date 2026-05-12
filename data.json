@@ -543,6 +543,40 @@
       "shop": "",
       "note": "",
       "img": ""
+    },
+    {
+      "id": 1778628230688,
+      "name": "ピカチュウ",
+      "pack": "マクドナルド ハッピーセット2025",
+      "rarity": "PROMO",
+      "type": "でんき",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 5,
+      "mercari": 0,
+      "snkrdunk": 14000,
+      "yahuoku": 0,
+      "buy": 1500,
+      "shop": "",
+      "note": "",
+      "img": ""
+    },
+    {
+      "id": 1778628329724,
+      "name": "ピカチュウ",
+      "pack": "",
+      "rarity": "PROMO",
+      "type": "でんき",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 5,
+      "mercari": 0,
+      "snkrdunk": 21000,
+      "yahuoku": 0,
+      "buy": 2000,
+      "shop": "",
+      "note": "",
+      "img": ""
     }
   ],
   "hist": []
