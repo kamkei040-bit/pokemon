@@ -109,6 +109,7 @@
     {
       "id": 1778207400276,
       "name": "ニンフィアex",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20241205122510-4.webp",
       "pack": "",
       "rarity": "SAR",
       "type": "エスパー",
@@ -116,12 +117,13 @@
       "cond": "",
       "turn": 5,
       "mercari": 0,
-      "snkrdunk": 38000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 37000,
+      "psa9snkr": 0,
       "buy": 0,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778207537208,
@@ -230,6 +232,7 @@
     {
       "id": 1778208488866,
       "name": "ナンジャモ SAR",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20250414094347-0.webp",
       "pack": "クレイバースト",
       "rarity": "SAR",
       "type": "ノーマル",
@@ -237,12 +240,13 @@
       "cond": "",
       "turn": 0,
       "mercari": 0,
-      "snkrdunk": 90000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 90000,
+      "psa9snkr": 0,
       "buy": 50000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778208761961,
@@ -332,6 +336,7 @@
     {
       "id": 1778565591478,
       "name": "ニャースex",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20260122103126-0.webp",
       "pack": "ムニキスゼロ",
       "rarity": "SAR",
       "type": "ノーマル",
@@ -339,16 +344,18 @@
       "cond": "",
       "turn": 5,
       "mercari": 0,
-      "snkrdunk": 40000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 38000,
+      "psa9snkr": 0,
       "buy": 10000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778565685986,
       "name": "そらをとぶピカチュウV",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/TCG-PKG-S8a-1455.webp",
       "pack": "25th ANNIVERSARY COLLECTION",
       "rarity": "RR",
       "type": "でんき",
@@ -358,14 +365,16 @@
       "mercari": 0,
       "snkrdunk": 15000,
       "yahuoku": 0,
+      "psa10snkr": 0,
+      "psa9snkr": 0,
       "buy": 2000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778565755822,
       "name": "そらをとぶピカチュウVMAX",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/TCG-PKG-S8a-1456.webp",
       "pack": "25th ANNIVERSARY COLLECTION",
       "rarity": "RRR",
       "type": "でんき",
@@ -375,10 +384,11 @@
       "mercari": 0,
       "snkrdunk": 20000,
       "yahuoku": 0,
+      "psa10snkr": 0,
+      "psa9snkr": 0,
       "buy": 3500,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778565908962,
@@ -487,40 +497,45 @@
     {
       "id": 1778599680233,
       "name": "nagabaブースター",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20230522104222-0.webp",
       "pack": "",
       "rarity": "PROMO",
       "type": "ほのお",
       "psa": "PSA10",
       "cond": "",
-      "turn": 0,
+      "turn": 4,
       "mercari": 0,
-      "snkrdunk": 21000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 22000,
+      "psa9snkr": 0,
       "buy": 8980,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778599849506,
       "name": "nagabaニンフィア",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20230523021629-0.webp",
       "pack": "",
       "rarity": "PROMO",
-      "type": "",
+      "type": "エスパー",
       "psa": "PSA10",
       "cond": "",
       "turn": 4,
       "mercari": 0,
-      "snkrdunk": 24000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 25000,
+      "psa9snkr": 0,
       "buy": 10000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778599985662,
       "name": "nagabaピカチュウ",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20250223012350-0.webp",
       "pack": "",
       "rarity": "PROMO",
       "type": "でんき",
@@ -528,12 +543,13 @@
       "cond": "",
       "turn": 5,
       "mercari": 0,
-      "snkrdunk": 58000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 58000,
+      "psa9snkr": 0,
       "buy": 24000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778600055850,
@@ -554,7 +570,8 @@
     },
     {
       "id": 1778628230688,
-      "name": "ピカチュウ",
+      "name": "ピカチュウ [マクドナルド]",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/pkmn-tcg-M-P-020-of.webp",
       "pack": "マクドナルド ハッピーセット2025",
       "rarity": "PROMO",
       "type": "でんき",
@@ -562,12 +579,13 @@
       "cond": "",
       "turn": 5,
       "mercari": 0,
-      "snkrdunk": 14000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 14000,
+      "psa9snkr": 0,
       "buy": 1500,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778628329724,
@@ -585,6 +603,25 @@
       "shop": "",
       "note": "",
       "img": ""
+    },
+    {
+      "id": 1778635141177,
+      "name": "nagabaイーブイ",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20230522100840-0.webp",
+      "pack": "",
+      "rarity": "PROMO",
+      "type": "",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 4,
+      "mercari": 0,
+      "snkrdunk": 0,
+      "yahuoku": 0,
+      "psa10snkr": 27000,
+      "psa9snkr": 0,
+      "buy": 0,
+      "shop": "",
+      "note": ""
     }
   ],
   "hist": []
