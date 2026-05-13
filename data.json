@@ -98,19 +98,21 @@
     {
       "id": 1778203671133,
       "name": "メガゲンガーex MA",
-      "pack": "",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20251128023141-7.webp",
+      "pack": "MEGAドリームex",
       "rarity": "MA",
       "type": "",
       "psa": "PSA10",
       "cond": "",
       "turn": 0,
       "mercari": 0,
-      "snkrdunk": 18000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 18000,
+      "psa9snkr": 0,
       "buy": 5000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778207400276,
@@ -134,6 +136,7 @@
     {
       "id": 1778207537208,
       "name": "メガエンブオーex",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20251218125717-1.webp",
       "pack": "スタートデッキ100 バトルコレクション",
       "rarity": "",
       "type": "ノーマル",
@@ -141,12 +144,13 @@
       "cond": "",
       "turn": 3,
       "mercari": 0,
-      "snkrdunk": 55000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 55000,
+      "psa9snkr": 25000,
       "buy": 0,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778207676338,
@@ -449,6 +453,7 @@
     {
       "id": 1778566085212,
       "name": "メガリザードンX ex",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20250925055456-1.webp",
       "pack": "インフェルノX",
       "rarity": "SAR",
       "type": "ほのお",
@@ -456,12 +461,13 @@
       "cond": "",
       "turn": 5,
       "mercari": 0,
-      "snkrdunk": 200000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 200000,
+      "psa9snkr": 100000,
       "buy": 120000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778566299010,
