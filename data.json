@@ -41,19 +41,21 @@
     {
       "id": 1778167791729,
       "name": "リーリエのピッピex SAR",
-      "pack": "",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20251218014854-1.webp",
+      "pack": "スタートデッキ100「バトルコレクション」",
       "rarity": "SAR",
-      "type": "超",
+      "type": "エスパー",
       "psa": "PSA10",
       "cond": "",
-      "turn": 3,
+      "turn": 4,
       "mercari": 0,
-      "snkrdunk": 190000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 220000,
+      "psa9snkr": 98000,
       "buy": 80000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778167816201,
@@ -77,19 +79,21 @@
     {
       "id": 1778167913771,
       "name": "リザードンex SAR",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20250925055456-1.webp",
       "pack": "",
       "rarity": "SAR",
-      "type": "炎",
+      "type": "ほのお",
       "psa": "PSA10",
       "cond": "",
-      "turn": 0,
+      "turn": 5,
       "mercari": 0,
-      "snkrdunk": 110000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 200000,
+      "psa9snkr": 120000,
       "buy": 50000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778203671133,
@@ -147,6 +151,7 @@
     {
       "id": 1778207676338,
       "name": "ユウリ",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20230605025557-0.webp",
       "pack": "VMAXクライマックス",
       "rarity": "SR",
       "type": "",
@@ -154,12 +159,13 @@
       "cond": "",
       "turn": 5,
       "mercari": 0,
-      "snkrdunk": 21000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 22000,
+      "psa9snkr": 7000,
       "buy": 8000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778207796396,
@@ -181,6 +187,7 @@
     {
       "id": 1778207916578,
       "name": "ピカチュウV CSR",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20220915090521-0.webp",
       "pack": "VMAXクライマックス",
       "rarity": "CSR",
       "type": "でんき",
@@ -188,12 +195,13 @@
       "cond": "",
       "turn": 5,
       "mercari": 0,
-      "snkrdunk": 70000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 80000,
+      "psa9snkr": 20000,
       "buy": 15000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778208134164,
@@ -253,19 +261,21 @@
     {
       "id": 1778208761961,
       "name": "ピカチュウex RR",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20251128041221-8.webp",
       "pack": "MEGAドリームex",
       "rarity": "RR",
       "type": "でんき",
       "psa": "PSA10",
       "cond": "",
-      "turn": 5,
+      "turn": 4,
       "mercari": 0,
-      "snkrdunk": 12000,
+      "snkrdunk": 5800,
       "yahuoku": 0,
+      "psa10snkr": 17000,
+      "psa9snkr": 0,
       "buy": 300,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778214292587,
@@ -281,7 +291,7 @@
       "snkrdunk": 0,
       "yahuoku": 0,
       "psa10snkr": 120000,
-      "psa9snkr": 0,
+      "psa9snkr": 65000,
       "buy": 60000,
       "shop": "",
       "note": ""
@@ -416,6 +426,7 @@
     {
       "id": 1778565993978,
       "name": "リーリエの決心",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20250731010923-1.webp",
       "pack": "メガブレイブ",
       "rarity": "SAR",
       "type": "ノーマル",
@@ -423,12 +434,13 @@
       "cond": "",
       "turn": 5,
       "mercari": 0,
-      "snkrdunk": 82000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 82000,
+      "psa9snkr": 30000,
       "buy": 35000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778566085212,
