@@ -225,6 +225,7 @@
     {
       "id": 1778208413891,
       "name": "ブラッキー 25th",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20221015014405-0.webp",
       "pack": "",
       "rarity": "PROMO",
       "type": "",
@@ -232,12 +233,13 @@
       "cond": "",
       "turn": 5,
       "mercari": 0,
-      "snkrdunk": 70000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 70000,
+      "psa9snkr": 30000,
       "buy": 30000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778208488866,
@@ -333,6 +335,7 @@
     {
       "id": 1778565395037,
       "name": "メガリザードンX MA",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20251128023141-0.webp",
       "pack": "MEGAドリームex",
       "rarity": "MA",
       "type": "ほのお",
@@ -340,12 +343,13 @@
       "cond": "",
       "turn": 5,
       "mercari": 0,
-      "snkrdunk": 34000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 34000,
+      "psa9snkr": 0,
       "buy": 6800,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778565591478,
@@ -496,6 +500,7 @@
     {
       "id": 1778569429703,
       "name": "メガゲッコウガex",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/e51cbcb5-3be1-4420-ab26-8777703f7c25.webp",
       "pack": "ニンジャスピナー",
       "rarity": "SAR",
       "type": "みず",
@@ -503,12 +508,13 @@
       "cond": "",
       "turn": 5,
       "mercari": 0,
-      "snkrdunk": 98000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 98000,
+      "psa9snkr": 0,
       "buy": 45000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778599680233,
