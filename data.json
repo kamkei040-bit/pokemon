@@ -174,6 +174,7 @@
     {
       "id": 1778207796396,
       "name": "マリィ HR",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20220831091114-0.webp",
       "pack": "シールド",
       "rarity": "HR",
       "type": "ノーマル",
@@ -181,12 +182,13 @@
       "cond": "",
       "turn": 4,
       "mercari": 0,
-      "snkrdunk": 25000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 32000,
+      "psa9snkr": 0,
       "buy": 6000,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778207916578,
@@ -305,19 +307,21 @@
     {
       "id": 1778371202111,
       "name": "ブラッキー ミラー",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20241207074936-0.webp",
       "pack": "テラスタルフェスex",
       "rarity": "",
       "type": "あく",
       "psa": "PSA10",
       "cond": "",
-      "turn": 0,
+      "turn": 4,
       "mercari": 0,
-      "snkrdunk": 50000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 46000,
+      "psa9snkr": 0,
       "buy": 10000,
       "shop": "",
-      "note": "イーブイから進化",
-      "img": ""
+      "note": "イーブイから進化"
     },
     {
       "id": 1778371490410,
@@ -472,23 +476,26 @@
     {
       "id": 1778566299010,
       "name": "キリンリキ 旧裏",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/pkmn-tcg-7303469-yu.webp",
       "pack": "",
       "rarity": "",
-      "type": "",
+      "type": "ゴースト",
       "psa": "PSA10",
       "cond": "",
       "turn": 3,
       "mercari": 0,
-      "snkrdunk": 20000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 20000,
+      "psa9snkr": 0,
       "buy": 200,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778569307873,
       "name": "カスミのトサキント 旧裏",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/pkmn-tcg-7302573-yu.webp",
       "pack": "",
       "rarity": "",
       "type": "みず",
@@ -496,12 +503,13 @@
       "cond": "",
       "turn": 1,
       "mercari": 0,
-      "snkrdunk": 20000,
+      "snkrdunk": 0,
       "yahuoku": 0,
+      "psa10snkr": 0,
+      "psa9snkr": 0,
       "buy": 200,
       "shop": "",
-      "note": "",
-      "img": ""
+      "note": ""
     },
     {
       "id": 1778569429703,
@@ -764,6 +772,25 @@
       "psa10snkr": 12000,
       "psa9snkr": 0,
       "buy": 2000,
+      "shop": "",
+      "note": ""
+    },
+    {
+      "id": 1779319397000,
+      "name": "メイのはげまし SAR [M3 115/080]",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20260121064939-0.webp",
+      "pack": "ムニキスゼロ",
+      "rarity": "SAR",
+      "type": "ノーマル",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 5,
+      "mercari": 0,
+      "snkrdunk": 0,
+      "yahuoku": 0,
+      "psa10snkr": 70000,
+      "psa9snkr": 20000,
+      "buy": 0,
       "shop": "",
       "note": ""
     }
