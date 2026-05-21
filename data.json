@@ -945,6 +945,25 @@
       "buy": 24000,
       "shop": "",
       "note": ""
+    },
+    {
+      "id": 1779349009093,
+      "name": "トゲピー&ピィ&ププリンGX SR: SA[SM12a 186/173]",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20220901022930-0.webp",
+      "pack": "ハイクラスパック「TAG TEAM GX タッグオールスターズ」",
+      "rarity": "SR",
+      "type": "フェアリー",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 3,
+      "mercari": 0,
+      "snkrdunk": 0,
+      "yahuoku": 0,
+      "psa10snkr": 100000,
+      "psa9snkr": 0,
+      "buy": 50000,
+      "shop": "",
+      "note": ""
     }
   ],
   "hist": []
