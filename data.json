@@ -812,6 +812,25 @@
       "buy": 0,
       "shop": "",
       "note": ""
+    },
+    {
+      "id": 1779331736947,
+      "name": "ゲンガーVMAX [SGG 002/019]",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20240611035155-0.webp",
+      "pack": "ハイクラスデッキ「ゲンガーVMAX」",
+      "rarity": "",
+      "type": "あく",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 5,
+      "mercari": 0,
+      "snkrdunk": 0,
+      "yahuoku": 0,
+      "psa10snkr": 32000,
+      "psa9snkr": 0,
+      "buy": 0,
+      "shop": "",
+      "note": ""
     }
   ],
   "hist": []
