@@ -964,6 +964,25 @@
       "buy": 50000,
       "shop": "",
       "note": ""
+    },
+    {
+      "id": 1779415060553,
+      "name": "ロケット団のミュウツーex SR [SV10 114/098]",
+      "img": "https://cdn.snkrdunk.com/upload_bg_removed/20250418045819-10.webp",
+      "pack": "ロケット団の栄光",
+      "rarity": "SR",
+      "type": "エスパー",
+      "psa": "PSA10",
+      "cond": "",
+      "turn": 4,
+      "mercari": 0,
+      "snkrdunk": 0,
+      "yahuoku": 0,
+      "psa10snkr": 17000,
+      "psa9snkr": 0,
+      "buy": 3000,
+      "shop": "",
+      "note": ""
     }
   ],
   "hist": []
